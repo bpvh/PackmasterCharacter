@@ -453,5 +453,7 @@
   "PACKMASTER-WOMAN_IN_BLUE_PACK.text1": "A collection of useful Exhaust cards themed around Potions. Contains several multi-choice cards.",
   "PACKMASTER-WOMAN_IN_BLUE_PACK.text2": "MichaelMayhem",
   "PACKMASTER-WOMAN_IN_BLUE_PACK_HAT.text0": "Spotted worn wherever trouble is brewing.",
-  "PACKMASTER-WOMAN_IN_BLUE_PACK_HAT.text1": "The Hat in Blue"
+  "PACKMASTER-WOMAN_IN_BLUE_PACK_HAT.text1": "The Hat in Blue",
+  "PACKMASTER-ENHANCE_BONFIRE_OPTIONS.description": "(Free action) Spend [blue]{Gold}[/blue] Gold. Place a [gold]Gem[/gold] into a card.",
+  "PACKMASTER-ENHANCE_BONFIRE_OPTIONS.descriptionDisabled": "Requires a [gold]Gem[/gold], [blue]{Gold}[/blue] Gold, and an unmodified card that costs 1 or more."
 }

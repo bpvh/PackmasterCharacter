@@ -24,6 +24,13 @@ public static class Wiz
     public static IReadOnlyList<CardModel> ExhaustPile(Player p) => p.PlayerCombatState?.ExhaustPile.Cards ?? [];
 
     /// <summary>True during the player's first turn of a combat (StS1 atBattleStart-style effects).</summary>
+    /// <summary>BaseLib card modifiers on a card; empty instead of throwing for cards BaseLib hasn't seen.</summary>
+    public static IReadOnlyList<CardModifier> Modifiers(CardModel card)
+    {
+        try { return CardModifier.DirectModifiers(card); }
+        catch (Exception) { return []; }
+    }
+
     /// <summary>The player's turn number in the current combat (1 on the first turn).</summary>
     public static int TurnNumber(Player p)
     {

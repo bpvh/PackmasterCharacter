@@ -35,6 +35,7 @@ Packmaster/images/relics/*
 Packmaster/images/relics/big/*
 !Packmaster/images/relics/big/relic.png
 Packmaster/images/charui/energy/
+Packmaster/images/ui/rest_site/
 
 # Python
 __pycache__/

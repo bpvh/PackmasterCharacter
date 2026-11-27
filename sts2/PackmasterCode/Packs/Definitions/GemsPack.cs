@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class GemsPack : PackmasterPack
 {
     public override string PackId => "GemsPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(GemsPackPreview);
     public override PackSummary Summary => new(1, 1, 5, 1, 4, PackTag.Orbs);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): CleanseGem, DrawGem, EnergyGem, RetainGem, TempStrengthGem, DiceGem, OccultGem, PersistGem, FrostGem, LightningGem
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Gemspack.CleanseGem),
+        typeof(global::Packmaster.PackmasterCode.Cards.Gemspack.DrawGem),
+        typeof(global::Packmaster.PackmasterCode.Cards.Gemspack.EnergyGem),
+        typeof(global::Packmaster.PackmasterCode.Cards.Gemspack.RetainGem),
+        typeof(global::Packmaster.PackmasterCode.Cards.Gemspack.TempStrengthGem),
+        typeof(global::Packmaster.PackmasterCode.Cards.Gemspack.DiceGem),
+        typeof(global::Packmaster.PackmasterCode.Cards.Gemspack.OccultGem),
+        typeof(global::Packmaster.PackmasterCode.Cards.Gemspack.PersistGem),
+        typeof(global::Packmaster.PackmasterCode.Cards.Gemspack.FrostGem),
+        typeof(global::Packmaster.PackmasterCode.Cards.Gemspack.LightningGem),
+    ];
 }
 
 public sealed class GemsPackPreview : PackPreviewCard

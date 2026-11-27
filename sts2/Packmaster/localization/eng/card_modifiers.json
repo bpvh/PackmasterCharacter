@@ -1,4 +1,24 @@
 {
   "PACKMASTER-ON_FIRE_MODIFIER.title": "On Fire",
-  "PACKMASTER-ON_FIRE_MODIFIER.description": "[gold]On Fire[/gold] [blue]{Amount}[/blue]."
+  "PACKMASTER-ON_FIRE_MODIFIER.description": "[gold]On Fire[/gold] [blue]{Amount}[/blue].",
+  "PACKMASTER-CLEANSE_GEM_MODIFIER.title": "Onyx",
+  "PACKMASTER-CLEANSE_GEM_MODIFIER.description": "Reduce your debuffs by 1.",
+  "PACKMASTER-DICE_GEM_MODIFIER.title": "Tourmaline",
+  "PACKMASTER-DICE_GEM_MODIFIER.description": "Roll a [gold]D6[/gold].",
+  "PACKMASTER-DRAW_GEM_MODIFIER.title": "Opal",
+  "PACKMASTER-DRAW_GEM_MODIFIER.description": "Draw 1 card.",
+  "PACKMASTER-ENERGY_GEM_MODIFIER.title": "Citrine",
+  "PACKMASTER-ENERGY_GEM_MODIFIER.description": "Gain {energyPrefix:energyIcons(1)} next turn.",
+  "PACKMASTER-FROST_GEM_MODIFIER.title": "Aquamarine",
+  "PACKMASTER-FROST_GEM_MODIFIER.description": "[gold]Channel[/gold] 1 [gold]Frost[/gold].",
+  "PACKMASTER-LIGHTNING_GEM_MODIFIER.title": "Fragmented Gem",
+  "PACKMASTER-LIGHTNING_GEM_MODIFIER.description": "[gold]Channel[/gold] 1 [gold]Lightning[/gold].",
+  "PACKMASTER-TEMP_STRENGTH_GEM_MODIFIER.title": "Ruby",
+  "PACKMASTER-TEMP_STRENGTH_GEM_MODIFIER.description": "Gain 2 temporary [gold]Strength[/gold].",
+  "PACKMASTER-RETAIN_GEM_MODIFIER.title": "Amber",
+  "PACKMASTER-RETAIN_GEM_MODIFIER.description": "",
+  "PACKMASTER-OCCULT_GEM_MODIFIER.title": "Lapis Lazuli",
+  "PACKMASTER-OCCULT_GEM_MODIFIER.description": "[gold]Occult[/gold].",
+  "PACKMASTER-PERSIST_GEM_MODIFIER.title": "Garnet",
+  "PACKMASTER-PERSIST_GEM_MODIFIER.description": "[gold]Persist[/gold] 2."
 }

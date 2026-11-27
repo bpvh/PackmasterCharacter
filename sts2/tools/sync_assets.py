@@ -49,6 +49,10 @@ def plan():
             yield f, DST / "relics" / "big" / f.name
     for f in sorted((SRC / "char" / "mainChar" / "orb").glob("*.png")):
         yield f, DST / "charui" / "energy" / f.name
+    # Gems pack rest site option (StS1 EnhanceBonfireOption)
+    rest = DST / "ui" / "rest_site"
+    yield SRC / "ui" / "scrapcampfire.png", rest / "option_packmaster_enhance.png"
+    yield SRC / "ui" / "scrapcampfiredisabled.png", rest / "option_packmaster_enhance_disabled.png"
 
 
 def make_character_ui(button: Path, out_dir: Path, dry_run: bool):
