@@ -1,31 +1,22 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Extensions;
-using Packmaster.PackmasterCode.Extensions;
-using MegaCrit.Sts2.Core.Entities.Powers;
-
 namespace Packmaster.PackmasterCode.Powers;
 
 /// <summary>
-/// This is the base class for your mod's powers, which is set up to load the power's images from your mod's resources.
-/// When creating a power, right click the Powers folder and create a new file with the Custom Power template.
-/// This will generate a class that extends this one.
-/// You can also just create the class manually; just make sure to inherit from this class.
+/// Base class for Packmaster powers.
+///
+/// Icons: StS1 power art is images/powers/{Name}32.png and {Name}84.png. tools/sync_assets.py
+/// copies them as-is to Packmaster/images/powers/, so ArtId is the StS1 image base name
+/// (defaults to the class name; override when the StS1 image was named differently).
 /// </summary>
 public abstract class PackmasterPower : CustomPowerModel
 {
-    //Loads from Packmaster/images/powers/your_power.png
-    public override string CustomPackedIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".PowerImagePath();
-    public override string CustomBigIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigPowerImagePath();
+    public virtual string ArtId => GetType().Name;
 
-    /// <summary>
-    /// Whether this power is a buff or debuff.
-    /// </summary>
+    public override string CustomPackedIconPath => $"{ArtId}32.png".PowerImagePath();
+    public override string CustomBigIconPath => $"{ArtId}84.png".PowerImagePath();
+
     public abstract override PowerType Type { get; }
-    
-    /// <summary>
-    /// How this power stacks if reapplied. Counter is the most common type, where applying the power again just
-    /// adds to the amount. Single means the power does not stack, like Barricade. None functions identically to
-    /// Single, but you're suggested to use Single as it is more explicit about how it will work.
-    /// </summary>
     public abstract override PowerStackType StackType { get; }
+
+    /// <summary>True if the card belongs to the player who owns this power.</summary>
+    protected bool IsOwnersCard(CardModel? card) => card != null && Owner.Player != null && card.Owner == Owner.Player;
 }

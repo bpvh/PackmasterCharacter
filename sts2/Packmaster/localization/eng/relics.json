@@ -1,3 +1,5 @@
 {
-  
+  "PACKMASTER-HANDY_HAVERSACK.title": "Handy Haversack",
+  "PACKMASTER-HANDY_HAVERSACK.description": "At the start of each combat, gain {Energy:energyIcons()} and draw {Cards:diff()} {Cards:plural:card|cards}.",
+  "PACKMASTER-HANDY_HAVERSACK.flavor": "Helps heroic hoarders handle hindrances."
 }

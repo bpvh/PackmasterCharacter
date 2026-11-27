@@ -1,3 +1,5 @@
 {
-  
+  "PACKMASTER-CARDISTRY_POWER.title": "Cardistry",
+  "PACKMASTER-CARDISTRY_POWER.description": "The next card you play this turn is placed on top of your draw pile.",
+  "PACKMASTER-CARDISTRY_POWER.smartDescription": "The next {Amount:plural:card|[blue]{Amount}[/blue] cards} you play this turn {Amount:plural:is|are} placed on top of your draw pile."
 }

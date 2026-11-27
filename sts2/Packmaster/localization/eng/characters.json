@@ -1,3 +1,16 @@
 {
-  
+  "PACKMASTER-THE_PACKMASTER.title": "The Packmaster",
+  "PACKMASTER-THE_PACKMASTER.titleObject": "the Packmaster",
+  "PACKMASTER-THE_PACKMASTER.description": "A traveler with an unending Pack of weapons and tools.\nWho knows what the Pack will hold next?",
+  "PACKMASTER-THE_PACKMASTER.possessiveAdjective": "their",
+  "PACKMASTER-THE_PACKMASTER.pronounPossessive": "theirs",
+  "PACKMASTER-THE_PACKMASTER.pronounSubject": "they",
+  "PACKMASTER-THE_PACKMASTER.pronounObject": "them",
+  "PACKMASTER-THE_PACKMASTER.goldMonologue": "More room in the Pack.",
+  "PACKMASTER-THE_PACKMASTER.eventDeathPrevention": "Not yet. The Pack isn't empty.",
+  "PACKMASTER-THE_PACKMASTER.aromaPrinciple": "[sine]Who knows what the Pack will hold next?[/sine]",
+  "PACKMASTER-THE_PACKMASTER.cardsModifierTitle": "Packmaster Cards",
+  "PACKMASTER-THE_PACKMASTER.cardsModifierDescription": "Packmaster cards now appear in rewards and shops.",
+  "PACKMASTER-THE_PACKMASTER.banter.alive.endTurnPing": "Your turn.",
+  "PACKMASTER-THE_PACKMASTER.banter.dead.endTurnPing": "..."
 }

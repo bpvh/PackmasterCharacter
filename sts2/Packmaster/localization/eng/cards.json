@@ -1,3 +1,10 @@
 {
-  
+  "PACKMASTER-STRIKE.title": "Strike",
+  "PACKMASTER-STRIKE.description": "Deal {Damage:diff()} damage.",
+  "PACKMASTER-DEFEND.title": "Defend",
+  "PACKMASTER-DEFEND.description": "Gain {Block:diff()} [gold]Block[/gold].",
+  "PACKMASTER-RUMMAGE.title": "Rummage",
+  "PACKMASTER-RUMMAGE.description": "Deal {Damage:diff()} damage.\nDraw {Cards:diff()} {Cards:plural:card|cards} and reduce {Cards:plural:its|their} cost by {Reduction:diff()} this turn.",
+  "PACKMASTER-CARDISTRY.title": "Cardistry",
+  "PACKMASTER-CARDISTRY.description": "Gain {Block:diff()} [gold]Block[/gold].\nThe next card you play this turn is returned to the top of your draw pile."
 }

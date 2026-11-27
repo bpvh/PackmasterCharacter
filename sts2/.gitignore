@@ -19,3 +19,22 @@ Directory.Build.props
 # Rider
 .idea/
 *.sln.DotSettings.user
+
+# Art copied from ../src by tools/sync_assets.py (see that script). Template placeholders stay tracked.
+.synced_assets
+Packmaster/images/card_portraits/*
+!Packmaster/images/card_portraits/card.png
+Packmaster/images/card_portraits/big/*
+!Packmaster/images/card_portraits/big/card.png
+Packmaster/images/powers/*
+!Packmaster/images/powers/power.png
+!Packmaster/images/powers/big/
+Packmaster/images/relics/*
+!Packmaster/images/relics/relic.png
+!Packmaster/images/relics/relic_outline.png
+Packmaster/images/relics/big/*
+!Packmaster/images/relics/big/relic.png
+Packmaster/images/charui/energy/
+
+# Python
+__pycache__/
