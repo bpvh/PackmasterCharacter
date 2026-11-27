@@ -11,9 +11,15 @@ public sealed class RendPower : PackmasterPower
     public override PowerStackType StackType => PowerStackType.Counter;
     public override string ArtId => "Rend"; // StS1 used the vanilla rupture icon
 
+    // ModifyDamageAdditive returns the delta (the game adds it). Game 0.111 (HeartMod) adds a CardPlay?
+    // parameter that the older reference DLL lacks.
+#if OLD_STS2_API
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
+#else
+    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
+#endif
     {
-        return target == Owner && props.HasFlag(ValueProp.Move) ? amount + Amount : amount;
+        return target == Owner && props.HasFlag(ValueProp.Move) ? Amount : 0m;
     }
 
     // StS1 atEndOfRound: after the enemies' turn.

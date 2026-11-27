@@ -7,12 +7,16 @@ public sealed class StrikeDummyJrPower : PackmasterPower
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    // VERIFY signature on the current game build: newer builds add a trailing CardPlay? parameter to the
-    // ModifyDamage* hooks (HeartMod, game 0.111). The older reference DLL has the 5-parameter form used here.
+    // ModifyDamageAdditive returns the delta (the game adds it). Game 0.111 (HeartMod) adds a CardPlay?
+    // parameter that the older reference DLL lacks.
+#if OLD_STS2_API
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
+#else
+    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
+#endif
     {
         if (dealer == Owner && cardSource != null && cardSource.Tags.Contains(CardTag.Strike))
-            return amount + Amount;
-        return amount;
+            return Amount;
+        return 0m;
     }
 }

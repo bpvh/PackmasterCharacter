@@ -9,11 +9,15 @@ public sealed class PrimeDirectivePower : PackmasterPower
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    // VERIFY signature (see StrikeDummyJrPower). The card being played hasn't finished, so PlayPosition(null)
-    // is its position; for cards in hand it's the position they would have.
+    // ModifyDamageAdditive returns the delta (the game adds it). Game 0.111 (HeartMod) adds a CardPlay?
+    // parameter that the older reference DLL lacks.
+#if OLD_STS2_API
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
+#else
+    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
+#endif
     {
-        if (dealer != Owner || cardSource is not { Type: CardType.Attack } || !IsOwnersCard(cardSource)) return amount;
-        return Wiz.PlayPosition(Owner.Player!, null) % 2 == 1 ? amount + Amount : amount;
+        if (dealer != Owner || cardSource is not { Type: CardType.Attack } || !IsOwnersCard(cardSource)) return 0m;
+        return Wiz.PlayPosition(Owner.Player!, null) % 2 == 1 ? Amount : 0m;
     }
 }
