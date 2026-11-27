@@ -1,0 +1,11 @@
+{
+  "PACKMASTER-MAKESHIFT_SWORD_POWER.title": "Кустарный меч",
+  "PACKMASTER-MAKESHIFT_SWORD_POWER.description": "Даёт [blue]{Amount}[/blue] [gold]Бодрости[/gold] при создании карты в бою.",
+  "PACKMASTER-MAKESHIFT_SWORD_POWER.smartDescription": "Даёт [blue]{Amount}[/blue] [gold]Бодрости[/gold] при создании карты в бою.",
+  "PACKMASTER-MAKESHIFT_SHIELD_POWER.title": "Кустарный щит",
+  "PACKMASTER-MAKESHIFT_SHIELD_POWER.description": "Даёт [blue]{Amount}[/blue] [gold]Защиты[/gold] при создании карты в бою.",
+  "PACKMASTER-MAKESHIFT_SHIELD_POWER.smartDescription": "Даёт [blue]{Amount}[/blue] [gold]Защиты[/gold] при создании карты в бою.",
+  "PACKMASTER-FIREWALL_POWER.title": "Антивирус",
+  "PACKMASTER-FIREWALL_POWER.description": "[gold]Сжигает[/gold] создаваемые в бою [gold]Статусы[/gold].",
+  "PACKMASTER-FIREWALL_POWER.smartDescription": "[gold]Сжигает[/gold] создаваемые в бою [gold]Статусы[/gold]."
+}
