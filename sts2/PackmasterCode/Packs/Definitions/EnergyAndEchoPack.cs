@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class EnergyAndEchoPack : PackmasterPack
 {
     public override string PackId => "EnergyAndEchoPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(EnergyAndEchoPackPreview);
     public override PackSummary Summary => new(3, 2, 4, 4, 2, PackTag.Exhaust, PackTag.Tokens);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): Crystallize, Discharge, Flashlight, MagnetRise, Overload, Panacher, ShadowStrike, Slowing, TearApart, Voices
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Energyandechopack.Crystallize),
+        typeof(global::Packmaster.PackmasterCode.Cards.Energyandechopack.Discharge),
+        typeof(global::Packmaster.PackmasterCode.Cards.Energyandechopack.Flashlight),
+        typeof(global::Packmaster.PackmasterCode.Cards.Energyandechopack.MagnetRise),
+        typeof(global::Packmaster.PackmasterCode.Cards.Energyandechopack.Overload),
+        typeof(global::Packmaster.PackmasterCode.Cards.Energyandechopack.Panacher),
+        typeof(global::Packmaster.PackmasterCode.Cards.Energyandechopack.ShadowStrike),
+        typeof(global::Packmaster.PackmasterCode.Cards.Energyandechopack.Slowing),
+        typeof(global::Packmaster.PackmasterCode.Cards.Energyandechopack.TearApart),
+        typeof(global::Packmaster.PackmasterCode.Cards.Energyandechopack.Voices),
+    ];
 }
 
 public sealed class EnergyAndEchoPackPreview : PackPreviewCard
