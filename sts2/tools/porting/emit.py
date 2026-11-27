@@ -116,6 +116,24 @@ def translate_statement(st: str, card: JavaCard, need):
     if m and amount(m.group(1)):
         return [f"await PlayerCmd.GainEnergy({amount(m.group(1))}, Owner);"]
 
+    m = re.fullmatch(r"atb\(new ChannelAction\(new (?:[\w.]+\.)?(Lightning|Frost|Dark|Plasma|Glass)\(\s*\)\)\)", s)
+    if m:
+        need.add("orbs")
+        return [f"await OrbCmd.Channel<{m.group(1)}Orb>(ctx, Owner);"]
+    m = re.fullmatch(r"atb\(new DiscardAction\(\s*p\s*,\s*p\s*,\s*([^,()]+)\s*,\s*false\s*\)\)", s)
+    if m and amount(m.group(1)):
+        need.add("wiz")
+        return [f"await Wiz.ChooseAndDiscard(ctx, this, (int){amount(m.group(1))});"]
+    m = re.fullmatch(r"atb\(new AttackDamageRandomEnemyAction\(\s*this\s*(?:,\s*([\w.]+))?\s*\)\)", s)
+    if m:
+        need.add("wiz")
+        return [f"await Wiz.AttackRandomEnemy(ctx, this, play{_vfx_arg(m.group(1) or '')});"]
+    m = re.fullmatch(r"for \(int i = 0; i < (?:this\.)?magicNumber; i\+\+\) \{ atb\(new AttackDamageRandomEnemyAction\(\s*this\s*(?:,\s*([\w.]+))?\s*\)\); \}", s)
+    if m:
+        need.add("wiz")
+        return ['for (int i = 0; i < DynamicVars["Magic"].IntValue; i++)',
+                f"    await Wiz.AttackRandomEnemy(ctx, this, play{_vfx_arg(m.group(1) or '')});"]
+
     # Powers on the target / self / all enemies.
     power_re = r"new (\w+)\(\s*(\w+)\s*,\s*(-?[\w.]+)\s*(?:,\s*(?:true|false))?\s*\)"
     m = re.fullmatch(rf"applyToEnemy(?:Top)?\(\s*m\s*,\s*{power_re}\s*\)", s) or \
@@ -171,6 +189,10 @@ def card_class(card: JavaCard, base_class: str, namespace: str, eng_text: str = 
     usings = []
     if "vanilla_powers" in need:
         usings.append("using MegaCrit.Sts2.Core.Models.Powers;")
+    if "orbs" in need:
+        usings.append("using MegaCrit.Sts2.Core.Models.Orbs;")
+    if "wiz" in need:
+        usings.append("using Packmaster.PackmasterCode.Util;")
     if "exhaustive" in card.values or "persist" in card.values:
         usings.append("using BaseLib.Cards.Variables;")
 

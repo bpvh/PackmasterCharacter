@@ -71,6 +71,30 @@ public static class Wiz
         return valid.Count == 0 ? null : CardRng(p).NextItem(valid);
     }
 
+    // ---- common card effects -------------------------------------------------------------------------
+
+    /// <summary>StS1 DiscardAction(p, p, n, false): choose n cards in hand and discard them.</summary>
+    public static async Task ChooseAndDiscard(PlayerChoiceContext ctx, CardModel source, int count)
+    {
+        var p = source.Owner;
+        var inHand = Hand(p).Count;
+        if (count <= 0 || inHand == 0) return;
+        var n = Math.Min(count, inHand);
+        var prefs = new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, n);
+        var chosen = (await CardSelectCmd.FromHand(ctx, p, prefs, null, source)).ToList();
+        if (chosen.Count > 0) await CardCmd.Discard(ctx, chosen);
+    }
+
+    /// <summary>StS1 AttackDamageRandomEnemyAction(card): one hit of the card's damage on a random enemy.</summary>
+    public static async Task AttackRandomEnemy(PlayerChoiceContext ctx, CardModel card, CardPlay? play, string? vfx = null)
+    {
+        var state = card.CombatState;
+        if (state == null) return;
+        var cmd = DamageCmd.Attack(card.DynamicVars.Damage.BaseValue).FromCard(card).TargetingRandomOpponents(state);
+        if (vfx != null) cmd.WithHitFx(vfx);
+        await cmd.Execute(ctx);
+    }
+
     // ---- creating cards ------------------------------------------------------------------------------
 
     /// <summary>A new combat card owned by p, from a canonical model (StS1 makeCopy / makeStatEquivalentCopy).</summary>
