@@ -237,6 +237,8 @@ def card_class(card: JavaCard, base_class: str, namespace: str, eng_text: str = 
     todo_ctor = [t for t in card.tags if t not in TAGS and t not in IGNORED_TAGS]
     for t in todo_ctor:
         body.append(f"// TODO port tag: {t}")
+    for power in sorted({m for l in lines for m in re.findall(r"Apply<(\w+)>", l)}):
+        body.append(f"WithTip(typeof({power}));")
     if card.preview:
         body.append(f"// TODO tooltip for cardsToPreview: {card.preview}{' (upgraded with this card)' if card.upgrade_preview else ''}")
     for st in card.ctor_rest:

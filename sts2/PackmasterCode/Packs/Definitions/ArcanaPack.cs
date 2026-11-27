@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class ArcanaPack : PackmasterPack
 {
     public override string PackId => "ArcanaPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(ArcanaPackPreview);
     public override PackSummary Summary => new(3, 3, 3, 3, 2);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): TheFool, Justice, TheHermit, TheHangedMan, TheTower, Death, Temperance, TheHierophant, TheSun, TheChariot
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Arcanapack.TheFool),
+        typeof(global::Packmaster.PackmasterCode.Cards.Arcanapack.Justice),
+        typeof(global::Packmaster.PackmasterCode.Cards.Arcanapack.TheHermit),
+        typeof(global::Packmaster.PackmasterCode.Cards.Arcanapack.TheHangedMan),
+        typeof(global::Packmaster.PackmasterCode.Cards.Arcanapack.TheTower),
+        typeof(global::Packmaster.PackmasterCode.Cards.Arcanapack.Death),
+        typeof(global::Packmaster.PackmasterCode.Cards.Arcanapack.Temperance),
+        typeof(global::Packmaster.PackmasterCode.Cards.Arcanapack.TheHierophant),
+        typeof(global::Packmaster.PackmasterCode.Cards.Arcanapack.TheSun),
+        typeof(global::Packmaster.PackmasterCode.Cards.Arcanapack.TheChariot),
+    ];
 }
 
 public sealed class ArcanaPackPreview : PackPreviewCard

@@ -74,6 +74,7 @@ class Emit(unittest.TestCase):
             'await CommonActions.Apply<VulnerablePower>(ctx, play.Target!, this, DynamicVars["Magic"].BaseValue);',
             "await CardPileCmd.Draw(ctx, 1m, Owner);",
             "using MegaCrit.Sts2.Core.Models.Powers;",
+            "WithTip(typeof(VulnerablePower));",
         ]:
             self.assertIn(expected, src)
 
