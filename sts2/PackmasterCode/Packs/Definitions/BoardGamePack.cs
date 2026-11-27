@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class BoardGamePack : PackmasterPack
 {
     public override string PackId => "BoardGamePack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(BoardGamePackPreview);
     public override PackSummary Summary => new(3, 3, 4, 4, 2);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): AllIn, D20, FlickDice, GoToJail, LevelUp, PerceptionCheck, PocketAce, Reroller, RollToMove, ThrowChips
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Boardgamepack.AllIn),
+        typeof(global::Packmaster.PackmasterCode.Cards.Boardgamepack.D20),
+        typeof(global::Packmaster.PackmasterCode.Cards.Boardgamepack.FlickDice),
+        typeof(global::Packmaster.PackmasterCode.Cards.Boardgamepack.GoToJail),
+        typeof(global::Packmaster.PackmasterCode.Cards.Boardgamepack.LevelUp),
+        typeof(global::Packmaster.PackmasterCode.Cards.Boardgamepack.PerceptionCheck),
+        typeof(global::Packmaster.PackmasterCode.Cards.Boardgamepack.PocketAce),
+        typeof(global::Packmaster.PackmasterCode.Cards.Boardgamepack.Reroller),
+        typeof(global::Packmaster.PackmasterCode.Cards.Boardgamepack.RollToMove),
+        typeof(global::Packmaster.PackmasterCode.Cards.Boardgamepack.ThrowChips),
+    ];
 }
 
 public sealed class BoardGamePackPreview : PackPreviewCard

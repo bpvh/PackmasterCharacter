@@ -46,7 +46,7 @@ Hook semantics checked by decompiling the reference DLL's `Hook` class (ilspycmd
 | Relics | Handy Haversack (+ runs the pack draft, see below) |
 | Pack framework | `Packs/`: `PackmasterPack`, `PackRegistry` (reflection, other mods can add packs), `PackRunState` (per-player, saved with the run via BaseLib `SavedSpireField`; add/remove/ban for Banishing Decree), `PackDraft`, `PackmasterConfig` (custom draft slots, All Packs, multiple None, packs per choice, disabled packs, skip draft) |
 | Pool filter | `Patches/PackPoolPatches.cs`: postfix on `CardPoolModel.GetUnlockedCards` so rewards, shops and random-card effects only use the run's packs; player context from `CardCreationOptions.GetPossibleCards` |
-| Packs ported (enabled) | 16 of 60: **Core Set**, **Strikes**, **Alignment**, **Prismatic**, **Arcana**, **Quiet**, **Bellord**, **Even/Odd**, **Rimworld**, **Ring of Pain**, **Blacksmiths** (upgrades), **Aggression**, and the vanilla packs **Ironclad**, **Silent**, **Defect**, **Poison** |
+| Packs ported (enabled) | 17 of 60: **Core Set**, **Strikes**, **Alignment**, **Prismatic**, **Arcana**, **Quiet**, **Bellord**, **Even/Odd**, **Rimworld**, **Ring of Pain**, **Blacksmiths** (upgrades), **Aggression**, **Board Game**, and the vanilla packs **Ironclad**, **Silent**, **Defect**, **Poison** |
 | Vanilla packs | StS1 packs made of base-game cards use the StS2 base-game cards (`tools/vanilla_cards.json`, read by `gen_cards.py --pack-defs`). The pool filter adds them to the Packmaster's pool for the selected packs, respecting their own pool's unlocks. Bulwark, Status, All For One and Watcher stay disabled until their missing cards (StS2 doesn't have them) get substitutes or Packmaster reimplementations |
 | Shared mechanics | Temporary HP (`TempHpPower`, via `ModifyHpLostAfterOsty`), StS1 keyword tooltips (`Util/PmTips.cs`, generated), pack relics (`Relics/PackRelic.cs`: only offered when the pack is in a Packmaster's run), multi-level upgrades (`MaxUpgradeLevel`, Ring of Pain Evolve, Blacksmiths), card modifiers (BaseLib `CardModifier`, Rimworld On Fire) |
 | Stances | `Stances/PackmasterStance.cs`: a stance is a single-instance buff power; `Stance.Enter<T>` / `Stance.Exit` run exit/enter effects and `IStanceListener` hooks, and track "changed stance this turn". No stance power = StS1 Neutral. Icons are drawn by `tools/make_stance_icons.py` (tracked) |
@@ -89,6 +89,8 @@ Conventions:
 - **Co-op:** each Packmaster resolves packs from (run seed, NetId) and uses the default slots; draft picks go through `PlayerChoiceContext`.
 - **SavedSpireField save/load** of pack state mid-run.
 - **CardistryPower** moves the played card to the top of the draw pile in `AfterCardPlayed`; check the card has already reached the discard pile at that point.
+- **Dice** (`Powers/Boardgamepack/DicePower.cs`): the card that uses Dice is chosen in `BeforeCardPlayed` and the Dice it saw are removed in `AfterCardPlayed`, so Dice rolled by the card itself are kept (StS1 order). Check that block/damage previews include Dice.
+- **Chance** cards (Go to Jail) auto-play from `AfterCardDrawn` although Unplayable; **Skip Next Turn** ends the turn from `AfterPlayerTurnStart`.
 - **MayhemFormPower** has no hand-refresh hook in StS2, so it checks after turn-start draw, play, discard and exhaust.
 
 ## Design decisions taken (review)
@@ -103,4 +105,4 @@ Conventions:
 ## Not started
 
 - Phase 4: character animation (the StS1 skeleton is a DragonBones export with meshes and IK; it needs Spine 4.2 or a Godot rebuild), energy counter from the bag orb layers, rest-site and merchant scenes.
-- 44 packs (see `gen_cards.py --list`). Pack-related relics (Booster Box, Booster Pack, Collection, Banishing Decree, Collector Badge, Gem of Unity, Bag of Holding as an Ancient upgrade), potions, Black Market Dealer event, Enhance rest-site option, top-bar packs button, pack summary star ratings in the draft.
+- 43 packs (see `gen_cards.py --list`). Pack-related relics (Booster Box, Booster Pack, Collection, Banishing Decree, Collector Badge, Gem of Unity, Bag of Holding as an Ancient upgrade), potions, Black Market Dealer event, Enhance rest-site option, top-bar packs button, pack summary star ratings in the draft.
