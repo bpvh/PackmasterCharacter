@@ -125,3 +125,15 @@ class TrailingKeywords(unittest.TestCase):
     def test_exhaust_verb_kept(self):
         r = convert_text("Draw 2 cards. Exhaust a card.", strip_auto_keywords=True)
         self.assertIn("Exhaust", r.text)
+
+
+class MarkedKeywords(unittest.TestCase):
+    def test_star_marked_keyword_line(self):
+        r = convert_text("*Unplayable. NL When you draw this card, draw !M! cards.", strip_auto_keywords=True)
+        self.assertEqual(r.text, "When you draw this card, draw {Magic:diff()} cards.")
+        self.assertEqual(r.removed_keywords, ["Unplayable"])
+
+    def test_two_keywords_one_line(self):
+        r = convert_text("Unplayable. Retain. NL Draw 2 cards.", strip_auto_keywords=True)
+        self.assertEqual(r.text, "Draw 2 cards.")
+        self.assertEqual(sorted(r.removed_keywords), ["Retain", "Unplayable"])

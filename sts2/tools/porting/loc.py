@@ -229,6 +229,7 @@ def strip_keyword_lines(lines, auto_map=AUTO_KEYWORD_LINES_ENG):
     kept, removed, idx = [], [], []
     for i, line in enumerate(lines):
         key = re.sub(r"\s+", " ", line).strip().lower()
+        key = re.sub(r"(?:^|(?<=\s))(?:\*|#y|\[#[0-9a-f]{6}\])", "", key)  # highlight markup: *Exhaust. / #yExhaust.
         if key in auto_map:
             removed.append(auto_map[key])
             idx.append(i)
@@ -245,6 +246,11 @@ def strip_keyword_lines(lines, auto_map=AUTO_KEYWORD_LINES_ENG):
                 break
             removed.append(m.group(1)[:-1])
             line = line[m.end():]
+        rest = re.sub(r"\s+", " ", line).strip().lower()
+        if rest in auto_map:  # e.g. "Unplayable. Retain." -> both stripped
+            removed.append(auto_map[rest])
+            idx.append(i)
+            continue
         kept.append(line)
     return kept, removed, idx
 

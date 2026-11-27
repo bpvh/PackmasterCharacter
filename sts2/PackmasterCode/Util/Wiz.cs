@@ -145,6 +145,19 @@ public static class Wiz
         if (chosen.Count > 0) await CardCmd.Discard(ctx, chosen);
     }
 
+    /// <summary>StS1 GamblingChipAction: discard any number of cards, then draw that many.</summary>
+    public static async Task GamblingChip(PlayerChoiceContext ctx, CardModel source)
+    {
+        var p = source.Owner;
+        var inHand = Hand(p).Count;
+        if (inHand == 0) return;
+        var prefs = new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 0, inHand);
+        var chosen = (await CardSelectCmd.FromHand(ctx, p, prefs, null, source)).ToList();
+        if (chosen.Count == 0) return;
+        await CardCmd.Discard(ctx, chosen);
+        await CardPileCmd.Draw(ctx, chosen.Count, p);
+    }
+
     /// <summary>StS1 AttackDamageRandomEnemyAction(card): one hit of the card's damage on a random enemy.</summary>
     public static async Task AttackRandomEnemy(PlayerChoiceContext ctx, CardModel card, CardPlay? play, string? vfx = null)
     {

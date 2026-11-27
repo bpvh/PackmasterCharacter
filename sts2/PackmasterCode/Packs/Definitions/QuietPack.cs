@@ -5,11 +5,23 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class QuietPack : PackmasterPack
 {
     public override string PackId => "QuietPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(QuietPackPreview);
     public override PackSummary Summary => new(4, 4, 4, 4, 2, PackTag.Discard);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (11): Crunch, Flail, Frontflip, GlaiveThrow, HammerThrow, IronShield, Lie, Oppressor, Shine, Weight, Wisdom
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Quietpack.Crunch),
+        typeof(global::Packmaster.PackmasterCode.Cards.Quietpack.Flail),
+        typeof(global::Packmaster.PackmasterCode.Cards.Quietpack.Frontflip),
+        typeof(global::Packmaster.PackmasterCode.Cards.Quietpack.GlaiveThrow),
+        typeof(global::Packmaster.PackmasterCode.Cards.Quietpack.HammerThrow),
+        typeof(global::Packmaster.PackmasterCode.Cards.Quietpack.IronShield),
+        typeof(global::Packmaster.PackmasterCode.Cards.Quietpack.Lie),
+        typeof(global::Packmaster.PackmasterCode.Cards.Quietpack.Oppressor),
+        typeof(global::Packmaster.PackmasterCode.Cards.Quietpack.Shine),
+        typeof(global::Packmaster.PackmasterCode.Cards.Quietpack.Weight),
+        typeof(global::Packmaster.PackmasterCode.Cards.Quietpack.Wisdom),
+    ];
 }
 
 public sealed class QuietPackPreview : PackPreviewCard
