@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class RingOfPainPack : PackmasterPack
 {
     public override string PackId => "RingOfPainPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(RingOfPainPackPreview);
     public override PackSummary Summary => new(4, 2, 3, 2, 3);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): Hound, Slime, Fright, Shackles, IceBeast, Loombird, Hollower, Owl, Vision, Connection
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Ringofpainpack.Hound),
+        typeof(global::Packmaster.PackmasterCode.Cards.Ringofpainpack.Slime),
+        typeof(global::Packmaster.PackmasterCode.Cards.Ringofpainpack.Fright),
+        typeof(global::Packmaster.PackmasterCode.Cards.Ringofpainpack.Shackles),
+        typeof(global::Packmaster.PackmasterCode.Cards.Ringofpainpack.IceBeast),
+        typeof(global::Packmaster.PackmasterCode.Cards.Ringofpainpack.Loombird),
+        typeof(global::Packmaster.PackmasterCode.Cards.Ringofpainpack.Hollower),
+        typeof(global::Packmaster.PackmasterCode.Cards.Ringofpainpack.Owl),
+        typeof(global::Packmaster.PackmasterCode.Cards.Ringofpainpack.Vision),
+        typeof(global::Packmaster.PackmasterCode.Cards.Ringofpainpack.Connection),
+    ];
 }
 
 public sealed class RingOfPainPackPreview : PackPreviewCard

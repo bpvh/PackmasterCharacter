@@ -53,13 +53,16 @@ def classes():
             yield f, name, base.split(",")[0].strip(), custom, text[body_start:], text
 
 
+GLOBAL_CONSTS = {}  # const string Name = "Value" from every file (base classes define var names)
+
+
 def declared_vars(body: str):
     out = set(ALWAYS)
     for method, names in WITH_VARS.items():
         if re.search(rf"\b{method}\(", body):
             out.update(names)
     out.update(re.findall(r'WithVar\(\s*"(\w+)"', body))
-    consts = dict(re.findall(r'const\s+string\s+(\w+)\s*=\s*"(\w+)"', body))
+    consts = {**GLOBAL_CONSTS, **dict(re.findall(r'const\s+string\s+(\w+)\s*=\s*"(\w+)"', body))}
     out.update(consts[c] for c in re.findall(r'WithVar\(\s*(\w+)\s*,', body) if c in consts)
     out.update(re.findall(r'WithPower<(\w+)>\(\s*"(\w+)"', body) and [n for _, n in re.findall(r'WithPower<(\w+)>\(\s*"(\w+)"', body)] or [])
     out.update(p for p in re.findall(r"WithPower<(\w+)>\(\s*\d", body))
@@ -76,6 +79,8 @@ def main(argv=None):
     args = ap.parse_args(argv)
 
     cards, powers, relics = load("cards"), load("powers"), load("relics")
+    for f in CODE.rglob("*.cs"):
+        GLOBAL_CONSTS.update(re.findall(r'const\s+string\s+(\w+)\s*=\s*"(\w+)"', f.read_text(errors="ignore")))
     problems = []
     for path, name, base, custom, body, text in classes():
         rel = path.relative_to(STS2)

@@ -19,6 +19,20 @@ public static class StringExtensions
         return Path.Join(MainFile.ResPath, "images", "card_portraits", "card.png");
     }
 
+    /// <summary>card_portraits/{path} if it exists, otherwise fallback (no placeholder).</summary>
+    public static string CardImagePathOrDefault(this string path, string fallback)
+    {
+        var full = Path.Join(MainFile.ResPath, "images", "card_portraits", path);
+        return ResourceLoader.Exists(full) ? full : fallback;
+    }
+
+    /// <summary>card_portraits/big/{path} if it exists, otherwise fallback (no placeholder).</summary>
+    public static string BigCardImagePathOrDefault(this string path, string fallback)
+    {
+        var full = Path.Join(MainFile.ResPath, "images", "card_portraits", "big", path);
+        return ResourceLoader.Exists(full) ? full : fallback;
+    }
+
     public static string BigCardImagePath(this string path)
     {
         path = Path.Join(MainFile.ResPath, "images", "card_portraits", "big", path);
