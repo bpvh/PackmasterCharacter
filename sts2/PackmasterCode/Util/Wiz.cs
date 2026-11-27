@@ -23,6 +23,16 @@ public static class Wiz
     public static IReadOnlyList<CardModel> DiscardPile(Player p) => p.PlayerCombatState?.DiscardPile.Cards ?? [];
     public static IReadOnlyList<CardModel> ExhaustPile(Player p) => p.PlayerCombatState?.ExhaustPile.Cards ?? [];
 
+    /// <summary>True during the player's first turn of a combat (StS1 atBattleStart-style effects).</summary>
+    public static bool IsFirstTurn(Player p)
+    {
+#if OLD_STS2_API
+        return p.Creature.CombatState?.RoundNumber == 1;
+#else
+        return p.PlayerCombatState?.TurnNumber == 1;
+#endif
+    }
+
     // ---- randomness ----------------------------------------------------------------------------------
 
     /// <summary>StS1 AbstractDungeon.cardRandomRng, for in-combat card generation.</summary>
