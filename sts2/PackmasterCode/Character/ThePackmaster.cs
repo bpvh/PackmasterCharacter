@@ -10,7 +10,7 @@ using Packmaster.PackmasterCode.Relics;
 namespace Packmaster.PackmasterCode.Character;
 
 /// <summary>
-/// The Packmaster. StS1 stats: 75 HP, 99 gold, 3 energy.
+/// The Packmaster. StS1 stats: 75 HP, 99 gold, 3 energy, 3 orb slots.
 /// Starting deck: 4 Strike, 4 Defend, Rummage, Cardistry. Starting relic: Handy Haversack.
 /// Visuals still use PlaceholderCharacterModel's base-game assets (Phase 4 replaces them).
 /// </summary>
@@ -25,6 +25,9 @@ public class ThePackmaster : PlaceholderCharacterModel
     public override CharacterGender Gender => CharacterGender.Neutral;
     public override int StartingHp => 75;
     public override int StartingGold => 99;
+
+    /// <summary>StS1 CharSelectInfo gave the Packmaster 3 orb slots (Orb, Strikes, Summons, Weapons... packs channel orbs).</summary>
+    public override int BaseOrbSlotCount => 3;
 
     public override IEnumerable<CardModel> StartingDeck =>
     [
