@@ -810,5 +810,11 @@
   "PACKMASTER-AGGRESSION.title": "Aggression",
   "PACKMASTER-AGGRESSION.description": "Your Attacks deal [blue]{Amount}%[/blue] more damage. Upon exiting this [gold]Stance[/gold], gain [blue]2[/blue] [gold]Strength[/gold].",
   "PACKMASTER-AGGRESSION.smartDescription": "Your Attacks deal [blue]{Amount}%[/blue] more damage. Upon exiting this [gold]Stance[/gold], gain [blue]2[/blue] [gold]Strength[/gold].",
-  "PACKMASTER-REMEMBER_POWER.selectionScreenPrompt": "Choose cards to shuffle into your draw pile"
+  "PACKMASTER-REMEMBER_POWER.selectionScreenPrompt": "Choose cards to shuffle into your draw pile",
+  "PACKMASTER-FLAWLESS_PRISM_POWER.title": "Flawless Prism",
+  "PACKMASTER-FLAWLESS_PRISM_POWER.description": "At the start of your turn, add random Power cards of different colors to your hand.",
+  "PACKMASTER-FLAWLESS_PRISM_POWER.smartDescription": "At the start of your turn, add [blue]{Amount}[/blue] random {Amount:plural:Power card|Power cards} of a different color to your hand.",
+  "PACKMASTER-QUIRION_DRYAD_POWER.title": "Quirion Dryad",
+  "PACKMASTER-QUIRION_DRYAD_POWER.description": "The first time you play a card of each color this combat, gain [gold]Strength[/gold] and [gold]Dexterity[/gold].",
+  "PACKMASTER-QUIRION_DRYAD_POWER.smartDescription": "The first time you play a card of each color this combat, gain [blue]{Amount}[/blue] [gold]Strength[/gold] and [blue]{Amount}[/blue] [gold]Dexterity[/gold]."
 }

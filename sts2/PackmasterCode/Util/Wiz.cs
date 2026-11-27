@@ -1,3 +1,5 @@
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Random;
 using Packmaster.PackmasterCode.Packs;
 
@@ -9,7 +11,8 @@ namespace Packmaster.PackmasterCode.Util;
 /// to the Java ones makes ports easier to review side by side.
 ///
 /// Game API calls whose signature changed between StS2 versions are wrapped here, so a future game update
-/// needs one fix instead of hundreds.
+/// needs one fix instead of hundreds. OLD_STS2_API is only defined by tools/compile_check (old reference DLL);
+/// the real build always uses the current API.
 /// </summary>
 public static class Wiz
 {
@@ -71,6 +74,63 @@ public static class Wiz
         return valid.Count == 0 ? null : CardRng(p).NextItem(valid);
     }
 
+    // ---- card colors (StS1 card.color != player.getCardColor()) ------------------------------------------
+
+    /// <summary>A card from outside the player's own pool (other characters' and colorless cards, as in StS1).</summary>
+    public static bool IsOtherColor(CardModel card, Player p) => card.Pool != p.Character.CardPool;
+
+    /// <summary>Cards the player finished playing this combat (StS1 cardsPlayedThisCombat), oldest first.</summary>
+    public static IEnumerable<CardModel> CardsPlayedThisCombat(Player p) =>
+        CombatManager.Instance?.History.CardPlaysFinished
+            .Where(e => e.CardPlay.Card.Owner == p)
+            .Select(e => e.CardPlay.Card) ?? [];
+
+    /// <summary>Cards the player finished playing this turn (StS1 cardsPlayedThisTurn).</summary>
+    public static IEnumerable<CardModel> CardsPlayedThisTurn(Player p)
+    {
+        var state = p.Creature.CombatState;
+        if (state == null || CombatManager.Instance == null) return [];
+        return CombatManager.Instance.History.CardPlaysFinished
+            .Where(e => e.CardPlay.Card.Owner == p && e.HappenedThisTurn(state))
+            .Select(e => e.CardPlay.Card);
+    }
+
+    public static bool PlayedOtherColorThisTurn(Player p) => CardsPlayedThisTurn(p).Any(c => IsOtherColor(c, p));
+
+    public static int OtherColorPlayedThisCombat(Player p) => CardsPlayedThisCombat(p).Count(c => IsOtherColor(c, p));
+
+    /// <summary>
+    /// StS1 PrismaticUtil.getRandomDifferentColorCardInCombat: random cards (with repeats) from other characters'
+    /// pools and the colorless pool. type/rarity null = any non-Status/Curse type, any of Common/Uncommon/Rare.
+    /// </summary>
+    public static List<CardModel> RandomOtherColorCards(Player p, CardType? type, CardRarity? rarity, int count)
+    {
+        var pools = ModelDb.AllCharacterCardPools.Append(ModelDb.CardPool<ColorlessCardPool>()).ToHashSet();
+        var valid = ModelDb.AllCards.Where(c =>
+            pools.Contains(c.Pool) && IsOtherColor(c, p) && c.CanBeGeneratedInCombat &&
+            (rarity == null ? c.Rarity is CardRarity.Common or CardRarity.Uncommon or CardRarity.Rare : c.Rarity == rarity) &&
+            (type == null ? c.Type is not (CardType.Status or CardType.Curse) : c.Type == type)).ToList();
+        var result = new List<CardModel>();
+        if (valid.Count == 0) return result;
+        var rng = CardRng(p);
+        for (int i = 0; i < count; i++) result.Add(rng.NextItem(valid)!);
+        return result;
+    }
+
+    // ---- powers --------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// PowerCmd.Apply with the current signature (choice context first), as BaseLib 3.4.8 calls it. Prefer
+    /// CommonActions.Apply from cards; use this from powers/relics, where there is no card.
+    /// </summary>
+    public static Task<T?> ApplyPower<T>(PlayerChoiceContext ctx, Creature target, decimal amount, Creature? applier,
+        CardModel? source = null) where T : PowerModel
+#if OLD_STS2_API
+        => PowerCmd.Apply<T>(target, amount, applier, source, false);
+#else
+        => PowerCmd.Apply<T>(ctx, target, amount, applier, source, false);
+#endif
+
     // ---- common card effects -------------------------------------------------------------------------
 
     /// <summary>StS1 DiscardAction(p, p, n, false): choose n cards in hand and discard them.</summary>
@@ -110,12 +170,20 @@ public static class Wiz
     public static async Task MakeInHand(CardModel card, Player p)
     {
         // Signature from current mods (card, pile, player); older game builds took (card, pile, bool addedByPlayer).
+#if OLD_STS2_API
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
+#else
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, p);
+#endif
     }
 
     public static async Task ShuffleIn(CardModel card, Player p)
     {
+#if OLD_STS2_API
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, true, CardPilePosition.Random);
+#else
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, p, CardPilePosition.Random);
+#endif
     }
 
     /// <summary>

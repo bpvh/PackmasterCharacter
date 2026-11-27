@@ -18,7 +18,11 @@ public sealed class HandyHaversack : PackDraftRelic
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         await base.AfterPlayerTurnStart(choiceContext, player); // pack draft, first combat only
+#if OLD_STS2_API
+        if (player != Owner || Owner.Creature.CombatState?.RoundNumber != 1) return;
+#else
         if (player != Owner || Owner.PlayerCombatState?.TurnNumber != 1) return;
+#endif
         Flash();
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);

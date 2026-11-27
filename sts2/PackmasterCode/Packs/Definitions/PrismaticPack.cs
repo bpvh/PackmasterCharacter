@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class PrismaticPack : PackmasterPack
 {
     public override string PackId => "PrismaticPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(PrismaticPackPreview);
     public override PackSummary Summary => new(3, 3, 4, 2, 3, PackTag.Tokens);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): SwordAndDagger, PrismaticBarrier, GrabBag, ShimmeringStrike, ExoticKnowledge, ChoiceCut, QuirionDryad, ManyAsOne, PremiumSelection, FlawlessPrism
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Prismaticpack.SwordAndDagger),
+        typeof(global::Packmaster.PackmasterCode.Cards.Prismaticpack.PrismaticBarrier),
+        typeof(global::Packmaster.PackmasterCode.Cards.Prismaticpack.GrabBag),
+        typeof(global::Packmaster.PackmasterCode.Cards.Prismaticpack.ShimmeringStrike),
+        typeof(global::Packmaster.PackmasterCode.Cards.Prismaticpack.ExoticKnowledge),
+        typeof(global::Packmaster.PackmasterCode.Cards.Prismaticpack.ChoiceCut),
+        typeof(global::Packmaster.PackmasterCode.Cards.Prismaticpack.QuirionDryad),
+        typeof(global::Packmaster.PackmasterCode.Cards.Prismaticpack.ManyAsOne),
+        typeof(global::Packmaster.PackmasterCode.Cards.Prismaticpack.PremiumSelection),
+        typeof(global::Packmaster.PackmasterCode.Cards.Prismaticpack.FlawlessPrism),
+    ];
 }
 
 public sealed class PrismaticPackPreview : PackPreviewCard

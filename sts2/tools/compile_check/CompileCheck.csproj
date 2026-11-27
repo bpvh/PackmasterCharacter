@@ -19,6 +19,9 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <NoWarn>$(NoWarn);MSB3270;CS1591</NoWarn>
     <CodeRoot Condition="'$(CodeRoot)' == ''">$(MSBuildThisFileDirectory)../../PackmasterCode</CodeRoot>
+    <!-- -p:OldSts2Api=true when checking against an early-2026 sts2.dll: selects the old-signature branches
+         marked #if OLD_STS2_API (see PORTING_STATUS.md). -->
+    <DefineConstants Condition="'$(OldSts2Api)' == 'true'">$(DefineConstants);OLD_STS2_API</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(CodeRoot)/**/*.cs" />
