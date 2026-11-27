@@ -46,7 +46,7 @@ Hook semantics checked by decompiling the reference DLL's `Hook` class (ilspycmd
 | Relics | Handy Haversack (+ runs the pack draft, see below) |
 | Pack framework | `Packs/`: `PackmasterPack`, `PackRegistry` (reflection, other mods can add packs), `PackRunState` (per-player, saved with the run via BaseLib `SavedSpireField`; add/remove/ban for Banishing Decree), `PackDraft`, `PackmasterConfig` (custom draft slots, All Packs, multiple None, packs per choice, disabled packs, skip draft) |
 | Pool filter | `Patches/PackPoolPatches.cs`: postfix on `CardPoolModel.GetUnlockedCards` so rewards, shops and random-card effects only use the run's packs; player context from `CardCreationOptions.GetPossibleCards` |
-| Packs ported (enabled) | 21 of 60: **Core Set**, **Strikes**, **Alignment**, **Prismatic**, **Arcana**, **Quiet**, **Bellord**, **Even/Odd**, **Rimworld**, **Ring of Pain**, **Blacksmiths** (upgrades), **Aggression**, **Board Game**, **Gems** (Jeweler's Kit), **Mad Science**, **Utility**, **Energy and Echo**, and the vanilla packs **Ironclad**, **Silent**, **Defect**, **Poison** |
+| Packs ported (enabled) | 22 of 60: **Core Set**, **Strikes**, **Alignment**, **Prismatic**, **Arcana**, **Quiet**, **Bellord**, **Even/Odd**, **Rimworld**, **Ring of Pain**, **Blacksmiths** (upgrades), **Aggression**, **Board Game**, **Gems** (Jeweler's Kit), **Mad Science**, **Utility**, **Energy and Echo**, **Orbs**, and the vanilla packs **Ironclad**, **Silent**, **Defect**, **Poison** |
 | Vanilla packs | StS1 packs made of base-game cards use the StS2 base-game cards (`tools/vanilla_cards.json`, read by `gen_cards.py --pack-defs`). The pool filter adds them to the Packmaster's pool for the selected packs, respecting their own pool's unlocks. Bulwark, Status, All For One and Watcher stay disabled until their missing cards (StS2 doesn't have them) get substitutes or Packmaster reimplementations |
 | Shared mechanics | Temporary HP (`TempHpPower`, via `ModifyHpLostAfterOsty`), StS1 keyword tooltips (`Util/PmTips.cs`, generated), pack relics (`Relics/PackRelic.cs`: only offered when the pack is in a Packmaster's run), multi-level upgrades (`MaxUpgradeLevel`, Ring of Pain Evolve, Blacksmiths), card modifiers (BaseLib `CardModifier`, Rimworld On Fire) |
 | Rest site | `RestSite/EnhanceRestSiteOption.cs`: Enhance (socket a Gem for 25 Gold) as a free action; added by `PackmasterRunHooks` (a BaseLib run-hook singleton) when the deck has a Gem |
@@ -100,6 +100,7 @@ Conventions:
 - **Occult** patches `CardModel.CanPlay(out, out)` and the private `CardModel.SpendEnergy`.
 - **Mad Science**: Expand plays the card an extra time (StS1 replayed an unmodified copy); Attach auto-plays a clone of the absorbed card; Piratify modifies at `AfterPlayerTurnStart` (check it runs after the hand is drawn).
 - **Energy generated** counts `PlayerCmd.GainEnergy` calls on the player's side; check the turn-start refill doesn't go through it.
+- **Oblivion** orb (`Orbs/Oblivion.cs`, BaseLib `CustomOrbModel`): its sprite is the StS1 png in a `Sprite2D`; check how it looks in the orb slots.
 - **MayhemFormPower** has no hand-refresh hook in StS2, so it checks after turn-start draw, play, discard and exhaust.
 
 ## Design decisions taken (review)
@@ -108,10 +109,10 @@ Conventions:
 - "Different color" (Prismatic) means a card outside the Packmaster's card pool, i.e. other characters' and colorless cards, as in StS1.
 - **Penalty Strike**, **Quincunx**, **Lie** and **Decapitate** use StS2 temporary-Strength powers instead of StS1's -Strength plus GainStrengthPower pair; Inner Fury's temporary Strength is the same wrapper without inversion.
 - **Vindicate** applies the vanilla StS2 Rage power (whenever you play an Attack this turn, gain Block), the same effect as StS1 Rage.
-- **Vanilla pack substitutes** for StS1 cards StS2 doesn't have: Double Tap -> One-Two Punch, Choke -> Strangle, Sneaky Strike -> Flick-Flack, Doom and Gloom -> Null, Recursion -> Darkness, Catalyst -> Bubble Bubble, Crippling Cloud -> Haze, Corpse Explosion -> Corrosive Wave (reasons in `tools/vanilla_cards.json`). Retained cards use their StS2 numbers, not StS1's.
+- **Vanilla pack substitutes** for StS1 cards StS2 doesn't have: Double Tap -> One-Two Punch, Choke -> Strangle, Sneaky Strike -> Flick-Flack, Doom and Gloom -> Null, Recursion -> Darkness, Catalyst -> Bubble Bubble, Crippling Cloud -> Haze, Corpse Explosion -> Corrosive Wave, Consume -> Bulk Up (reasons in `tools/vanilla_cards.json`). Retained cards use their StS2 numbers, not StS1's.
 - **Aggression** multiplies damage with the `Move` flag (attacks), like StS1 NORMAL damage.
 
 ## Not started
 
 - Phase 4: character animation (the StS1 skeleton is a DragonBones export with meshes and IK; it needs Spine 4.2 or a Godot rebuild), energy counter from the bag orb layers, rest-site and merchant scenes.
-- 39 packs (see `gen_cards.py --list`). Pack-related relics (Booster Box, Booster Pack, Collection, Banishing Decree, Collector Badge, Gem of Unity, Bag of Holding as an Ancient upgrade), potions, Black Market Dealer event, top-bar packs button, pack summary star ratings in the draft.
+- 38 packs (see `gen_cards.py --list`). Pack-related relics (Booster Box, Booster Pack, Collection, Banishing Decree, Collector Badge, Gem of Unity, Bag of Holding as an Ancient upgrade), potions, Black Market Dealer event, top-bar packs button, pack summary star ratings in the draft.

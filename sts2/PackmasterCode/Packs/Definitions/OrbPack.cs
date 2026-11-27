@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class OrbPack : PackmasterPack
 {
     public override string PackId => "OrbPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(OrbPackPreview);
     public override PackSummary Summary => new(1, 3, 4, 3, 4, PackTag.Orbs);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): Allocate, Augment, Charge, Emptiness, Fear, IcicleCrash, MaterialBoost, Stockpile, Thunderstruck, vanilla Consume
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Orbpack.Allocate),
+        typeof(global::Packmaster.PackmasterCode.Cards.Orbpack.Augment),
+        typeof(global::Packmaster.PackmasterCode.Cards.Orbpack.Charge),
+        typeof(global::Packmaster.PackmasterCode.Cards.Orbpack.Emptiness),
+        typeof(global::Packmaster.PackmasterCode.Cards.Orbpack.Fear),
+        typeof(global::Packmaster.PackmasterCode.Cards.Orbpack.IcicleCrash),
+        typeof(global::Packmaster.PackmasterCode.Cards.Orbpack.MaterialBoost),
+        typeof(global::Packmaster.PackmasterCode.Cards.Orbpack.Stockpile),
+        typeof(global::Packmaster.PackmasterCode.Cards.Orbpack.Thunderstruck),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.BulkUp),
+    ];
 }
 
 public sealed class OrbPackPreview : PackPreviewCard

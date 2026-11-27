@@ -1,6 +1,6 @@
 {
   "PACKMASTER-OBLIVION.title": "Oblivion",
-  "PACKMASTER-OBLIVION.description": "[gold]Passive[/gold]: Whenever you discard a card, increase this [gold]Orb[/gold]'s [gold]Ruin[/gold] by [blue]{Amount}[/blue].\n[gold]Evoke[/gold]: Apply [gold]Ruin[/gold] to the enemy with the most HP.",
+  "PACKMASTER-OBLIVION.description": "[gold]Passive[/gold]: Whenever you discard a card, increase this [gold]Orb[/gold]'s [gold]Ruin[/gold].\n[gold]Evoke[/gold]: Apply [gold]Ruin[/gold] to the enemy with the most HP.",
   "PACKMASTER-OBLIVION.fragment0": "[gold]Passive[/gold]: Whenever you discard a card, increase this [gold]Orb[/gold]'s [gold]Ruin[/gold] by",
   "PACKMASTER-OBLIVION.fragment1": ".\n[gold]Evoke[/gold]: Apply",
   "PACKMASTER-OBLIVION.fragment2": "[gold]Ruin[/gold] to the enemy with the most HP.",
@@ -67,5 +67,6 @@
   "PACKMASTER-SWORD_OF_FIRE_ORB.title": "Sword of Fire",
   "PACKMASTER-SWORD_OF_FIRE_ORB.description": "Whenever you attack with this [gold]Weapon[/gold], deal [blue]4[/blue] damage to ALL enemies.",
   "PACKMASTER-REAPERS_SCYTHE_ORB.title": "Reaper's Scythe",
-  "PACKMASTER-REAPERS_SCYTHE_ORB.description": "Whenever you attack with this [gold]Weapon[/gold], apply [blue]1[/blue] [gold]Reaper's Mark[/gold] to a target per hit."
+  "PACKMASTER-REAPERS_SCYTHE_ORB.description": "Whenever you attack with this [gold]Weapon[/gold], apply [blue]1[/blue] [gold]Reaper's Mark[/gold] to a target per hit.",
+  "PACKMASTER-OBLIVION.smartDescription": "[gold]Passive[/gold]: Whenever you discard a card, increase this [gold]Orb[/gold]'s [gold]Ruin[/gold] by [blue]{Passive}[/blue].\n[gold]Evoke[/gold]: Apply [blue]{Evoke}[/blue] [gold]Ruin[/gold] to the enemy with the most HP."
 }

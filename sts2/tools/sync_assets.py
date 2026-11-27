@@ -49,6 +49,8 @@ def plan():
             yield f, DST / "relics" / "big" / f.name
     for f in sorted((SRC / "char" / "mainChar" / "orb").glob("*.png")):
         yield f, DST / "charui" / "energy" / f.name
+    for f in sorted((SRC / "orbs").glob("*.png")):
+        yield f, DST / "orbs" / f.name
     # Gems pack rest site option (StS1 EnhanceBonfireOption)
     rest = DST / "ui" / "rest_site"
     yield SRC / "ui" / "scrapcampfire.png", rest / "option_packmaster_enhance.png"

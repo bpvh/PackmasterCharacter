@@ -79,5 +79,9 @@
  "CorpseExplosion": {
   "sts2": "CorrosiveWave",
   "note": "StS2 has no Corpse Explosion; Corrosive Wave is the rare poison skill"
+ },
+ "Consume": {
+  "sts2": "BulkUp",
+  "note": "StS2 has no Consume; Bulk Up (uncommon) also trades an orb slot for stats"
  }
 }
