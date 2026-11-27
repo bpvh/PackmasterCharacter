@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class ThieveryPack : PackmasterPack
 {
     public override string PackId => "ThieveryPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(ThieveryPackPreview);
     public override PackSummary Summary => new(2, 2, 4, 3, 3, PackTag.Strength);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): DrainShield, FairTrade, Smokescreen, NullHammer, Magnet, StrengthSap, CunningPoison, MindControl, Witchcraft, ThieveryMastery
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Thieverypack.DrainShield),
+        typeof(global::Packmaster.PackmasterCode.Cards.Thieverypack.FairTrade),
+        typeof(global::Packmaster.PackmasterCode.Cards.Thieverypack.Smokescreen),
+        typeof(global::Packmaster.PackmasterCode.Cards.Thieverypack.NullHammer),
+        typeof(global::Packmaster.PackmasterCode.Cards.Thieverypack.Magnet),
+        typeof(global::Packmaster.PackmasterCode.Cards.Thieverypack.StrengthSap),
+        typeof(global::Packmaster.PackmasterCode.Cards.Thieverypack.CunningPoison),
+        typeof(global::Packmaster.PackmasterCode.Cards.Thieverypack.MindControl),
+        typeof(global::Packmaster.PackmasterCode.Cards.Thieverypack.Witchcraft),
+        typeof(global::Packmaster.PackmasterCode.Cards.Thieverypack.ThieveryMastery),
+    ];
 }
 
 public sealed class ThieveryPackPreview : PackPreviewCard

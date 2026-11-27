@@ -37,7 +37,7 @@
   "PACKMASTER-GENERATE_CLAWS_POTION.fragment0": "Add",
   "PACKMASTER-GENERATE_CLAWS_POTION.fragment1": "[gold]Claws[/gold] to your hand.",
   "PACKMASTER-DIVINE_POTION.title": "Divine Potion",
-  "PACKMASTER-DIVINE_POTION.description": "Gain [blue]{Amount}[/blue] [gold]Temporary HP[/gold] [REMOVE_SPACE].",
+  "PACKMASTER-DIVINE_POTION.description": "Gain [blue]{Amount}[/blue] [gold]Temporary HP[/gold].",
   "PACKMASTER-DIVINE_POTION.fragment0": "Gain",
   "PACKMASTER-DIVINE_POTION.fragment1": "[gold]Temporary HP[/gold] [REMOVE_SPACE]."
 }
