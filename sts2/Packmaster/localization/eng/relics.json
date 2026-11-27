@@ -67,7 +67,7 @@
   "PACKMASTER-MINI_HAKKERO.description": "At the start of your turn, gain [blue]{Amount}[/blue] #y[gold]Charge[/gold] Up.",
   "PACKMASTER-MINI_HAKKERO.flavor": "A small elemental furnace, generates enough heat and energy to destroy a mountain.",
   "PACKMASTER-DIMENSION_CORE.title": "Dimension Core",
-  "PACKMASTER-DIMENSION_CORE.description": "At the start of combat, for every [blue]10[/blue] cards in your deck, shuffle [blue]3[/blue] [gold]different[/gold] [gold]color[/gold] cards into your draw pile. Draw an extra card each turn.",
+  "PACKMASTER-DIMENSION_CORE.description": "At the start of combat, for every [blue]10[/blue] cards in your deck, shuffle [blue]3[/blue] [gold]different color[/gold] cards into your draw pile. Draw an extra card each turn.",
   "PACKMASTER-DIMENSION_CORE.flavor": "A crystal sphere containing infinite possibilities. It's cracked.",
   "PACKMASTER-TARRED_FEATHER.title": "Tarred Feather",
   "PACKMASTER-TARRED_FEATHER.description": "Raise your max hand size by [blue]2[/blue].\nAt the start of each combat, add [blue]2[/blue] [gold]Weights[/gold] into your hand.",

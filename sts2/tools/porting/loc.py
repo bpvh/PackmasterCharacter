@@ -283,6 +283,8 @@ def convert_inline(s: str, keywords_out: set) -> str:
 
 def tidy(s: str) -> str:
     s = re.sub(r"[ \t]+", " ", s)
+    # StS1 highlighted multi-word names word by word (*Curse *of *the *Bell): merge adjacent gold spans.
+    s = re.sub(r"\[/gold\] \[gold\]", " ", s)
     s = re.sub(r" ?\n ?", "\n", s)
     s = re.sub(r" ([.,;:!?])", r"\1", s)
     return s.strip()

@@ -137,3 +137,8 @@ class MarkedKeywords(unittest.TestCase):
         r = convert_text("Unplayable. Retain. NL Draw 2 cards.", strip_auto_keywords=True)
         self.assertEqual(r.text, "Draw 2 cards.")
         self.assertEqual(sorted(r.removed_keywords), ["Retain", "Unplayable"])
+
+
+class MergeGold(unittest.TestCase):
+    def test_multi_word_name(self):
+        self.assertEqual(conv("Obtain a *Curse *of *the *Bell."), "Obtain a [gold]Curse of the Bell[/gold].")

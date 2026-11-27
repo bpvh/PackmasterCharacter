@@ -19,10 +19,10 @@
   "PACKMASTER-SMITHING_OIL.fragment2": "cards in your hand to [gold]Upgrade[/gold] [blue]permanently[/blue].",
   "PACKMASTER-SMITHING_OIL.fragment3": "[gold]Upgrade[/gold] permanently.",
   "PACKMASTER-ATTACK_POTION_BUT_CLAW.title": "Clawtack Potion",
-  "PACKMASTER-ATTACK_POTION_BUT_CLAW.description": "Choose [blue]1[/blue] of [blue]3[/blue] random [gold]Attack[/gold] cards to add to your hand, it costs [blue]0[/blue] this turn and is Modified: 'Name gains Claw' and 'Gain a [gold]Ghost[/gold] [gold]Claw[/gold]'. {Amount} Choose [blue]1[/blue] of [blue]3[/blue] random [gold]Attack[/gold] cards and add copies to your hand, they cost [blue]0[/blue] this turn and are Modified: 'Name gains Claw' and 'Gain a [gold]Ghost[/gold] [gold]Claw[/gold]'. Choose an Attack to add to your hand.",
-  "PACKMASTER-ATTACK_POTION_BUT_CLAW.fragment0": "Choose [blue]1[/blue] of [blue]3[/blue] random [gold]Attack[/gold] cards to add to your hand, it costs [blue]0[/blue] this turn and is Modified: 'Name gains Claw' and 'Gain a [gold]Ghost[/gold] [gold]Claw[/gold]'.",
+  "PACKMASTER-ATTACK_POTION_BUT_CLAW.description": "Choose [blue]1[/blue] of [blue]3[/blue] random [gold]Attack[/gold] cards to add to your hand, it costs [blue]0[/blue] this turn and is Modified: 'Name gains Claw' and 'Gain a [gold]Ghost Claw[/gold]'. {Amount} Choose [blue]1[/blue] of [blue]3[/blue] random [gold]Attack[/gold] cards and add copies to your hand, they cost [blue]0[/blue] this turn and are Modified: 'Name gains Claw' and 'Gain a [gold]Ghost Claw[/gold]'. Choose an Attack to add to your hand.",
+  "PACKMASTER-ATTACK_POTION_BUT_CLAW.fragment0": "Choose [blue]1[/blue] of [blue]3[/blue] random [gold]Attack[/gold] cards to add to your hand, it costs [blue]0[/blue] this turn and is Modified: 'Name gains Claw' and 'Gain a [gold]Ghost Claw[/gold]'.",
   "PACKMASTER-ATTACK_POTION_BUT_CLAW.fragment1": "Choose [blue]1[/blue] of [blue]3[/blue] random [gold]Attack[/gold] cards and add",
-  "PACKMASTER-ATTACK_POTION_BUT_CLAW.fragment2": "copies to your hand, they cost [blue]0[/blue] this turn and are Modified: 'Name gains Claw' and 'Gain a [gold]Ghost[/gold] [gold]Claw[/gold]'.",
+  "PACKMASTER-ATTACK_POTION_BUT_CLAW.fragment2": "copies to your hand, they cost [blue]0[/blue] this turn and are Modified: 'Name gains Claw' and 'Gain a [gold]Ghost Claw[/gold]'.",
   "PACKMASTER-ATTACK_POTION_BUT_CLAW.fragment3": "Choose an Attack to add to your hand.",
   "PACKMASTER-CLAW_POWER_POTION.title": "Sharpening Oil",
   "PACKMASTER-CLAW_POWER_POTION.description": "[gold]Modify[/gold] all [gold]Attacks[/gold] in hand: 'Name gains Claw'. [gold]Sharpen[/gold] [blue]{Amount}[/blue].",
@@ -37,7 +37,7 @@
   "PACKMASTER-GENERATE_CLAWS_POTION.fragment0": "Add",
   "PACKMASTER-GENERATE_CLAWS_POTION.fragment1": "[gold]Claws[/gold] to your hand.",
   "PACKMASTER-DIVINE_POTION.title": "Divine Potion",
-  "PACKMASTER-DIVINE_POTION.description": "Gain [blue]{Amount}[/blue] [gold]Temporary[/gold] [gold]HP[/gold] [REMOVE_SPACE].",
+  "PACKMASTER-DIVINE_POTION.description": "Gain [blue]{Amount}[/blue] [gold]Temporary HP[/gold] [REMOVE_SPACE].",
   "PACKMASTER-DIVINE_POTION.fragment0": "Gain",
-  "PACKMASTER-DIVINE_POTION.fragment1": "[gold]Temporary[/gold] [gold]HP[/gold] [REMOVE_SPACE]."
+  "PACKMASTER-DIVINE_POTION.fragment1": "[gold]Temporary HP[/gold] [REMOVE_SPACE]."
 }

@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class BellordPack : PackmasterPack
 {
     public override string PackId => "BellordPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(BellordPackPreview);
     public override PackSummary Summary => new(2, 3, 2, 4, 1);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): Reverberation, Midnight, Clang, VoDo, RingTheBell, TimeOut, Cuckoo, Dong, LikeClockwork, SavedByTheBell
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Bellordpack.Reverberation),
+        typeof(global::Packmaster.PackmasterCode.Cards.Bellordpack.Midnight),
+        typeof(global::Packmaster.PackmasterCode.Cards.Bellordpack.Clang),
+        typeof(global::Packmaster.PackmasterCode.Cards.Bellordpack.VoDo),
+        typeof(global::Packmaster.PackmasterCode.Cards.Bellordpack.RingTheBell),
+        typeof(global::Packmaster.PackmasterCode.Cards.Bellordpack.TimeOut),
+        typeof(global::Packmaster.PackmasterCode.Cards.Bellordpack.Cuckoo),
+        typeof(global::Packmaster.PackmasterCode.Cards.Bellordpack.Dong),
+        typeof(global::Packmaster.PackmasterCode.Cards.Bellordpack.LikeClockwork),
+        typeof(global::Packmaster.PackmasterCode.Cards.Bellordpack.SavedByTheBell),
+    ];
 }
 
 public sealed class BellordPackPreview : PackPreviewCard

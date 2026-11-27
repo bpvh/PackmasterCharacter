@@ -67,7 +67,7 @@
   "PACKMASTER-MINI_HAKKERO.description": "턴 시작 시, [gold]충전을[/gold] [blue]{Amount}[/blue] 얻습니다.",
   "PACKMASTER-MINI_HAKKERO.flavor": "산을 파괴할 정도의 열과 에너지를 생성하는 작은 원소 용광로입니다.",
   "PACKMASTER-DIMENSION_CORE.title": "차원 핵",
-  "PACKMASTER-DIMENSION_CORE.description": "전투 시작 시, 덱에 있는 [blue]10[/blue] 장의 카드마다 뽑을 카드 더미에 [blue]3[/blue] 장의 [gold]다른[/gold] [gold]색[/gold] 카드를 섞어 넣습니다. 매 턴 카드를 추가로 한 장 뽑습니다.",
+  "PACKMASTER-DIMENSION_CORE.description": "전투 시작 시, 덱에 있는 [blue]10[/blue] 장의 카드마다 뽑을 카드 더미에 [blue]3[/blue] 장의 [gold]다른 색[/gold] 카드를 섞어 넣습니다. 매 턴 카드를 추가로 한 장 뽑습니다.",
   "PACKMASTER-DIMENSION_CORE.flavor": "무한한 가능성을 담은 수정구입니다. 금이 갔습니다.",
   "PACKMASTER-TARRED_FEATHER.title": "타르 묻은 깃털",
   "PACKMASTER-TARRED_FEATHER.description": "손의 최대 크기를 [blue]2[/blue] 장 늘립니다.\n전투 시작 시, [blue]2[/blue] 장의 [gold]역기[/gold] 를 얻습니다.",

@@ -19,10 +19,10 @@
   "PACKMASTER-SMITHING_OIL.fragment2": "Karten von deiner Hand, um sie dauerhaft zu [gold]Verbessern[/gold].",
   "PACKMASTER-SMITHING_OIL.fragment3": "Verbessere sie dauerhaft.",
   "PACKMASTER-ATTACK_POTION_BUT_CLAW.title": "krallenangriffstrank",
-  "PACKMASTER-ATTACK_POTION_BUT_CLAW.description": "Wähle [blue]1[/blue] von [blue]3[/blue] zufälligen [gold]Angriffs[/gold] Karten aus, um sie deiner Hand hinzuzufügen. Sie kostet in diesem Zug [blue]0[/blue] und wird modifiziert: 'Name erhält Kralle' und 'Erhalte eine [gold]Geist[/gold] [gold]Kralle[/gold]'. {Amount} Wähle [blue]1[/blue] von [blue]3[/blue] zufälligen [gold]Angriffs[/gold] Karten aus und füge Kopien deiner Hand hinzu. Sie kosten in diesem Zug [blue]0[/blue] und werden modifiziert: 'Name erhält Kralle' und 'Erhalte eine [gold]Geist[/gold] [gold]Kralle[/gold]'. Wähle einen Angriff aus, um ihn deiner Hand hinzuzufügen.",
-  "PACKMASTER-ATTACK_POTION_BUT_CLAW.fragment0": "Wähle [blue]1[/blue] von [blue]3[/blue] zufälligen [gold]Angriffs[/gold] Karten aus, um sie deiner Hand hinzuzufügen. Sie kostet in diesem Zug [blue]0[/blue] und wird modifiziert: 'Name erhält Kralle' und 'Erhalte eine [gold]Geist[/gold] [gold]Kralle[/gold]'.",
+  "PACKMASTER-ATTACK_POTION_BUT_CLAW.description": "Wähle [blue]1[/blue] von [blue]3[/blue] zufälligen [gold]Angriffs[/gold] Karten aus, um sie deiner Hand hinzuzufügen. Sie kostet in diesem Zug [blue]0[/blue] und wird modifiziert: 'Name erhält Kralle' und 'Erhalte eine [gold]Geist Kralle[/gold]'. {Amount} Wähle [blue]1[/blue] von [blue]3[/blue] zufälligen [gold]Angriffs[/gold] Karten aus und füge Kopien deiner Hand hinzu. Sie kosten in diesem Zug [blue]0[/blue] und werden modifiziert: 'Name erhält Kralle' und 'Erhalte eine [gold]Geist Kralle[/gold]'. Wähle einen Angriff aus, um ihn deiner Hand hinzuzufügen.",
+  "PACKMASTER-ATTACK_POTION_BUT_CLAW.fragment0": "Wähle [blue]1[/blue] von [blue]3[/blue] zufälligen [gold]Angriffs[/gold] Karten aus, um sie deiner Hand hinzuzufügen. Sie kostet in diesem Zug [blue]0[/blue] und wird modifiziert: 'Name erhält Kralle' und 'Erhalte eine [gold]Geist Kralle[/gold]'.",
   "PACKMASTER-ATTACK_POTION_BUT_CLAW.fragment1": "Wähle [blue]1[/blue] von [blue]3[/blue] zufälligen [gold]Angriffs[/gold] Karten aus und füge",
-  "PACKMASTER-ATTACK_POTION_BUT_CLAW.fragment2": "Kopien deiner Hand hinzu. Sie kosten in diesem Zug [blue]0[/blue] und werden modifiziert: 'Name erhält Kralle' und 'Erhalte eine [gold]Geist[/gold] [gold]Kralle[/gold]'.",
+  "PACKMASTER-ATTACK_POTION_BUT_CLAW.fragment2": "Kopien deiner Hand hinzu. Sie kosten in diesem Zug [blue]0[/blue] und werden modifiziert: 'Name erhält Kralle' und 'Erhalte eine [gold]Geist Kralle[/gold]'.",
   "PACKMASTER-ATTACK_POTION_BUT_CLAW.fragment3": "Wähle einen Angriff aus, um ihn deiner Hand hinzuzufügen.",
   "PACKMASTER-CLAW_POWER_POTION.title": "schärföl",
   "PACKMASTER-CLAW_POWER_POTION.description": "Modifiziere alle [gold]Angriffe[/gold] in deiner Hand: 'Name erhält Kralle'. [gold]Schärfen[/gold] [blue]{Amount}[/blue].",
@@ -37,7 +37,7 @@
   "PACKMASTER-GENERATE_CLAWS_POTION.fragment0": "Füge",
   "PACKMASTER-GENERATE_CLAWS_POTION.fragment1": "[gold]Krallen[/gold] deiner Hand hinzu.",
   "PACKMASTER-DIVINE_POTION.title": "Göttlicher Trank",
-  "PACKMASTER-DIVINE_POTION.description": "Erhalte [blue]{Amount}[/blue] [gold]temporäre[/gold] [gold]TP[/gold] [REMOVE_SPACE].",
+  "PACKMASTER-DIVINE_POTION.description": "Erhalte [blue]{Amount}[/blue] [gold]temporäre TP[/gold] [REMOVE_SPACE].",
   "PACKMASTER-DIVINE_POTION.fragment0": "Erhalte",
-  "PACKMASTER-DIVINE_POTION.fragment1": "[gold]temporäre[/gold] [gold]TP[/gold] [REMOVE_SPACE]."
+  "PACKMASTER-DIVINE_POTION.fragment1": "[gold]temporäre TP[/gold] [REMOVE_SPACE]."
 }
