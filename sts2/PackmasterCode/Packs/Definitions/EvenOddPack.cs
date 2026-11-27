@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class EvenOddPack : PackmasterPack
 {
     public override string PackId => "EvenOddPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(EvenOddPackPreview);
     public override PackSummary Summary => new(3, 3, 4, 4, 3);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): SwordAndBoard, QuickReflex, PrimeDirective, WitzBolt, ElementOfSurprise, GammaWard, WindUpBomb, LeftHook, Battlecry, Flourish
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Evenoddpack.SwordAndBoard),
+        typeof(global::Packmaster.PackmasterCode.Cards.Evenoddpack.QuickReflex),
+        typeof(global::Packmaster.PackmasterCode.Cards.Evenoddpack.PrimeDirective),
+        typeof(global::Packmaster.PackmasterCode.Cards.Evenoddpack.WitzBolt),
+        typeof(global::Packmaster.PackmasterCode.Cards.Evenoddpack.ElementOfSurprise),
+        typeof(global::Packmaster.PackmasterCode.Cards.Evenoddpack.GammaWard),
+        typeof(global::Packmaster.PackmasterCode.Cards.Evenoddpack.WindUpBomb),
+        typeof(global::Packmaster.PackmasterCode.Cards.Evenoddpack.LeftHook),
+        typeof(global::Packmaster.PackmasterCode.Cards.Evenoddpack.Battlecry),
+        typeof(global::Packmaster.PackmasterCode.Cards.Evenoddpack.Flourish),
+    ];
 }
 
 public sealed class EvenOddPackPreview : PackPreviewCard

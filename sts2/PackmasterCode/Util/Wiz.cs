@@ -105,6 +105,20 @@ public static class Wiz
             .Select(e => e.CardPlay.Card);
     }
 
+    /// <summary>
+    /// Position of a card play this turn, counting from 1 and including the play itself (StS1
+    /// cardsPlayedThisTurn.size() inside use()). Pass the current play; with null, returns the position the next
+    /// card would have (for previews and hand glow).
+    /// </summary>
+    public static int PlayPosition(Player p, CardPlay? play)
+    {
+        var state = p.Creature.CombatState;
+        if (state == null || CombatManager.Instance == null) return 1;
+        var before = CombatManager.Instance.History.CardPlaysFinished
+            .Count(e => e.CardPlay.Card.Owner == p && e.HappenedThisTurn(state) && e.CardPlay != play);
+        return before + 1;
+    }
+
     public static bool PlayedOtherColorThisTurn(Player p) => CardsPlayedThisTurn(p).Any(c => IsOtherColor(c, p));
 
     public static int OtherColorPlayedThisCombat(Player p) => CardsPlayedThisCombat(p).Count(c => IsOtherColor(c, p));
