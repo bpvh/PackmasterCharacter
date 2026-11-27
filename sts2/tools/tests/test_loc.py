@@ -93,3 +93,35 @@ class Upgrade(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Merge(unittest.TestCase):
+    def test_hand_edits_survive(self):
+        import json
+        import tempfile
+        from pathlib import Path
+        import convert_loc
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d) / "cards.json"
+            merged, owned = convert_loc.merge_table(path, {"A.title": "Gen A", "B.title": "Gen B"}, {})
+            merged["A.title"] = "Hand A"          # edited by hand after generation
+            merged["C.title"] = "Hand C"          # added by hand
+            path.write_text(json.dumps(merged))
+            merged2, owned2 = convert_loc.merge_table(path, {"A.title": "Gen A2", "B.title": "Gen B2", "C.title": "Gen C"}, owned)
+            self.assertEqual(merged2["A.title"], "Hand A")
+            self.assertEqual(merged2["B.title"], "Gen B2")
+            self.assertEqual(merged2["C.title"], "Hand C")
+            self.assertNotIn("A.title", owned2)
+
+
+class TrailingKeywords(unittest.TestCase):
+    def test_sentence_at_end_and_start(self):
+        r = convert_text("Choose 1 of 3 cards. It costs 0 this turn. Exhaust.", strip_auto_keywords=True)
+        self.assertEqual(r.text, "Choose 1 of 3 cards. It costs 0 this turn.")
+        self.assertEqual(r.removed_keywords, ["Exhaust"])
+        r = convert_text("Innate. Draw 2 cards.", strip_auto_keywords=True)
+        self.assertEqual(r.text, "Draw 2 cards.")
+
+    def test_exhaust_verb_kept(self):
+        r = convert_text("Draw 2 cards. Exhaust a card.", strip_auto_keywords=True)
+        self.assertIn("Exhaust", r.text)

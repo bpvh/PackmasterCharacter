@@ -76,6 +76,18 @@ def keyword_names(lang: str):
     return {n for n in names if len(n) >= 3}
 
 
+def owned_of(owned_all: dict, key: str) -> dict:
+    """Generated-key record for one table. Older records were plain key lists (treated as unedited)."""
+    owned = owned_all.get(key, {})
+    if isinstance(owned, list) or any(len(str(v)) != 10 for v in owned.values()):
+        # older formats: a key list, or full values; convert to hashes of the current file values
+        path = DST / f"{key}.json"
+        data = json.loads(path.read_text(encoding="utf-8-sig") or "{}") if path.exists() else {}
+        keys = owned if isinstance(owned, list) else [k for k, v in owned.items() if data.get(k) == v]
+        owned = {k: value_hash(data[k]) for k in keys if k in data}
+    return owned
+
+
 def java_format_to_amount(s: str) -> str:
     """StS1 code filled '{0}' / '%s' / '%d' placeholders with String.format; StS2 SmartFormat would treat '{0}'
     as a positional argument, so map them to {Amount} (reviewed per power anyway)."""
@@ -201,18 +213,28 @@ class Converter:
         return out
 
 
-def merge_table(path: Path, generated: "OrderedDict[str, str]", owned: set):
+def merge_table(path: Path, generated: "OrderedDict[str, str]", owned: dict):
+    """Merge generated entries into a loc file.
+
+    owned maps key -> the value this tool wrote last time. A key is regenerated only if it is new, or its
+    current value is still exactly what we generated (i.e. nobody edited it by hand). Returns (merged, owned').
+    """
     existing = OrderedDict()
     if path.exists():
         existing = json.loads(path.read_text(encoding="utf-8-sig") or "{}", object_pairs_hook=OrderedDict)
     merged = OrderedDict(existing)
-    written = set()
+    new_owned = {}
     for k, v in generated.items():
-        if k in existing and k not in owned:
-            continue  # hand-written
+        if k in existing and owned.get(k) != value_hash(existing[k]):
+            continue  # hand-written or hand-edited: keep
         merged[k] = v
-        written.add(k)
-    return merged, written
+        new_owned[k] = value_hash(v)
+    return merged, new_owned
+
+
+def value_hash(v) -> str:
+    import hashlib
+    return hashlib.sha1(str(v).encode("utf-8")).hexdigest()[:10]
 
 
 def main(argv=None):
@@ -229,8 +251,10 @@ def main(argv=None):
             if not path.exists():
                 continue
             data = json.loads(path.read_text(encoding="utf-8-sig") or "{}", object_pairs_hook=OrderedDict)
-            for k in owned:
-                data.pop(k, None)
+            owned = owned_of({key: owned}, key)
+            for k, h in owned.items():
+                if k in data and value_hash(data[k]) == h:
+                    data.pop(k, None)  # hand-edited values survive --clean too
             if data:
                 path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             else:
@@ -266,8 +290,11 @@ def main(argv=None):
                 continue
             path = DST / lang / f"{table}.json"
             key = f"{lang}/{table}"
-            merged, written = merge_table(path, gen, set(owned_all.get(key, [])))
-            new_owned[key] = sorted(written | (set(owned_all.get(key, [])) & set(merged)))
+            prev = owned_of(owned_all, key)
+            merged, written = merge_table(path, gen, prev)
+            # keep records of keys other tools (gen_cards.py) generated in this table
+            kept = {k: h for k, h in prev.items() if k not in gen and k in merged}
+            new_owned[key] = dict(sorted({**kept, **written}.items()))
             text = json.dumps(merged, ensure_ascii=False, indent=2) + "\n"
             old = path.read_text(encoding="utf-8-sig") if path.exists() else None
             if old != text:

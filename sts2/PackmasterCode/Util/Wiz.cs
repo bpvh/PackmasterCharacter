@@ -1,0 +1,112 @@
+using MegaCrit.Sts2.Core.Random;
+using Packmaster.PackmasterCode.Packs;
+
+namespace Packmaster.PackmasterCode.Util;
+
+/// <summary>
+/// StS2 counterparts of the StS1 helpers most cards used (thePackmaster.util.Wiz, AbstractPackmasterCard,
+/// SpireAnniversary5Mod.getRandomPacks/getRandomCardFromPack, FlexibleDiscoveryAction). Keeping the names close
+/// to the Java ones makes ports easier to review side by side.
+///
+/// Game API calls whose signature changed between StS2 versions are wrapped here, so a future game update
+/// needs one fix instead of hundreds.
+/// </summary>
+public static class Wiz
+{
+    // ---- piles ---------------------------------------------------------------------------------------
+
+    public static IReadOnlyList<CardModel> Hand(Player p) => p.PlayerCombatState?.Hand.Cards ?? [];
+    public static IReadOnlyList<CardModel> DrawPile(Player p) => p.PlayerCombatState?.DrawPile.Cards ?? [];
+    public static IReadOnlyList<CardModel> DiscardPile(Player p) => p.PlayerCombatState?.DiscardPile.Cards ?? [];
+    public static IReadOnlyList<CardModel> ExhaustPile(Player p) => p.PlayerCombatState?.ExhaustPile.Cards ?? [];
+
+    // ---- randomness ----------------------------------------------------------------------------------
+
+    /// <summary>StS1 AbstractDungeon.cardRandomRng, for in-combat card generation.</summary>
+    public static Rng CardRng(Player p) => p.RunState.Rng.CombatCardGeneration;
+
+    public static T? RandomItem<T>(IReadOnlyCollection<T> items, Rng rng) => items.Count == 0 ? default : rng.NextItem(items);
+
+    // ---- packs ---------------------------------------------------------------------------------------
+
+    public static PackmasterPack? PackOf(CardModel card) => PackRegistry.PacksOf(card).FirstOrDefault();
+
+    /// <summary>
+    /// StS1 AbstractPackmasterCard.otherPacksInHandCheck: number of different packs, other than this card's own,
+    /// among the cards in hand.
+    /// </summary>
+    public static int OtherPacksInHand(CardModel card)
+    {
+        if (card.IsCanonical || card.Owner?.PlayerCombatState == null) return 0;
+        var own = PackRegistry.PacksOf(card);
+        return Hand(card.Owner)
+            .SelectMany(PackRegistry.PacksOf)
+            .Where(p => !own.Contains(p))
+            .Distinct()
+            .Count();
+    }
+
+    /// <summary>StS1 hasSynergy: cards from at least 2 other packs in hand.</summary>
+    public static bool HasSynergy(CardModel card) => OtherPacksInHand(card) >= 2;
+
+    /// <summary>StS1 getRandomPacks: distinct random packs from the run (onlyCurrent) or from every pack.</summary>
+    public static List<PackmasterPack> RandomPacks(Player p, bool onlyCurrent, int count)
+    {
+        var pool = (onlyCurrent && PackRunState.IsPackmaster(p) ? PackRunState.Selected(p) : PackRegistry.Enabled).ToList();
+        var result = new List<PackmasterPack>();
+        var rng = CardRng(p);
+        while (result.Count < count && pool.Count > 0)
+        {
+            var pick = rng.NextItem(pool)!;
+            pool.Remove(pick);
+            result.Add(pick);
+        }
+        return result;
+    }
+
+    /// <summary>StS1 getRandomCardFromPack: a random Common/Uncommon/Rare card of the pack (canonical model).</summary>
+    public static CardModel? RandomCardFromPack(PackmasterPack pack, Player p)
+    {
+        var valid = pack.Cards.Where(c => c.Rarity is CardRarity.Common or CardRarity.Uncommon or CardRarity.Rare).ToList();
+        return valid.Count == 0 ? null : CardRng(p).NextItem(valid);
+    }
+
+    // ---- creating cards ------------------------------------------------------------------------------
+
+    /// <summary>A new combat card owned by p, from a canonical model (StS1 makeCopy / makeStatEquivalentCopy).</summary>
+    public static CardModel CreateCard(CardModel canonical, Player p)
+    {
+        var state = p.Creature.CombatState ?? throw new InvalidOperationException("CreateCard needs an active combat");
+        return state.CreateCard(canonical.IsCanonical ? canonical : ModelDb.GetById<CardModel>(canonical.Id), p);
+    }
+
+    public static CardModel CreateCard<T>(Player p) where T : CardModel => CreateCard(ModelDb.Card<T>(), p);
+
+    /// <summary>StS1 makeInHand: add a generated card to the hand (goes to discard if the hand is full).</summary>
+    public static async Task MakeInHand(CardModel card, Player p)
+    {
+        // Signature from current mods (card, pile, player); older game builds took (card, pile, bool addedByPlayer).
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, p);
+    }
+
+    public static async Task ShuffleIn(CardModel card, Player p)
+    {
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, p, CardPilePosition.Random);
+    }
+
+    /// <summary>
+    /// StS1 FlexibleDiscoveryAction: choose one of the given cards (canonical or not) and add a copy to your hand.
+    /// Returns the added card, or null if skipped.
+    /// </summary>
+    public static async Task<CardModel?> Discover(PlayerChoiceContext ctx, Player p, IEnumerable<CardModel> options,
+        bool costsZeroThisTurn, bool canSkip = false)
+    {
+        var choices = options.Select(c => CreateCard(c, p)).ToList();
+        if (choices.Count == 0) return null;
+        var picked = await CardSelectCmd.FromChooseACardScreen(ctx, choices, p, canSkip);
+        if (picked == null) return null;
+        if (costsZeroThisTurn) picked.EnergyCost.SetThisTurnOrUntilPlayed(0);
+        await MakeInHand(picked, p);
+        return picked;
+    }
+}

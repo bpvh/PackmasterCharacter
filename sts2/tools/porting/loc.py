@@ -219,16 +219,33 @@ def split_lines(s: str):
     return [p.strip() for p in re.split(r"\s*\bNL\b\s*", s)]
 
 
+_KW_SENTENCE = r"(?:Exhaust|Ethereal|Innate|Retain|Unplayable)\."
+
+
 def strip_keyword_lines(lines, auto_map=AUTO_KEYWORD_LINES_ENG):
-    """Remove whole lines that are just an auto-rendered keyword ('Exhaust.'). Returns (lines, removed, indices)."""
+    """Remove auto-rendered keywords ('Exhaust.') that are a whole line, or a whole sentence at the start or
+    end of a line ('Choose a card. Exhaust.'). Returns (lines, removed keywords, removed line indices).
+    Only whole-line removals are reported as indices (they can be mirrored in other languages)."""
     kept, removed, idx = [], [], []
     for i, line in enumerate(lines):
         key = re.sub(r"\s+", " ", line).strip().lower()
         if key in auto_map:
             removed.append(auto_map[key])
             idx.append(i)
-        else:
-            kept.append(line)
+            continue
+        while True:
+            m = re.search(r"(?<=[.!?])\s+(" + _KW_SENTENCE + r")\s*$", line)
+            if not m:
+                break
+            removed.append(m.group(1)[:-1])
+            line = line[:m.start()]
+        while True:
+            m = re.match(r"^(" + _KW_SENTENCE + r")\s+(?=\S)", line)
+            if not m:
+                break
+            removed.append(m.group(1)[:-1])
+            line = line[m.end():]
+        kept.append(line)
     return kept, removed, idx
 
 

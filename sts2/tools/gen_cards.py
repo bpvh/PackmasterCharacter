@@ -200,8 +200,10 @@ def preview_loc(packs):
         path = LOC / lang / "cards.json"
         owned_all = json.loads(convert_loc.GENERATED_KEYS.read_text()) if convert_loc.GENERATED_KEYS.exists() else {}
         key = f"{lang}/cards"
-        merged, wrote = convert_loc.merge_table(path, gen, set(owned_all.get(key, [])))
-        owned_all[key] = sorted(set(owned_all.get(key, [])) | wrote)
+        owned = convert_loc.owned_of(owned_all, key)
+        merged, wrote = convert_loc.merge_table(path, gen, owned)
+        owned.update(wrote)
+        owned_all[key] = dict(sorted(owned.items()))
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(merged, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         convert_loc.GENERATED_KEYS.write_text(json.dumps(owned_all, indent=1, sort_keys=True) + "\n")

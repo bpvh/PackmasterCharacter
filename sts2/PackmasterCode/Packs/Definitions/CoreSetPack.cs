@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class CoreSetPack : PackmasterPack
 {
     public override string PackId => "CoreSetPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(CoreSetPackPreview);
     public override PackSummary Summary => new(3, 3, 3, 3, 3);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): BackpackSmack, BoosterTutor, DestinyDraw, Flick, MayhemForm, RippedPecs, Showoff, Sideboard, SmithingHammer, Synergize
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Coresetpack.BackpackSmack),
+        typeof(global::Packmaster.PackmasterCode.Cards.Coresetpack.BoosterTutor),
+        typeof(global::Packmaster.PackmasterCode.Cards.Coresetpack.DestinyDraw),
+        typeof(global::Packmaster.PackmasterCode.Cards.Coresetpack.Flick),
+        typeof(global::Packmaster.PackmasterCode.Cards.Coresetpack.MayhemForm),
+        typeof(global::Packmaster.PackmasterCode.Cards.Coresetpack.RippedPecs),
+        typeof(global::Packmaster.PackmasterCode.Cards.Coresetpack.Showoff),
+        typeof(global::Packmaster.PackmasterCode.Cards.Coresetpack.Sideboard),
+        typeof(global::Packmaster.PackmasterCode.Cards.Coresetpack.SmithingHammer),
+        typeof(global::Packmaster.PackmasterCode.Cards.Coresetpack.Synergize),
+    ];
 }
 
 public sealed class CoreSetPackPreview : PackPreviewCard
