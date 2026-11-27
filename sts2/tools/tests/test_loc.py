@@ -56,7 +56,7 @@ class Text(unittest.TestCase):
 
     def test_hex_color(self):
         self.assertEqual(conv("When [#EFC851]Divine [#EFC851]Might is played"),
-                         "When [gold]Divine[/gold] [gold]Might[/gold] is played")
+                         "When [gold]Divine Might[/gold] is played")
 
     def test_no_double_highlight(self):
         self.assertEqual(conv("Gain #yBlock and !B! Block."), "Gain [gold]Block[/gold] and {Block:diff()} [gold]Block[/gold].")
