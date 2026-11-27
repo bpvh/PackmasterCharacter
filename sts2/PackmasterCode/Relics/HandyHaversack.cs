@@ -7,7 +7,7 @@ namespace Packmaster.PackmasterCode.Relics;
 /// (StS1 drew at battle start and gave energy on the first turn; here both happen once the first turn has started.)
 /// Upgraded by Bag of Holding (an Ancient option, ported later).
 /// </summary>
-public sealed class HandyHaversack : PackmasterRelic
+public sealed class HandyHaversack : PackDraftRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
 
@@ -17,6 +17,7 @@ public sealed class HandyHaversack : PackmasterRelic
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
+        await base.AfterPlayerTurnStart(choiceContext, player); // pack draft, first combat only
         if (player != Owner || Owner.PlayerCombatState?.TurnNumber != 1) return;
         Flash();
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);

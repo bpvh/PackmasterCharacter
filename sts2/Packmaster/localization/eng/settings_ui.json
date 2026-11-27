@@ -1,0 +1,18 @@
+{
+  "PACKMASTER.mod_title": "The Packmaster",
+  "PACKMASTER-ALL_PACKS_MODE.title": "All Packs mode",
+  "PACKMASTER-ALL_PACKS_MODE.hover.desc": "Every pack is in the run and there is no draft. Single player only.",
+  "PACKMASTER-DRAFT_SLOTS.title": "Draft slots",
+  "PACKMASTER-DRAFT_SLOTS.hover.desc": "Comma-separated, in order. Each slot is a pack ID (e.g. CoreSetPack), random, choice (pick 1 of several) or none. Default: CoreSetPack,random,random,random,choice,choice,choice. Single player only; co-op always uses the default.",
+  "PACKMASTER-ALLOW_MULTIPLE_NONE.title": "Allow multiple \"none\" slots",
+  "PACKMASTER-ALLOW_MULTIPLE_NONE.hover.desc": "Otherwise only the first \"none\" slot is empty and the others become random packs.",
+  "PACKMASTER-PACKS_PER_CHOICE.title": "Packs per draft round",
+  "PACKMASTER-PACKS_PER_CHOICE.hover.desc": "How many packs each \"choice\" slot offers.",
+  "PACKMASTER-DISABLED_PACKS.title": "Disabled packs",
+  "PACKMASTER-DISABLED_PACKS.hover.desc": "Comma-separated pack IDs that never appear as random packs or draft offers.",
+  "PACKMASTER-SHOW_PACK_SUMMARIES.title": "Show pack ratings",
+  "PACKMASTER-SHOW_PACK_SUMMARIES.hover.desc": "Show each pack's ratings and tags during the draft.",
+  "PACKMASTER-DEBUG.title": "Debug",
+  "PACKMASTER-SKIP_DRAFT.title": "Skip the draft",
+  "PACKMASTER-SKIP_DRAFT.hover.desc": "Choice slots pick a random pack instead of showing the draft."
+}

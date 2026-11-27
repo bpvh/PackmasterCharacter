@@ -15,6 +15,9 @@ public partial class MainFile : Node
 
     public static void Initialize()
     {
+        // Config first so values are loaded before anything reads them.
+        BaseLib.Config.ModConfigRegistry.Register(ModId, new Packs.PackmasterConfig());
+
         var assembly = Assembly.GetExecutingAssembly();
 
         // Code-side strings converted from StS1 UIstrings (tools/convert_loc.py).
