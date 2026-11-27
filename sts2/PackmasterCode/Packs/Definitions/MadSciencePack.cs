@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class MadSciencePack : PackmasterPack
 {
     public override string PackId => "MadSciencePack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(MadSciencePackPreview);
     public override PackSummary Summary => new(3, 3, 5, 2, 3, PackTag.Orbs);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): Cheapen, Enhance, Expand, Fortify, Improve, Attach, Piratify, Sharpen, Discombobulate, Winterize
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Madsciencepack.Cheapen),
+        typeof(global::Packmaster.PackmasterCode.Cards.Madsciencepack.Enhance),
+        typeof(global::Packmaster.PackmasterCode.Cards.Madsciencepack.Expand),
+        typeof(global::Packmaster.PackmasterCode.Cards.Madsciencepack.Fortify),
+        typeof(global::Packmaster.PackmasterCode.Cards.Madsciencepack.Improve),
+        typeof(global::Packmaster.PackmasterCode.Cards.Madsciencepack.Attach),
+        typeof(global::Packmaster.PackmasterCode.Cards.Madsciencepack.Piratify),
+        typeof(global::Packmaster.PackmasterCode.Cards.Madsciencepack.Sharpen),
+        typeof(global::Packmaster.PackmasterCode.Cards.Madsciencepack.Discombobulate),
+        typeof(global::Packmaster.PackmasterCode.Cards.Madsciencepack.Winterize),
+    ];
 }
 
 public sealed class MadSciencePackPreview : PackPreviewCard

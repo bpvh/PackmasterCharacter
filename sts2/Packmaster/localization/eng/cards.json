@@ -706,7 +706,7 @@
   "PACKMASTER-CHEAPEN.title": "Cheapen",
   "PACKMASTER-CHEAPEN.description": "[gold]Modify[/gold] a {IfUpgraded:show:|random }card in your draw pile: \"Costs 0\"\n[gold]Amplify[/gold] {energyPrefix:energyIcons(1)}: Don't [gold]Exhaust[/gold].",
   "PACKMASTER-EXPAND.title": "Expand",
-  "PACKMASTER-EXPAND.description": "[gold]Modify[/gold] a card in hand: \"Costs 1 more {energyPrefix:energyIcons(1)}.\" and \"Play again, unmodified.\"",
+  "PACKMASTER-EXPAND.description": "[gold]Modify[/gold] a card in hand: \"Costs 1 more {energyPrefix:energyIcons(1)}.\" and \"Play again.\"",
   "PACKMASTER-PIRATIFY.title": "Piratify",
   "PACKMASTER-PIRATIFY.description": "At the start of each turn, [gold]Modify[/gold] a random card in hand: \"Gain a {IfUpgraded:show:[gold]Cannonball+[/gold]\"|[gold]Cannonball[/gold]\"}",
   "PACKMASTER-MASTER_SPARK.title": "Master Spark",
@@ -1462,5 +1462,6 @@
   "PACKMASTER-DIVINATION.selectionScreenPrompt": "Choose cards to put on the bottom of your draw pile",
   "PACKMASTER-HOLLOWER.selectionScreenPrompt": "Choose a card to put into your hand",
   "PACKMASTER-VISION.selectionScreenPrompt": "Choose cards to put into your hand",
-  "PACKMASTER-SET_UP_SHOP.selectionScreenPrompt": "Choose cards to Upgrade and put on top of your draw pile"
+  "PACKMASTER-SET_UP_SHOP.selectionScreenPrompt": "Choose cards to Upgrade and put on top of your draw pile",
+  "PACKMASTER-ATTACH.selectionScreenPrompt": "Choose a card to [gold]Absorb[/gold]. You will choose the discarded card to [gold]Modify[/gold] after."
 }

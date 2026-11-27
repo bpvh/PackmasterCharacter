@@ -8,8 +8,11 @@ public sealed class LegacyPack : PackmasterPack
     public override bool Enabled => false;
     public override Type PreviewCardType => typeof(LegacyPackPreview);
     public override PackSummary Summary => new(3, 2, 2, 3, 2, PackTag.Exhaust);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (11): AcidicSpray, BloodRitual, CaptainsCabin, StickStrike, MassProduction, OverTime, PoisonMastery, ScrapCannon, SlimeSpray, TerrorOfTheSeas, Cannonball
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Legacypack.Cannonball),
+    ];
+    // Not ported yet (10): AcidicSpray, BloodRitual, CaptainsCabin, StickStrike, MassProduction, OverTime, PoisonMastery, ScrapCannon, SlimeSpray, TerrorOfTheSeas
 }
 
 public sealed class LegacyPackPreview : PackPreviewCard
