@@ -12,7 +12,7 @@ public sealed class ElementOfSurprise : AbstractEvenOddCard
     {
         WithCostUpgradeBy(-1);
         WithTip(typeof(DuplicationPower));
-        WithTip(Keywords.First);
+        WithTip(PmTips.First);
     }
 
     protected override bool ShouldGlowGoldInternal => IsFirst();

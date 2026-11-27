@@ -4,8 +4,8 @@ using BaseLib.Patches.Content;
 
 namespace Packmaster.PackmasterCode.Util;
 
-/// <summary>StS1 keyword tooltips as StaticHoverTips (text in static_hover_tips.json). Use WithTip(Keywords.X).</summary>
-public static class Keywords
+/// <summary>StS1 keyword tooltips as StaticHoverTips (text in static_hover_tips.json). Use WithTip(PmTips.X).</summary>
+public static class PmTips
 {
     /// <summary>Absorb</summary>
     [CustomEnum] public static StaticHoverTip Absorb;

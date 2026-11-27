@@ -14,7 +14,7 @@ public sealed class WitzBolt : AbstractEvenOddCard
         WithVar("Magic", 1);
         WithTip(typeof(WeakPower));
         WithTip(typeof(VulnerablePower));
-        WithTip(Keywords.Odd);
+        WithTip(PmTips.Odd);
     }
 
     protected override bool ShouldGlowGoldInternal => IsOdd();

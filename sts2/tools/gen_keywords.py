@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Generate PackmasterCode/Util/Keywords.cs: one BaseLib [CustomEnum] StaticHoverTip per StS1 keyword.
+"""Generate PackmasterCode/Util/PmTips.cs: one BaseLib [CustomEnum] StaticHoverTip per StS1 keyword.
 
 StS1 keywords (Keywordstrings.json) are tooltips. convert_loc.py writes them to static_hover_tips.json as
 PACKMASTER-<SLUG>.title/.description; BaseLib resolves a [CustomEnum] StaticHoverTip field named <Pascal> to the
-key PACKMASTER-<SLUG>. Cards attach them with WithTip(Keywords.Even).
+key PACKMASTER-<SLUG>. Cards attach them with WithTip(PmTips.Even).
 
-    python3 tools/gen_keywords.py          # rewrite Keywords.cs from Packmaster/localization/eng/static_hover_tips.json
+    python3 tools/gen_keywords.py          # rewrite PmTips.cs from Packmaster/localization/eng/static_hover_tips.json
 """
 import json
 import sys
@@ -16,7 +16,7 @@ from porting import ids  # noqa: E402
 
 STS2 = Path(__file__).resolve().parent.parent
 LOC = STS2 / "Packmaster" / "localization" / "eng" / "static_hover_tips.json"
-OUT = STS2 / "PackmasterCode" / "Util" / "Keywords.cs"
+OUT = STS2 / "PackmasterCode" / "Util" / "PmTips.cs"
 
 
 def pascal(slug: str) -> str:
@@ -42,8 +42,8 @@ def main():
         "",
         "namespace Packmaster.PackmasterCode.Util;",
         "",
-        "/// <summary>StS1 keyword tooltips as StaticHoverTips (text in static_hover_tips.json). Use WithTip(Keywords.X).</summary>",
-        "public static class Keywords",
+        "/// <summary>StS1 keyword tooltips as StaticHoverTips (text in static_hover_tips.json). Use WithTip(PmTips.X).</summary>",
+        "public static class PmTips",
         "{",
     ]
     for name, title in fields:

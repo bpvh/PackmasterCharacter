@@ -12,7 +12,7 @@ public sealed class Battlecry : AbstractEvenOddCard
     {
         WithVar("Magic", 2, 1);
         WithTip(typeof(StrengthPower));
-        WithTip(Keywords.First);
+        WithTip(PmTips.First);
     }
 
     protected override bool ShouldGlowGoldInternal => IsFirst();

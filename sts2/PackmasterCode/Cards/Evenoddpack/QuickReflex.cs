@@ -9,7 +9,7 @@ public sealed class QuickReflex : AbstractEvenOddCard
     public QuickReflex() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(6, 2);
-        WithTip(Keywords.First);
+        WithTip(PmTips.First);
     }
 
     protected override bool ShouldGlowGoldInternal => IsFirst();

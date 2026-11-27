@@ -13,8 +13,8 @@ public sealed class Flourish : AbstractEvenOddCard
         WithVar("Magic", 3, 1);
         WithTip(typeof(PlatingPower));
         WithEnergyTip();
-        WithTip(Keywords.Even);
-        WithTip(Keywords.Odd);
+        WithTip(PmTips.Even);
+        WithTip(PmTips.Odd);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

@@ -14,7 +14,7 @@ public sealed class LeftHook : AbstractEvenOddCard
     {
         WithDamage(3, 2);
         WithVar(new ExhaustiveVar(7));
-        WithTip(Keywords.Odd);
+        WithTip(PmTips.Odd);
     }
 
     protected override bool ShouldGlowGoldInternal => IsOdd();

@@ -10,8 +10,8 @@ public sealed class WindUpBomb : AbstractEvenOddCard
     {
         WithDamage(8);
         WithVar("Magic", 15, 5);
-        WithTip(Keywords.Even);
-        WithTip(Keywords.Odd);
+        WithTip(PmTips.Even);
+        WithTip(PmTips.Odd);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

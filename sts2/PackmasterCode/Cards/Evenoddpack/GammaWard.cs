@@ -13,7 +13,7 @@ public sealed class GammaWard : AbstractEvenOddCard
         WithBlock(4, 2);
         WithVar("Magic", 12, 4);
         WithTip(typeof(GammaWardPower));
-        WithTip(Keywords.Even);
+        WithTip(PmTips.Even);
     }
 
     protected override bool ShouldGlowGoldInternal => IsEven();

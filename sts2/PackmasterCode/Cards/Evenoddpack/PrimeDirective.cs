@@ -12,7 +12,7 @@ public sealed class PrimeDirective : AbstractEvenOddCard
     {
         WithVar("Magic", 4, 1);
         WithTip(typeof(PrimeDirectivePower));
-        WithTip(Keywords.Odd);
+        WithTip(PmTips.Odd);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

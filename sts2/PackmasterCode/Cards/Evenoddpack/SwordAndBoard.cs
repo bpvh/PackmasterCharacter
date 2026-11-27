@@ -10,8 +10,8 @@ public sealed class SwordAndBoard : AbstractEvenOddCard
     {
         WithDamage(10, 3);
         WithBlock(8, 3);
-        WithTip(Keywords.Even);
-        WithTip(Keywords.Odd);
+        WithTip(PmTips.Even);
+        WithTip(PmTips.Odd);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
