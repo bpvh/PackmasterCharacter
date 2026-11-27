@@ -155,6 +155,18 @@ public static class Wiz
         => PowerCmd.Apply<T>(ctx, target, amount, applier, source, false);
 #endif
 
+    /// <summary>PowerCmd.ModifyAmount (current builds take a choice context; we have none here, so pass a fresh one).</summary>
+    public static Task ModifyPowerAmount(PowerModel power, decimal offset)
+#if OLD_STS2_API
+        => PowerCmd.ModifyAmount(power, offset, null, null, false);
+#else
+        => PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), power, offset, null, null, false);
+#endif
+
+    /// <summary>StSLib AddTemporaryHPAction.</summary>
+    public static Task GainTempHp(PlayerChoiceContext ctx, Creature target, decimal amount, Creature? applier, CardModel? source = null)
+        => ApplyPower<Powers.TempHpPower>(ctx, target, amount, applier, source);
+
     // ---- common card effects -------------------------------------------------------------------------
 
     /// <summary>StS1 DiscardAction(p, p, n, false): choose n cards in hand and discard them.</summary>

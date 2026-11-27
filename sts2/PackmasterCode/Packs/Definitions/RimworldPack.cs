@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class RimworldPack : PackmasterPack
 {
     public override string PackId => "RimworldPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(RimworldPackPreview);
     public override PackSummary Summary => new(3, 2, 4, 3, 4);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): ChainShotgun, EatWithoutTable, TaintedWeapon, TradeBeacon, KillThirst, Luciferium, SpikeTrap, Pyromaniac, BurningPassion, Catharsis
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Rimworldpack.ChainShotgun),
+        typeof(global::Packmaster.PackmasterCode.Cards.Rimworldpack.EatWithoutTable),
+        typeof(global::Packmaster.PackmasterCode.Cards.Rimworldpack.TaintedWeapon),
+        typeof(global::Packmaster.PackmasterCode.Cards.Rimworldpack.TradeBeacon),
+        typeof(global::Packmaster.PackmasterCode.Cards.Rimworldpack.KillThirst),
+        typeof(global::Packmaster.PackmasterCode.Cards.Rimworldpack.Luciferium),
+        typeof(global::Packmaster.PackmasterCode.Cards.Rimworldpack.SpikeTrap),
+        typeof(global::Packmaster.PackmasterCode.Cards.Rimworldpack.Pyromaniac),
+        typeof(global::Packmaster.PackmasterCode.Cards.Rimworldpack.BurningPassion),
+        typeof(global::Packmaster.PackmasterCode.Cards.Rimworldpack.Catharsis),
+    ];
 }
 
 public sealed class RimworldPackPreview : PackPreviewCard

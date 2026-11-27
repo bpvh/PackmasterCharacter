@@ -134,6 +134,11 @@ def translate_statement(st: str, card: JavaCard, need):
         return ['for (int i = 0; i < DynamicVars["Magic"].IntValue; i++)',
                 f"    await Wiz.AttackRandomEnemy(ctx, this, play{_vfx_arg(m.group(1) or '')});"]
 
+    m = re.fullmatch(r"atb\(new AddTemporaryHPAction\(\s*\w+\s*,\s*\w+\s*,\s*([^,()]+)\s*\)\)", s)
+    if m and amount(m.group(1)):
+        need.add("wiz")
+        return [f"await Wiz.GainTempHp(ctx, Owner.Creature, {amount(m.group(1))}, Owner.Creature, this);"]
+
     # Powers on the target / self / all enemies.
     power_re = r"new (\w+)\(\s*(\w+)\s*,\s*(-?[\w.]+)\s*(?:,\s*(?:true|false))?\s*\)"
     m = re.fullmatch(rf"applyToEnemy(?:Top)?\(\s*m\s*,\s*{power_re}\s*\)", s) or \

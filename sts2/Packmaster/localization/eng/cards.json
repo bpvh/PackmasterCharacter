@@ -1008,7 +1008,7 @@
   "PACKMASTER-DESPAIR.title": "Despair",
   "PACKMASTER-DESPAIR.description": "Counts as a [gold]Curse[/gold].",
   "PACKMASTER-EAT_WITHOUT_TABLE.title": "Eat Without Table",
-  "PACKMASTER-EAT_WITHOUT_TABLE.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {Magic:diff()} Temporary_HP. Add a [gold]Despair[/gold] to your hand.",
+  "PACKMASTER-EAT_WITHOUT_TABLE.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {Magic:diff()} [gold]Temporary HP[/gold]. Add a [gold]Despair[/gold] to your hand.",
   "PACKMASTER-LUCIFERIUM.title": "Luciferium",
   "PACKMASTER-LUCIFERIUM.description": "Gain {energyPrefix:energyIcons(2)}.\nGain 5 [gold]Strength[/gold].\nGain {Magic:diff()} [gold]Addiction[/gold].",
   "PACKMASTER-PYROMANIAC.title": "Pyromaniac",
