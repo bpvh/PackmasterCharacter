@@ -87,8 +87,9 @@ def translate_statement(st: str, card: JavaCard, need):
     """One Java statement -> list of C# lines, or None if not understood. `need` collects usings/flags."""
     s = norm(st).rstrip(";").strip()
     s = re.sub(r"^(Wiz\.|this\.)", "", s)
-    s = re.sub(r"^AbstractDungeon\.actionManager\.addToBottom\((.*)\)$", r"atb(\1)", s)
-    s = re.sub(r"^addToBot\((.*)\)$", r"atb(\1)", s)
+    s = re.sub(r"AbstractDungeon\.actionManager\.addToBottom\(", "atb(", s)
+    s = re.sub(r"(?<![\w.])(?:this\.)?addToBot\(", "atb(", s)
+    s = re.sub(r"(?<![\w.])Wiz\.atb\(", "atb(", s)
 
     m = re.fullmatch(r"(?:dmg|dmgTop|altDmg)\(\s*m\s*,\s*([\w.]+)\s*\)", s)
     if m:
