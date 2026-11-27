@@ -744,9 +744,6 @@
   "PACKMASTER-CRYSTAL_RESONANCE_POWER.smartDescription": "Immer wenn du [gold]Transmutierst[/gold], erhalte [blue]{Amount}[/blue] [gold]Stärke[/gold]",
   "PACKMASTER-CRYSTAL_RESONANCE_POWER.fragment0": "Immer wenn du [gold]Transmutierst[/gold], erhalte",
   "PACKMASTER-CRYSTAL_RESONANCE_POWER.fragment1": "[gold]Stärke[/gold]",
-  "PACKMASTER-PLASMA_SHIELD.title": "Plasmaschild",
-  "PACKMASTER-PLASMA_SHIELD.description": "Falls du [gold]Plasma[/gold] kontrollierst erhältst du am Ende deines Zugs [blue]{Amount}[/blue] [gold]Block[/gold].",
-  "PACKMASTER-PLASMA_SHIELD.smartDescription": "Falls du [gold]Plasma[/gold] kontrollierst erhältst du am Ende deines Zugs [blue]{Amount}[/blue] [gold]Block[/gold].",
   "PACKMASTER-ENIGMANCY_POWER.title": "Rätselhaftigkeit",
   "PACKMASTER-ENIGMANCY_POWER.description": "Erhalte jeden Zug [blue]{Amount}[/blue] Energie und reduziere diesen Erhalt um [blue]1[/blue].",
   "PACKMASTER-ENIGMANCY_POWER.smartDescription": "Erhalte jeden Zug [blue]{Amount}[/blue] Energie und reduziere diesen Erhalt um [blue]1[/blue].",
@@ -804,5 +801,8 @@
   "PACKMASTER-FLAWLESS_PRISM_POWER.description": "Zu Beginn deines Zuges, nimm [blue]{Amount}[/blue] zufällig [gold]unterschiedliche farbige[/gold] Macht Karte auf deine Hand. {Amount} Zu Beginn deines Zuges, nimm [blue]{Amount}[/blue] zufällig [gold]unterschiedliche farbige[/gold] Macht Karten auf deine Hand.",
   "PACKMASTER-FLAWLESS_PRISM_POWER.smartDescription": "Zu Beginn deines Zuges, nimm [blue]{Amount}[/blue] zufällig [gold]unterschiedliche farbige[/gold] Macht Karte auf deine Hand. {Amount} Zu Beginn deines Zuges, nimm [blue]{Amount}[/blue] zufällig [gold]unterschiedliche farbige[/gold] Macht Karten auf deine Hand.",
   "PACKMASTER-FLAWLESS_PRISM_POWER.fragment0": "Zu Beginn deines Zuges, nimm [blue]{Amount}[/blue] zufällig [gold]unterschiedliche farbige[/gold] Macht Karte auf deine Hand.",
-  "PACKMASTER-FLAWLESS_PRISM_POWER.fragment1": "Zu Beginn deines Zuges, nimm [blue]{Amount}[/blue] zufällig [gold]unterschiedliche farbige[/gold] Macht Karten auf deine Hand."
+  "PACKMASTER-FLAWLESS_PRISM_POWER.fragment1": "Zu Beginn deines Zuges, nimm [blue]{Amount}[/blue] zufällig [gold]unterschiedliche farbige[/gold] Macht Karten auf deine Hand.",
+  "PACKMASTER-PLASMA_SHIELD_POWER.title": "Plasmaschild",
+  "PACKMASTER-PLASMA_SHIELD_POWER.description": "Falls du [gold]Plasma[/gold] kontrollierst erhältst du am Ende deines Zugs [blue]{Amount}[/blue] [gold]Block[/gold].",
+  "PACKMASTER-PLASMA_SHIELD_POWER.smartDescription": "Falls du [gold]Plasma[/gold] kontrollierst erhältst du am Ende deines Zugs [blue]{Amount}[/blue] [gold]Block[/gold]."
 }

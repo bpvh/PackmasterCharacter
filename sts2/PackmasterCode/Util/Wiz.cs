@@ -278,6 +278,16 @@ public static class Wiz
 #endif
     }
 
+    /// <summary>StS1 MakeTempCardInDiscardAction.</summary>
+    public static async Task MakeInDiscard(CardModel card, Player p)
+    {
+#if OLD_STS2_API
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Discard, true);
+#else
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Discard, p);
+#endif
+    }
+
     public static async Task ShuffleIn(CardModel card, Player p)
     {
 #if OLD_STS2_API

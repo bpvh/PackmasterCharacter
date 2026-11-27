@@ -749,9 +749,6 @@
   "PACKMASTER-CRYSTAL_RESONANCE_POWER.smartDescription": "Whenever you [gold]Transmute[/gold], gain [blue]{Amount}[/blue] [gold]Strength[/gold]",
   "PACKMASTER-CRYSTAL_RESONANCE_POWER.fragment0": "Whenever you [gold]Transmute[/gold], gain",
   "PACKMASTER-CRYSTAL_RESONANCE_POWER.fragment1": "[gold]Strength[/gold]",
-  "PACKMASTER-PLASMA_SHIELD.title": "Plasma Shield",
-  "PACKMASTER-PLASMA_SHIELD.description": "At the end of your turn, gain [blue]{Amount}[/blue] [gold]Block[/gold] if you have [gold]Plasma[/gold].",
-  "PACKMASTER-PLASMA_SHIELD.smartDescription": "At the end of your turn, gain [blue]{Amount}[/blue] [gold]Block[/gold] if you have [gold]Plasma[/gold].",
   "PACKMASTER-ENIGMANCY_POWER.title": "Enigmancy",
   "PACKMASTER-ENIGMANCY_POWER.description": "Each turn, gain [blue]{Amount}[/blue] Energy and decrease this gain by [blue]1[/blue].",
   "PACKMASTER-ENIGMANCY_POWER.smartDescription": "Each turn, gain [blue]{Amount}[/blue] Energy and decrease this gain by [blue]1[/blue].",
@@ -816,5 +813,8 @@
   "PACKMASTER-QUIRION_DRYAD_POWER.fragment7": "[gold]Curse[/gold]",
   "PACKMASTER-QUIRION_DRYAD_POWER.fragment8": "Packmaster",
   "PACKMASTER-FLAWLESS_PRISM_POWER.fragment0": "At the start of your turn, add [blue]{Amount}[/blue] random [gold]different color[/gold] Power card to your hand.",
-  "PACKMASTER-FLAWLESS_PRISM_POWER.fragment1": "At the start of your turn, add [blue]{Amount}[/blue] random [gold]different color[/gold] Power cards to your hand."
+  "PACKMASTER-FLAWLESS_PRISM_POWER.fragment1": "At the start of your turn, add [blue]{Amount}[/blue] random [gold]different color[/gold] Power cards to your hand.",
+  "PACKMASTER-PLASMA_SHIELD_POWER.title": "Plasma Shield",
+  "PACKMASTER-PLASMA_SHIELD_POWER.description": "At the end of your turn, gain [blue]{Amount}[/blue] [gold]Block[/gold] if you have [gold]Plasma[/gold].",
+  "PACKMASTER-PLASMA_SHIELD_POWER.smartDescription": "At the end of your turn, gain [blue]{Amount}[/blue] [gold]Block[/gold] if you have [gold]Plasma[/gold]."
 }

@@ -746,9 +746,6 @@
   "PACKMASTER-CRYSTAL_RESONANCE_POWER.smartDescription": "[gold]변형시킬[/gold] 때마다, [gold]힘을[/gold] [blue]{Amount}[/blue] 얻습니다.",
   "PACKMASTER-CRYSTAL_RESONANCE_POWER.fragment0": "[gold]변형시킬[/gold] 때마다, [gold]힘을[/gold]",
   "PACKMASTER-CRYSTAL_RESONANCE_POWER.fragment1": "얻습니다.",
-  "PACKMASTER-PLASMA_SHIELD.title": "플라즈마 방패",
-  "PACKMASTER-PLASMA_SHIELD.description": "턴 종료 시, [gold]플라즈마가[/gold] 있다면 [gold]방어도를[/gold] [blue]{Amount}[/blue] 얻습니다.",
-  "PACKMASTER-PLASMA_SHIELD.smartDescription": "턴 종료 시, [gold]플라즈마가[/gold] 있다면 [gold]방어도를[/gold] [blue]{Amount}[/blue] 얻습니다.",
   "PACKMASTER-ENIGMANCY_POWER.title": "수수께끼",
   "PACKMASTER-ENIGMANCY_POWER.description": "매 턴, 에너지를 [blue]{Amount}[/blue] 얻고 얻는 에너지를 [blue]1[/blue] 감소시킵니다.",
   "PACKMASTER-ENIGMANCY_POWER.smartDescription": "매 턴, 에너지를 [blue]{Amount}[/blue] 얻고 얻는 에너지를 [blue]1[/blue] 감소시킵니다.",
@@ -806,5 +803,8 @@
   "PACKMASTER-FLAWLESS_PRISM_POWER.description": "턴 시작 시, 무작위 [blue]{Amount}[/blue] 장의 [gold]다른 색[/gold] 파워 카드를 얻습니다. {Amount} 턴 시작 시, 무작위 [blue]{Amount}[/blue] 장의 [gold]다른 색[/gold] 파워 카드를 얻습니다.",
   "PACKMASTER-FLAWLESS_PRISM_POWER.smartDescription": "턴 시작 시, 무작위 [blue]{Amount}[/blue] 장의 [gold]다른 색[/gold] 파워 카드를 얻습니다. {Amount} 턴 시작 시, 무작위 [blue]{Amount}[/blue] 장의 [gold]다른 색[/gold] 파워 카드를 얻습니다.",
   "PACKMASTER-FLAWLESS_PRISM_POWER.fragment0": "턴 시작 시, 무작위 [blue]{Amount}[/blue] 장의 [gold]다른 색[/gold] 파워 카드를 얻습니다.",
-  "PACKMASTER-FLAWLESS_PRISM_POWER.fragment1": "턴 시작 시, 무작위 [blue]{Amount}[/blue] 장의 [gold]다른 색[/gold] 파워 카드를 얻습니다."
+  "PACKMASTER-FLAWLESS_PRISM_POWER.fragment1": "턴 시작 시, 무작위 [blue]{Amount}[/blue] 장의 [gold]다른 색[/gold] 파워 카드를 얻습니다.",
+  "PACKMASTER-PLASMA_SHIELD_POWER.title": "플라즈마 방패",
+  "PACKMASTER-PLASMA_SHIELD_POWER.description": "턴 종료 시, [gold]플라즈마가[/gold] 있다면 [gold]방어도를[/gold] [blue]{Amount}[/blue] 얻습니다.",
+  "PACKMASTER-PLASMA_SHIELD_POWER.smartDescription": "턴 종료 시, [gold]플라즈마가[/gold] 있다면 [gold]방어도를[/gold] [blue]{Amount}[/blue] 얻습니다."
 }

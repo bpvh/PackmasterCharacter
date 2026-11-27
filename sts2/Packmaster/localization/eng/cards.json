@@ -1208,7 +1208,7 @@
   "PACKMASTER-REBOUND_SELF_EFFECT.extended0": "Shuffle this card into your draw pile.",
   "PACKMASTER-TRANSMUTE_SELF_EFFECT.extended0": "[gold]Transmute[/gold] this card.",
   "PACKMASTER-EXCITEMENT.title": "Excitement",
-  "PACKMASTER-EXCITEMENT.description": "Gain {energyPrefix:energyIcons(2)}.{IfUpgraded:show:\nExhaustive {Exhaustive:diff()}.|}",
+  "PACKMASTER-EXCITEMENT.description": "Gain {energyPrefix:energyIcons(2)}.{IfUpgraded:show:\n[gold]Exhaustive[/gold] {Exhaustive:diff()}.|}",
   "PACKMASTER-LAYERED_DEFENSES.title": "Layered Defenses",
   "PACKMASTER-LAYERED_DEFENSES.description": "Gain {Block:diff()} [gold]Block[/gold] for each card type in your hand.",
   "PACKMASTER-LAYERED_DEFENSES.extended0": "({0} card types.)",
@@ -1230,7 +1230,7 @@
   "PACKMASTER-CONJURATION.description": "Choose a card from your draw pile.\nPlay {IfUpgraded:show:|and [gold]Exhaust[/gold] }it.",
   "PACKMASTER-CONJURATION.extended0": "There are no cards in my draw pile.",
   "PACKMASTER-RARE_STRIKE.title": "Rare Strike",
-  "PACKMASTER-RARE_STRIKE.description": "Deal {Damage:diff()} damage.\nDeals {Magic:diff()} additional damage for ALL your Rares.",
+  "PACKMASTER-RARE_STRIKE.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for ALL your Rares.",
   "PACKMASTER-PIERCE_VEIL.title": "Pierce Veil",
   "PACKMASTER-PIERCE_VEIL.description": "Deal {Damage:diff()} damage.\nPut 1 of the top {Magic:diff()} cards of your draw pile into your hand.",
   "PACKMASTER-STALL.title": "Stall",
@@ -1463,5 +1463,6 @@
   "PACKMASTER-HOLLOWER.selectionScreenPrompt": "Choose a card to put into your hand",
   "PACKMASTER-VISION.selectionScreenPrompt": "Choose cards to put into your hand",
   "PACKMASTER-SET_UP_SHOP.selectionScreenPrompt": "Choose cards to Upgrade and put on top of your draw pile",
-  "PACKMASTER-ATTACH.selectionScreenPrompt": "Choose a card to [gold]Absorb[/gold]. You will choose the discarded card to [gold]Modify[/gold] after."
+  "PACKMASTER-ATTACH.selectionScreenPrompt": "Choose a card to [gold]Absorb[/gold]. You will choose the discarded card to [gold]Modify[/gold] after.",
+  "PACKMASTER-REPLENISH.selectionScreenPrompt": "Choose cards to put into your hand."
 }

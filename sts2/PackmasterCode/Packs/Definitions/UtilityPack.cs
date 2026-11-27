@@ -5,11 +5,23 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class UtilityPack : PackmasterPack
 {
     public override string PackId => "UtilityPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(UtilityPackPreview);
     public override PackSummary Summary => new(2, 2, 5, 2, 3, PackTag.Orbs);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (11): Excitement, LayeredDefenses, PreemptiveStrike, PlasmaShield, Enrage, Whispers, Replenish, LesserHex, GreaterHex, Conjuration, RareStrike
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Utilitypack.Excitement),
+        typeof(global::Packmaster.PackmasterCode.Cards.Utilitypack.LayeredDefenses),
+        typeof(global::Packmaster.PackmasterCode.Cards.Utilitypack.PreemptiveStrike),
+        typeof(global::Packmaster.PackmasterCode.Cards.Utilitypack.PlasmaShield),
+        typeof(global::Packmaster.PackmasterCode.Cards.Utilitypack.Enrage),
+        typeof(global::Packmaster.PackmasterCode.Cards.Utilitypack.Whispers),
+        typeof(global::Packmaster.PackmasterCode.Cards.Utilitypack.Replenish),
+        typeof(global::Packmaster.PackmasterCode.Cards.Utilitypack.LesserHex),
+        typeof(global::Packmaster.PackmasterCode.Cards.Utilitypack.GreaterHex),
+        typeof(global::Packmaster.PackmasterCode.Cards.Utilitypack.Conjuration),
+        typeof(global::Packmaster.PackmasterCode.Cards.Utilitypack.RareStrike),
+    ];
 }
 
 public sealed class UtilityPackPreview : PackPreviewCard
