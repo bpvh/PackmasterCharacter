@@ -182,9 +182,22 @@ def translate_use(card: JavaCard):
 # --------------------------------------------------------------------------------------------------------------
 
 
-def card_class(card: JavaCard, base_class: str, namespace: str, eng_text: str = "") -> str:
+def keyword_tips(eng_text: str, known: set) -> list:
+    """PmTips fields for mod/StSLib keywords referenced in StS1 text (${ModID}:Word, stslib:Word)."""
+    out = []
+    for word in re.findall(r"(?:\$\{ModID\}|anniv5|stslib):([A-Za-z_]+)", eng_text or ""):
+        field = "".join(p[:1].upper() + p[1:].lower() for p in ids.slug(ids.class_name(word)).split("_") if p)
+        if field in known and field not in out:
+            out.append(field)
+    return out
+
+
+def card_class(card: JavaCard, base_class: str, namespace: str, eng_text: str = "", known_tips: set = frozenset()) -> str:
     """C# source for a concrete card."""
     lines, full, need = translate_use(card)
+    tips = keyword_tips(eng_text, set(known_tips))
+    if tips:
+        need.add("wiz")
     cls = ids.class_name(card.sts1_id) if card.sts1_id else card.cls
     usings = []
     if "vanilla_powers" in need:
@@ -239,6 +252,8 @@ def card_class(card: JavaCard, base_class: str, namespace: str, eng_text: str = 
         body.append(f"// TODO port tag: {t}")
     for power in sorted({m for l in lines for m in re.findall(r"Apply<(\w+)>", l)}):
         body.append(f"WithTip(typeof({power}));")
+    for tip in tips:
+        body.append(f"WithTip(PmTips.{tip});")
     if card.preview:
         body.append(f"// TODO tooltip for cardsToPreview: {card.preview}{' (upgraded with this card)' if card.upgrade_preview else ''}")
     for st in card.ctor_rest:
