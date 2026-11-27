@@ -1,0 +1,17 @@
+{
+  "id": "Packmaster",
+  "name": "The Packmaster",
+  "author": "Packmaster contributors",
+  "description": "Slay the Spire 2 port of The Packmaster: a character whose card pool is built from Booster Packs drafted at the start of each run.",
+  "version": "v0.0.1",
+  "min_game_version": "0.111.0",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": [
+    {
+      "id": "BaseLib",
+      "min_version": "3.4.8"
+    }
+  ],
+  "affects_gameplay": true
+}
