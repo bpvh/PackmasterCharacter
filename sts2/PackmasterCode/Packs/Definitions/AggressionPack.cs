@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class AggressionPack : PackmasterPack
 {
     public override string PackId => "AggressionPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(AggressionPackPreview);
     public override PackSummary Summary => new(5, 2, 2, 4, 3, PackTag.Strength, PackTag.Stances, PackTag.Attacks);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): Vindicate, DarkLance, FuriousAssault, Slam, Decapitate, TitansStrength, Epiphany, InnerFury, LunaticRage, Animosity
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Aggressionpack.Vindicate),
+        typeof(global::Packmaster.PackmasterCode.Cards.Aggressionpack.DarkLance),
+        typeof(global::Packmaster.PackmasterCode.Cards.Aggressionpack.FuriousAssault),
+        typeof(global::Packmaster.PackmasterCode.Cards.Aggressionpack.Slam),
+        typeof(global::Packmaster.PackmasterCode.Cards.Aggressionpack.Decapitate),
+        typeof(global::Packmaster.PackmasterCode.Cards.Aggressionpack.TitansStrength),
+        typeof(global::Packmaster.PackmasterCode.Cards.Aggressionpack.Epiphany),
+        typeof(global::Packmaster.PackmasterCode.Cards.Aggressionpack.InnerFury),
+        typeof(global::Packmaster.PackmasterCode.Cards.Aggressionpack.LunaticRage),
+        typeof(global::Packmaster.PackmasterCode.Cards.Aggressionpack.Animosity),
+    ];
 }
 
 public sealed class AggressionPackPreview : PackPreviewCard

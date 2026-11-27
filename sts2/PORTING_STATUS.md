@@ -28,7 +28,11 @@ The compile check passes with 0 errors and 0 warnings in that mode. The current-
 | `CardPileCmd.AddGeneratedCardToCombat` (in `Wiz.MakeInHand` / `ShuffleIn`) | `(card, pile, bool addedByPlayer[, position])` | `(card, pile, player[, position])` (HeartMod, game 0.111) |
 | first turn of combat (Handy Haversack) | `CombatState.RoundNumber` | `PlayerCombatState.TurnNumber` (HelloSpire, game 0.107.1) |
 
-Other unverified signatures carry a `// VERIFY` comment. The main one is the `ModifyDamageAdditive` override in `StrikeDummyJrPower`: newer builds may add a trailing `CardPlay?` parameter, as `ModifyDamageMultiplicative` has in HeartMod.
+| `ModifyDamageAdditive` / `ModifyDamageMultiplicative` overrides | 5 parameters | trailing `CardPlay? cardPlay` (HeartMod, game 0.111) |
+
+Other unverified signatures carry a `// VERIFY` comment.
+
+Hook semantics checked by decompiling the reference DLL's `Hook` class (ilspycmd, scratch only, nothing committed): `ModifyDamageAdditive` returns the **delta** the game adds (return 0 when not applicable), `ModifyDamageMultiplicative` returns a **factor** (1 when not applicable), `ModifyHpLostAfterOsty` and `ModifyCardPlayCount` return the **new value**.
 
 **First thing to do with the game installed:** `dotnet build` in `sts2/`. Expect a handful of signature fixes, mostly in `Util/Wiz.cs`. Then start a run and check the items under "Needs in-game verification" below.
 
@@ -42,7 +46,9 @@ Other unverified signatures carry a `// VERIFY` comment. The main one is the `Mo
 | Relics | Handy Haversack (+ runs the pack draft, see below) |
 | Pack framework | `Packs/`: `PackmasterPack`, `PackRegistry` (reflection, other mods can add packs), `PackRunState` (per-player, saved with the run via BaseLib `SavedSpireField`; add/remove/ban for Banishing Decree), `PackDraft`, `PackmasterConfig` (custom draft slots, All Packs, multiple None, packs per choice, disabled packs, skip draft) |
 | Pool filter | `Patches/PackPoolPatches.cs`: postfix on `CardPoolModel.GetUnlockedCards` so rewards, shops and random-card effects only use the run's packs; player context from `CardCreationOptions.GetPossibleCards` |
-| Packs ported (enabled) | **Core Set**, **Strikes**, **Alignment**, **Prismatic**: 40 cards, 10 powers |
+| Packs ported (enabled) | 12 of 60: **Core Set**, **Strikes**, **Alignment**, **Prismatic**, **Arcana**, **Quiet**, **Bellord**, **Even/Odd**, **Rimworld**, **Ring of Pain**, **Blacksmiths** (upgrades), **Aggression** |
+| Shared mechanics | Temporary HP (`TempHpPower`, via `ModifyHpLostAfterOsty`), StS1 keyword tooltips (`Util/PmTips.cs`, generated), pack relics (`Relics/PackRelic.cs`: only offered when the pack is in a Packmaster's run), multi-level upgrades (`MaxUpgradeLevel`, Ring of Pain Evolve, Blacksmiths), card modifiers (BaseLib `CardModifier`, Rimworld On Fire) |
+| Stances | `Stances/PackmasterStance.cs`: a stance is a single-instance buff power; `Stance.Enter<T>` / `Stance.Exit` run exit/enter effects and `IStanceListener` hooks, and track "changed stance this turn". No stance power = StS1 Neutral. Icons are drawn by `tools/make_stance_icons.py` (tracked) |
 | Pack definitions | All 60 packs generated in `Packs/Definitions/`; only finished packs are `Enabled` |
 | Localization | All 5 StS1 languages (eng, deu, kor, rus, zhs) converted to StS2 tables by `tools/convert_loc.py` |
 | Art | `tools/sync_assets.py` copies card/power/relic art from `../src` into `Packmaster/images` (gitignored, run before building the .pck); character select / icon images are generated and tracked |
@@ -68,7 +74,7 @@ Conventions:
 - StS1 `magicNumber` is var `Magic` and `secondMagic` is `Magic2`.
 - Card art is looked up by the StS1 ID name (`ArtId`).
 - Loc keys are `PACKMASTER-<UPPER_SNAKE class name>`.
-- Name power classes after the StS1 `POWER_ID`, so converted loc lines up. If they differ (Prismatic's `FlawlessPrism` becomes `FlawlessPrismPower`), add the keys by hand; `check_loc.py` finds these.
+- Name power classes after the StS1 `POWER_ID`, so converted loc lines up. If they can't be (the ID equals a card class, e.g. Animosity), add the entry to `tools/loc_renames.json` and rerun `convert_loc.py`: every language gets the renamed keys. `check_loc.py` finds missing ones.
 - "Until end of turn" stat debuffs use BaseLib `CustomTemporaryPowerModelWrapper<Card, StrengthPower>` with `InvertInternalPowerAmount`.
 - Replaying a card uses `ModifyCardPlayCount` / `AfterModifyingCardPlayCount` (vanilla Burst pattern).
 - "When drawn" cards override `AfterCardDrawn` and check `card == this`.
@@ -88,9 +94,11 @@ Conventions:
 
 - **Choice Cut** (Prismatic) offered Uppercut, Doom and Gloom, Predator and Reach Heaven. Doom and Gloom and Reach Heaven don't exist in StS2, so it offers Uppercut, Predator and Sweeping Beam.
 - "Different color" (Prismatic) means a card outside the Packmaster's card pool, i.e. other characters' and colorless cards, as in StS1.
-- **Penalty Strike** and **Quincunx** use StS2 temporary-Strength powers instead of StS1's -Strength plus GainStrengthPower pair.
+- **Penalty Strike**, **Quincunx**, **Lie** and **Decapitate** use StS2 temporary-Strength powers instead of StS1's -Strength plus GainStrengthPower pair; Inner Fury's temporary Strength is the same wrapper without inversion.
+- **Vindicate** applies the vanilla StS2 Rage power (whenever you play an Attack this turn, gain Block), the same effect as StS1 Rage.
+- **Aggression** multiplies damage with the `Move` flag (attacks), like StS1 NORMAL damage.
 
 ## Not started
 
 - Phase 4: character animation (the StS1 skeleton is a DragonBones export with meshes and IK; it needs Spine 4.2 or a Godot rebuild), energy counter from the bag orb layers, rest-site and merchant scenes.
-- 56 packs (see `gen_cards.py --list`). Next easiest by remaining TODOs: Quiet, Energy and Echo, Arcana, Bellord, Even/Odd, Rimworld. Upgrades needs multi-level upgrades (StS2 `MaxUpgradeLevel`) investigated first, pack-related relics (Booster Box, Booster Pack, Collection, Banishing Decree, Collector Badge, Gem of Unity, Bag of Holding as an Ancient upgrade), potions, Black Market Dealer event, Enhance rest-site option, top-bar packs button, pack summary star ratings in the draft.
+- 48 packs (see `gen_cards.py --list`). Pack-related relics (Booster Box, Booster Pack, Collection, Banishing Decree, Collector Badge, Gem of Unity, Bag of Holding as an Ancient upgrade), potions, Black Market Dealer event, Enhance rest-site option, top-bar packs button, pack summary star ratings in the draft.

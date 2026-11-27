@@ -1,0 +1,9 @@
+{
+ "_doc": "Per table: StS1-derived loc entry -> StS2 entry. Use when a C# class can't be named after the StS1 ID (e.g. a power whose ID equals a card class name). Applied to every language by convert_loc.py.",
+ "powers": {
+  "PACKMASTER-ANIMOSITY": "PACKMASTER-ANIMOSITY_POWER",
+  "PACKMASTER-INNER_FURY": "PACKMASTER-INNER_FURY_POWER",
+  "PACKMASTER-QUIRION_DRYAD": "PACKMASTER-QUIRION_DRYAD_POWER",
+  "PACKMASTER-FLAWLESS_PRISM": "PACKMASTER-FLAWLESS_PRISM_POWER"
+ }
+}

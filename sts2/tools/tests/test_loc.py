@@ -142,3 +142,13 @@ class MarkedKeywords(unittest.TestCase):
 class MergeGold(unittest.TestCase):
     def test_multi_word_name(self):
         self.assertEqual(conv("Obtain a *Curse *of *the *Bell."), "Obtain a [gold]Curse of the Bell[/gold].")
+
+
+class Renames(unittest.TestCase):
+    def test_apply_renames(self):
+        from collections import OrderedDict
+        import convert_loc
+        gen = OrderedDict([("PACKMASTER-ANIMOSITY.title", "A"), ("PACKMASTER-ANIMOSITY_X.title", "B")])
+        out, old = convert_loc.apply_renames(gen, {"PACKMASTER-ANIMOSITY": "PACKMASTER-ANIMOSITY_POWER"})
+        self.assertEqual(list(out), ["PACKMASTER-ANIMOSITY_POWER.title", "PACKMASTER-ANIMOSITY_X.title"])
+        self.assertEqual(old, {"PACKMASTER-ANIMOSITY.title"})

@@ -24,6 +24,16 @@ public static class Wiz
     public static IReadOnlyList<CardModel> ExhaustPile(Player p) => p.PlayerCombatState?.ExhaustPile.Cards ?? [];
 
     /// <summary>True during the player's first turn of a combat (StS1 atBattleStart-style effects).</summary>
+    /// <summary>The player's turn number in the current combat (1 on the first turn).</summary>
+    public static int TurnNumber(Player p)
+    {
+#if OLD_STS2_API
+        return p.Creature.CombatState?.RoundNumber ?? 0;
+#else
+        return p.PlayerCombatState?.TurnNumber ?? 0;
+#endif
+    }
+
     public static bool IsFirstTurn(Player p)
     {
 #if OLD_STS2_API

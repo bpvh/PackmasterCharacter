@@ -43,6 +43,7 @@ STS2 = HERE.parent
 SRC = STS2.parent / "src" / "main" / "resources" / "anniv5Resources" / "localization"
 DST = STS2 / "Packmaster" / "localization"
 GENERATED_KEYS = HERE / "loc_generated_keys.json"
+RENAMES = HERE / "loc_renames.json"
 REPORT = HERE / "out" / "loc_report.json"
 
 LANGS = ["eng", "deu", "kor", "rus", "zhs"]
@@ -237,6 +238,20 @@ def merge_table(path: Path, generated: "OrderedDict[str, str]", owned: dict):
     return merged, new_owned
 
 
+def apply_renames(gen: "OrderedDict[str, str]", renames: dict):
+    """Rename generated entries (the part before the first '.') per loc_renames.json. Returns (renamed, old keys)."""
+    if not renames:
+        return gen, set()
+    out, old = OrderedDict(), set()
+    for k, v in gen.items():
+        entry, _, suffix = k.partition(".")
+        if entry in renames:
+            old.add(k)
+            k = f"{renames[entry]}.{suffix}"
+        out[k] = v
+    return out, old
+
+
 def value_hash(v) -> str:
     import hashlib
     return hashlib.sha1(str(v).encode("utf-8")).hexdigest()[:10]
@@ -270,6 +285,7 @@ def main(argv=None):
     if "eng" not in langs:
         langs = ["eng"] + langs  # English decides which keyword lines to strip
     owned_all = json.loads(GENERATED_KEYS.read_text()) if GENERATED_KEYS.exists() else {}
+    renames = json.loads(RENAMES.read_text()) if RENAMES.exists() else {}
     report = {}
     conv = Converter(report)
     changed = []
@@ -296,7 +312,11 @@ def main(argv=None):
             path = DST / lang / f"{table}.json"
             key = f"{lang}/{table}"
             prev = owned_of(owned_all, key)
+            gen, renamed_from = apply_renames(gen, renames.get(table, {}))
             merged, written = merge_table(path, gen, prev)
+            for k in renamed_from:  # drop the old generated key unless someone edited it
+                if k in merged and prev.get(k) == value_hash(merged[k]):
+                    merged.pop(k)
             # keep records of keys other tools (gen_cards.py) generated in this table
             kept = {k: h for k, h in prev.items() if k not in gen and k in merged}
             new_owned[key] = dict(sorted({**kept, **written}.items()))

@@ -28,7 +28,7 @@
   "PACKMASTER-INNER_FURY.title": "Inner Fury",
   "PACKMASTER-INNER_FURY.description": "Whenever you enter or exit [gold]Aggression[/gold], gain {Magic:diff()} Temporary [gold]Strength[/gold] and {Magic:diff()} [gold]Block[/gold].\nEnter [gold]Aggression[/gold].",
   "PACKMASTER-LUNATIC_RAGE.title": "Lunatic Rage",
-  "PACKMASTER-LUNATIC_RAGE.description": "Draw {Magic:diff()} cards.\nGain {energyPrefix:energyIcons(2)}.\nDiscard all non-Attack non-Status cards.",
+  "PACKMASTER-LUNATIC_RAGE.description": "Draw {Magic:diff()} cards.\nGain {energyPrefix:energyIcons(2)}.\nDiscard all non-Attack non-Status cards in your hand.",
   "PACKMASTER-ANIMOSITY.title": "Animosity",
   "PACKMASTER-ANIMOSITY.description": "When you enter, exit, or start your turn in [gold]Aggression[/gold], gain {Magic:diff()} [gold]Strength[/gold].",
   "PACKMASTER-CONJUNCTION.title": "Conjunction",
