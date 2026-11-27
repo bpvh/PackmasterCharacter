@@ -8,8 +8,16 @@ public sealed class PoisonPack : PackmasterPack
     public override bool Enabled => false;
     public override Type PreviewCardType => typeof(PoisonPackPreview);
     public override PackSummary Summary => new(5, 1, 2, 2, 5, PackTag.Debuffs);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): PoisonedStab, DeadlyPoison, Catalyst, VenomDip, NoxiousFumes, BouncingFlask, CripplingPoison, Malaise, Burst, CorpseExplosion
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.PoisonedStab),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.DeadlyPoison),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.NoxiousFumes),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.BouncingFlask),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Malaise),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Burst),
+    ];
+    // Not ported yet (4): Catalyst, VenomDip, CripplingPoison, CorpseExplosion
 }
 
 public sealed class PoisonPackPreview : PackPreviewCard

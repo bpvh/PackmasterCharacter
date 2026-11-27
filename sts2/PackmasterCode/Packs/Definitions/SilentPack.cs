@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class SilentPack : PackmasterPack
 {
     public override string PackId => "SilentPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(SilentPackPreview);
     public override PackSummary Summary => new(3, 3, 4, 3, 3, PackTag.Discard);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): BladeDance, Prepared, SneakyStrike, CloakAndDagger, CalculatedGamble, LegSweep, Choke, Footwork, BulletTime, StormOfSteel
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.BladeDance),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Prepared),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.FlickFlack),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.CloakAndDagger),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.CalculatedGamble),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.LegSweep),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Strangle),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Footwork),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.BulletTime),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.StormOfSteel),
+    ];
 }
 
 public sealed class SilentPackPreview : PackPreviewCard

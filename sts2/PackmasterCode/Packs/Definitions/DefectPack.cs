@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class DefectPack : PackmasterPack
 {
     public override string PackId => "DefectPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(DefectPackPreview);
     public override PackSummary Summary => new(3, 4, 3, 4, 3, PackTag.Orbs);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): BallLightning, Coolheaded, Hologram, Defragment, Capacitor, Recursion, DoomAndGloom, Glacier, MultiCast, BiasedCognition
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.BallLightning),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Coolheaded),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Hologram),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Defragment),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Capacitor),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Darkness),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Null),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Glacier),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.MultiCast),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.BiasedCognition),
+    ];
 }
 
 public sealed class DefectPackPreview : PackPreviewCard

@@ -91,3 +91,12 @@ class Emit(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Vanilla(unittest.TestCase):
+    def test_map_resolves_substitutes(self):
+        import gen_cards
+        m = gen_cards.vanilla_map()
+        self.assertEqual(m["ThunderClap"], "Thunderclap")
+        self.assertEqual(m["DoubleTap"], "OneTwoPunch")
+        self.assertNotIn("_doc", m)

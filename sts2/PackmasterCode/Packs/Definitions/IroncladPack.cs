@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class IroncladPack : PackmasterPack
 {
     public override string PackId => "IroncladPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(IroncladPackPreview);
     public override PackSummary Summary => new(4, 2, 3, 4, 2, PackTag.Strength);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): Headbutt, ShrugItOff, ThunderClap, Whirlwind, BattleTrance, Rampage, Uppercut, Inflame, Barricade, DoubleTap
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Headbutt),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.ShrugItOff),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Thunderclap),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Whirlwind),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.BattleTrance),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Rampage),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Uppercut),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Inflame),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Barricade),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.OneTwoPunch),
+    ];
 }
 
 public sealed class IroncladPackPreview : PackPreviewCard

@@ -1,6 +1,8 @@
 using System.Reflection;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Runs;
+using MegaCrit.Sts2.Core.Unlocks;
 using Packmaster.PackmasterCode.Character;
 using Packmaster.PackmasterCode.Packs;
 
@@ -13,6 +15,9 @@ namespace Packmaster.PackmasterCode.Patches;
 /// CommonActions.GenerateCards) reads the character pool through CardPoolModel.GetUnlockedCards, so that's
 /// where pack cards outside the run are removed. Non-pack cards in our pool (starters, system cards, pack
 /// preview cards) are left alone; rarity rules already keep Basic/Token cards out of rewards.
+///
+/// Vanilla packs (Ironclad, Silent, ...) hold base-game cards from other pools. Those are added to the result
+/// for the selected packs, subject to their own pool's unlock (epoch) and multiplayer filtering.
 ///
 /// GetUnlockedCards has no player argument. When a caller does (CardCreationOptions.GetPossibleCards(player),
 /// used for rewards and shops), we remember that player for the duration of the call; otherwise we use every
@@ -56,7 +61,8 @@ public static class PackPoolPatches
 
     [HarmonyPatch(typeof(CardPoolModel), nameof(CardPoolModel.GetUnlockedCards))]
     [HarmonyPostfix]
-    private static void FilterToRunPacks(CardPoolModel __instance, ref IEnumerable<CardModel> __result)
+    private static void FilterToRunPacks(CardPoolModel __instance, ref IEnumerable<CardModel> __result,
+        UnlockState unlockState, CardMultiplayerConstraint multiplayerConstraint)
     {
         if (__instance is not PackmasterCardPool) return;
         try
@@ -71,6 +77,14 @@ public static class PackPoolPatches
                 var packs = PackRegistry.PacksOf(c);
                 return packs.Count == 0 || packs.Any(allowed.Contains);
             }).ToList();
+
+            // Base-game cards of selected vanilla packs.
+            var foreign = allowed.SelectMany(p => p.Cards).Where(c => c.Pool is not PackmasterCardPool).Distinct().ToList();
+            foreach (var group in foreign.GroupBy(c => c.Pool))
+            {
+                var unlocked = group.Key.GetUnlockedCards(unlockState, multiplayerConstraint).Select(c => c.Id).ToHashSet();
+                filtered.AddRange(group.Where(c => unlocked.Contains(c.Id) && filtered.All(f => f.Id != c.Id)));
+            }
 
             // Reward generation picks a rarity first; an empty rarity could break it. If the selected packs have
             // no card of a rarity the full pool has (only possible with tiny custom drafts), fall back to all

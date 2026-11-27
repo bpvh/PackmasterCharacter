@@ -8,8 +8,15 @@ public sealed class BulwarkPack : PackmasterPack
     public override bool Enabled => false;
     public override Type PreviewCardType => typeof(BulwarkPackPreview);
     public override PackSummary Summary => new(1, 5, 2, 3, 4, PackTag.Exhaust);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): vanilla Backflip, vanilla ConserveBattery, vanilla SteamBarrier, vanilla Swivel, vanilla Equilibrium, vanilla Sanctity, vanilla SecondWind, vanilla Juggernaut, vanilla AfterImage, vanilla SpiritShield
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Backflip),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Equilibrium),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.SecondWind),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Juggernaut),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Afterimage),
+    ];
+    // Not ported yet (5): vanilla ConserveBattery, vanilla SteamBarrier, vanilla Swivel, vanilla Sanctity, vanilla SpiritShield
 }
 
 public sealed class BulwarkPackPreview : PackPreviewCard

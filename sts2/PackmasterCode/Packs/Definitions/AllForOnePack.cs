@@ -8,8 +8,18 @@ public sealed class AllForOnePack : PackmasterPack
     public override bool Enabled => false;
     public override Type PreviewCardType => typeof(AllForOnePackPreview);
     public override PackSummary Summary => new(4, 2, 3, 4, 3);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): Streamline, vanilla Flex, GoForTheEyes, BeamCell, FTL, vanilla EscapePlan, Scrape, vanilla Finisher, MachineLearning, AllForOne
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.GoForTheEyes),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.BeamCell),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Ftl),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.EscapePlan),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Scrape),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Finisher),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.MachineLearning),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.AllForOne),
+    ];
+    // Not ported yet (2): Streamline, vanilla Flex
 }
 
 public sealed class AllForOnePackPreview : PackPreviewCard

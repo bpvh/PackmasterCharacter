@@ -8,8 +8,13 @@ public sealed class StatusPack : PackmasterPack
     public override bool Enabled => false;
     public override Type PreviewCardType => typeof(StatusPackPreview);
     public override PackSummary Summary => new(4, 2, 5, 5, 3, PackTag.Exhaust, PackTag.Tokens);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): WildStrike, vanilla Turbo, TrueGrit, RecklessCharge, PowerThrough, vanilla Overclock, Evolve, FireBreathing, Immolate, DarkerEmbrace
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Turbo),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.TrueGrit),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Overclock),
+    ];
+    // Not ported yet (7): WildStrike, RecklessCharge, PowerThrough, Evolve, FireBreathing, Immolate, DarkerEmbrace
 }
 
 public sealed class StatusPackPreview : PackPreviewCard

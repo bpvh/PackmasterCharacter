@@ -147,17 +147,34 @@ def write(path: Path, text: str, force: bool, dry: bool):
     return "written"
 
 
+VANILLA_NS = "global::MegaCrit.Sts2.Core.Models.Cards"
+
+
+def vanilla_map() -> dict:
+    """tools/vanilla_cards.json: StS1 base-game card class -> StS2 card class name."""
+    path = Path(__file__).resolve().parent / "vanilla_cards.json"
+    raw = json.loads(path.read_text()) if path.exists() else {}
+    return {k: (v["sts2"] if isinstance(v, dict) else v) for k, v in raw.items() if not k.startswith("_")}
+
+
 def pack_defs(packs, dry, write_loc=True):
     classes = existing_classes()
+    vanilla = vanilla_map()
     defs_dir = CODE / "Packs" / "Definitions"
     written = []
     for pk in packs:
         types, missing = [], []
         for name in pk.card_classes:
-            if name in pk.vanilla_cards:
-                missing.append(f"vanilla {name}")
-                continue
             path = java.resolve_class(name, pk.imports, java.index_classes())
+            # Java resolution: an explicit import wins; otherwise a wildcard import of base-game cards does.
+            wildcard_vanilla = name not in pk.imports and bool(
+                re.search(r"import\s+com\.megacrit\.cardcrawl\.cards\.\w+\.\*;", pk.path.read_text(errors="ignore")))
+            if name in pk.vanilla_cards or ((path is None or wildcard_vanilla) and name in vanilla):
+                if name in vanilla:
+                    types.append(f"{VANILLA_NS}.{vanilla[name]}")
+                else:
+                    missing.append(f"vanilla {name}")
+                continue
             card = java.parse_card(path) if path else None
             cls = ids.class_name(card.sts1_id) if card and card.sts1_id else name
             hit = classes.get(cls)
@@ -168,7 +185,8 @@ def pack_defs(packs, dry, write_loc=True):
         target = defs_dir / f"{ids.class_name(pk.pack_id)}.cs"
         # Enabled only when every card exists and none is still an unported skeleton. A hand edit to
         # "Enabled => false" in an existing definition is kept.
-        unfinished = [c for c in types if "Status: skeleton" in classes[c.split(".")[-1]][1].read_text(errors="ignore")]
+        unfinished = [c for c in types if not c.startswith(VANILLA_NS) and
+                      "Status: skeleton" in classes[c.split(".")[-1]][1].read_text(errors="ignore")]
         enabled = bool(types) and not missing and not unfinished
         if target.exists() and re.search(r"Enabled\s*=>\s*false;\s*// keep", target.read_text()):
             enabled = False
