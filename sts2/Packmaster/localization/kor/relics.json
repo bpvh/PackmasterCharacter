@@ -59,8 +59,8 @@
   "PACKMASTER-PM_COLLECTION.fragment2": "팩: {Amount}",
   "PACKMASTER-PM_COLLECTION.flavor": "마법사들의 컨소시엄에 의해 수집되었다고 전해진다.",
   "PACKMASTER-SNOWGLOBE.title": "스노우글로브",
-  "PACKMASTER-SNOWGLOBE.description": "적을 공격하여 [gold]동상을[/gold] 적용할 때마다, 추가로 #b",
-  "PACKMASTER-SNOWGLOBE.fragment0": "적을 공격하여 [gold]동상을[/gold] 적용할 때마다, 추가로 #b",
+  "PACKMASTER-SNOWGLOBE.description": "적을 공격하여 [gold]동상을[/gold] 적용할 때마다, 추가로",
+  "PACKMASTER-SNOWGLOBE.fragment0": "적을 공격하여 [gold]동상을[/gold] 적용할 때마다, 추가로",
   "PACKMASTER-SNOWGLOBE.fragment1": "더 적용합니다.",
   "PACKMASTER-SNOWGLOBE.flavor": "눈 오는 날의 첨탑을 묘사한 물건입니다. 흔들면 으르렁거리는 소리를 냅니다.",
   "PACKMASTER-MINI_HAKKERO.title": "작은 팔괘로",
@@ -73,8 +73,8 @@
   "PACKMASTER-TARRED_FEATHER.description": "손의 최대 크기를 [blue]2[/blue] 장 늘립니다.\n전투 시작 시, [blue]2[/blue] 장의 [gold]역기[/gold] 를 얻습니다.",
   "PACKMASTER-TARRED_FEATHER.flavor": "이전 사용자를 만나고 싶지 않을 것입니다.",
   "PACKMASTER-BLUE_SKULL.title": "푸른 해골",
-  "PACKMASTER-BLUE_SKULL.description": "체력이 [blue]50%[/blue] 이하일 때 [gold]밀집을[/gold] #b",
-  "PACKMASTER-BLUE_SKULL.fragment0": "체력이 [blue]50%[/blue] 이하일 때 [gold]밀집을[/gold] #b",
+  "PACKMASTER-BLUE_SKULL.description": "체력이 [blue]50%[/blue] 이하일 때 [gold]밀집을[/gold]",
+  "PACKMASTER-BLUE_SKULL.fragment0": "체력이 [blue]50%[/blue] 이하일 때 [gold]밀집을[/gold]",
   "PACKMASTER-BLUE_SKULL.fragment1": "얻습니다.",
   "PACKMASTER-BLUE_SKULL.flavor": "장식용 도색은 보이지 않는데도 이상하게 작고 푸른 해골입니다."
 }

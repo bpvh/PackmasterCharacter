@@ -27,6 +27,7 @@ description is a best guess (fragments joined around {Amount}); every fragment i
 .fragment<N> and listed in the report for manual review.
 """
 import argparse
+import re
 import json
 import sys
 from collections import OrderedDict
@@ -140,13 +141,17 @@ class Converter:
             frags = item.get("DESCRIPTIONS") or item.get("DESCRIPTION") or []
             if isinstance(frags, str):
                 frags = [frags]
+            # A fragment ending in a color prefix ("gain #b") means StS1 code appended the number right after it.
+            blue_next = [bool(re.search(r"#[by]\s*$", f)) for f in frags]
+            frags = [re.sub(r"\s*#[by]\s*$", "", f) for f in frags]
             conv = [tidy(highlight_keywords(convert_inline(java_format_to_amount(f).replace(" NL ", "\n"), set()), kw))
                     for f in frags]
             if conv:
                 if kind == "relic" or len(conv) == 1:
                     guess = conv[0]
                 else:
-                    guess = tidy(" {Amount} ".join(conv[:2]) + (" " + " ".join(conv[2:]) if len(conv) > 2 else ""))
+                    amount = "[blue]{Amount}[/blue]" if blue_next[0] else "{Amount}"
+                    guess = tidy(f" {amount} ".join(conv[:2]) + (" " + " ".join(conv[2:]) if len(conv) > 2 else ""))
                 out[f"{entry}.description"] = guess
                 if kind == "power":
                     out[f"{entry}.smartDescription"] = guess

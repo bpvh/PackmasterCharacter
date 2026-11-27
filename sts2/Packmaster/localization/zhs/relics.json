@@ -59,8 +59,8 @@
   "PACKMASTER-PM_COLLECTION.fragment2": "卡包： [gold]{Amount}[/gold] 。",
   "PACKMASTER-PM_COLLECTION.flavor": "据说由一群魔法师收集结合。",
   "PACKMASTER-SNOWGLOBE.title": "雪景球",
-  "PACKMASTER-SNOWGLOBE.description": "你的攻击给予 #y[gold]霜噬[/gold] 时，额外给予 #b",
-  "PACKMASTER-SNOWGLOBE.fragment0": "你的攻击给予 #y[gold]霜噬[/gold] 时，额外给予 #b",
+  "PACKMASTER-SNOWGLOBE.description": "你的攻击给予 #y[gold]霜噬[/gold] 时，额外给予",
+  "PACKMASTER-SNOWGLOBE.fragment0": "你的攻击给予 #y[gold]霜噬[/gold] 时，额外给予",
   "PACKMASTER-SNOWGLOBE.fragment1": "层。",
   "PACKMASTER-SNOWGLOBE.flavor": "描绘尖塔的冬日景象，摇晃时你能听见寒风咆哮声。",
   "PACKMASTER-MINI_HAKKERO.title": "迷你八卦炉",
@@ -73,8 +73,8 @@
   "PACKMASTER-TARRED_FEATHER.description": "手牌牌数上限加 [blue]2[/blue] 。\n战斗开始时, 将 [blue]2[/blue] 张 [gold]重物[/gold] 加入手牌。",
   "PACKMASTER-TARRED_FEATHER.flavor": "你可能不会想见到这东西的前主人。",
   "PACKMASTER-BLUE_SKULL.title": "蓝头骨",
-  "PACKMASTER-BLUE_SKULL.description": "生命值低于 [blue]50%[/blue] 时获得 #b",
-  "PACKMASTER-BLUE_SKULL.fragment0": "生命值低于 [blue]50%[/blue] 时获得 #b",
+  "PACKMASTER-BLUE_SKULL.description": "生命值低于 [blue]50%[/blue] 时获得",
+  "PACKMASTER-BLUE_SKULL.fragment0": "生命值低于 [blue]50%[/blue] 时获得",
   "PACKMASTER-BLUE_SKULL.fragment1": "点 [gold]集中[/gold] 。",
   "PACKMASTER-BLUE_SKULL.flavor": "一个奇异的蓝色小型头骨，无任何染色与颜料的迹象。"
 }

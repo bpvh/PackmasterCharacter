@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class StrikesPack : PackmasterPack
 {
     public override string PackId => "StrikesPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(StrikesPackPreview);
     public override PackSummary Summary => new(4, 1, 2, 4, 1, PackTag.Orbs, PackTag.Attacks);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): Backstrike, DifferentStrikes, LightningStrike, PenaltyStrike, StrikeABargain, StrikeDummyJr, StrikeOfGenius, StrikeOfLuck, StrikeOfMidnight, WorkersStrike
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Strikepack.Backstrike),
+        typeof(global::Packmaster.PackmasterCode.Cards.Strikepack.DifferentStrikes),
+        typeof(global::Packmaster.PackmasterCode.Cards.Strikepack.LightningStrike),
+        typeof(global::Packmaster.PackmasterCode.Cards.Strikepack.PenaltyStrike),
+        typeof(global::Packmaster.PackmasterCode.Cards.Strikepack.StrikeABargain),
+        typeof(global::Packmaster.PackmasterCode.Cards.Strikepack.StrikeDummyJr),
+        typeof(global::Packmaster.PackmasterCode.Cards.Strikepack.StrikeOfGenius),
+        typeof(global::Packmaster.PackmasterCode.Cards.Strikepack.StrikeOfLuck),
+        typeof(global::Packmaster.PackmasterCode.Cards.Strikepack.StrikeOfMidnight),
+        typeof(global::Packmaster.PackmasterCode.Cards.Strikepack.WorkersStrike),
+    ];
 }
 
 public sealed class StrikesPackPreview : PackPreviewCard

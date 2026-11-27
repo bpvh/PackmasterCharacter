@@ -59,8 +59,8 @@
   "PACKMASTER-PM_COLLECTION.fragment2": "Pack: {Amount}",
   "PACKMASTER-PM_COLLECTION.flavor": "Angeblich von einem Konsortium von Zauberern zusammengestellt.",
   "PACKMASTER-SNOWGLOBE.title": "Schneekugel",
-  "PACKMASTER-SNOWGLOBE.description": "Immer wenn du #y[gold]Frostbiss[/gold] durch Angriff auf einen Gegner anwendest, wende #b",
-  "PACKMASTER-SNOWGLOBE.fragment0": "Immer wenn du #y[gold]Frostbiss[/gold] durch Angriff auf einen Gegner anwendest, wende #b",
+  "PACKMASTER-SNOWGLOBE.description": "Immer wenn du #y[gold]Frostbiss[/gold] durch Angriff auf einen Gegner anwendest, wende",
+  "PACKMASTER-SNOWGLOBE.fragment0": "Immer wenn du #y[gold]Frostbiss[/gold] durch Angriff auf einen Gegner anwendest, wende",
   "PACKMASTER-SNOWGLOBE.fragment1": "zusätzlich an.",
   "PACKMASTER-SNOWGLOBE.flavor": "Eine Darstellung des Spire während winterlichen Wetters. Es knurrt, wenn du es schüttelst.",
   "PACKMASTER-MINI_HAKKERO.title": "Mini Hakkero",
@@ -73,8 +73,8 @@
   "PACKMASTER-TARRED_FEATHER.description": "Erhöhe deine maximale Handgröße um [blue]2[/blue].\nZu Beginn jedes Kampfes, füge [blue]2[/blue] [gold]Gewichte[/gold] deiner Hand hinzu.",
   "PACKMASTER-TARRED_FEATHER.flavor": "Seinen früheren Träger möchte man nicht wiedersehen.",
   "PACKMASTER-BLUE_SKULL.title": "Blauer Schädel",
-  "PACKMASTER-BLUE_SKULL.description": "Wenn deine Lebenspunkte unter [blue]50%[/blue] betragen, erhalte #b",
-  "PACKMASTER-BLUE_SKULL.fragment0": "Wenn deine Lebenspunkte unter [blue]50%[/blue] betragen, erhalte #b",
+  "PACKMASTER-BLUE_SKULL.description": "Wenn deine Lebenspunkte unter [blue]50%[/blue] betragen, erhalte",
+  "PACKMASTER-BLUE_SKULL.fragment0": "Wenn deine Lebenspunkte unter [blue]50%[/blue] betragen, erhalte",
   "PACKMASTER-BLUE_SKULL.fragment1": "zusätzlichen [gold]Fokus[/gold].",
   "PACKMASTER-BLUE_SKULL.flavor": "Ein kleiner Schädel, seltsam blau ohne Spuren von Farbstoff oder Farbe."
 }
