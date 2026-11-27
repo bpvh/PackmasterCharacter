@@ -90,33 +90,17 @@ BaseLib already provides most of the StSLib-style plumbing Packmaster depends on
 5. **No end-of-act boss relic swap.** Starter-relic upgrades come from Ancients instead.
 6. **VFX and SFX.** 70 libGDX `AbstractGameEffect` classes and 74 `CardCrawlGame.sound` call sites have to become Godot scenes or particles, or be swapped for StS2's built-in hit VFX and FMOD events.
 
-### Existing StS2 Packmaster library: `mojimoon/Sts2Packmaster`
+### Prior art: `mojimoon/Sts2Packmaster` (not used)
 
-There's already a StS2 library for Packmaster-style characters: **PackmasterLib** (https://github.com/mojimoon/Sts2Packmaster). It's on the Steam Workshop as item 3815696341, with a demo character "VanillaPacks" as item 3815696519. It targets game v0.111.0 and depends only on Harmony, not BaseLib. It's young (16 commits, v0.1.0, last pushed 2026-10-09) but well documented (`docs/en/api.md`, `behavior.md`, `getting-started.md`) and has an end-to-end automated test.
+A StS2 Packmaster-style library already exists: PackmasterLib (https://github.com/mojimoon/Sts2Packmaster), Harmony-only and targeting game v0.111.0. **We're not depending on it or using its code.** The repo has no license, so its code is all rights reserved, and we want everything on BaseLib.
 
-It already implements most of what Phase 2 of this plan was going to build:
+Its public docs are still useful as evidence of how the game works. Facts about the game aren't copyrightable, but its code is, so we write our own implementation and copy nothing.
+- **Pool filtering:** a prefix on `CardCreationOptions.GetPossibleCards(player)` reportedly covers card rewards, shops, events, potions, random-card effects and transforms (`CardFactory.CreateForReward` goes through it).
+- **Run-start hook and saving:** a hidden run `ModifierModel` passed into `RunState.CreateForNewRun`. Its `[SavedProperty]` fields persist in the run save and sync in multiplayer. `OnRunCreated`/`OnRunLoaded` lifecycle, and `GenerateNeowOption` for a pre-Neow step.
+- **Draft picks:** `CardSelectCmd.FromSimpleGrid` with a blocking choice context is network-synced.
+- **Card library:** pool tabs are hard-coded, and custom sorts can be added to `NCardGrid.SortingAlgorithms`.
 
-| Our plan (Phase 2) | PackmasterLib |
-|---|---|
-| Pack base class and registry | `PackDefinition` (id, name/description loc keys, author, `CardTypes`, `PreviewCardType`, `PackSummary` with the same five ratings and tags as StS1) registered via `PackmasterApi.RegisterCharacter(PackCharacterRegistration)`. Vanilla StS2 cards can go in packs directly |
-| Per-player saved selection | Hidden run `ModifierModel` with `[SavedProperty]` fields. `PackState.Get(player).Selected` per player. Survives save and load |
-| Card-pool filtering | Prefix on `CardCreationOptions.GetPossibleCards`, which covers rewards, shops, events, potions, random-card effects and transforms (pool-restricted). This settles risk #3 below |
-| Draft screen | StS1-style setup screen before Neow: current packs, choice of 3, summary stars and tags, author, Back/Esc, save-and-quit before confirm |
-| Custom draft config, All Packs mode, multiple None | Character-select panel with 3-10 slots of Random / Choice / None / fixed pack, saved per character, plus a Settings section |
-| Current-run packs top-panel item | Top-bar packs button that opens the run's card pool |
-| Compendium grouping | Library pack sort, pack filter dropdown, and search by pack name |
-| Pack name on cards | Drawn on the card frame |
-| Localization | `PackmasterApi.AddLoc`; library UI already in all 16 game languages |
-
-**Gaps relative to StS1 Packmaster**, which we'd need to add, either upstream or in our mod:
-
-- **No API to change a run's packs.** `PlayerPackState` is documented as read-only. Banishing Decree removes a pack and adds a new one, and probably other effects need the same. Needs an upstream change (a PR adding `AddPack`/`RemovePack` that persists in the modifier's saved properties) or a Harmony patch on our side.
-- **Multiplayer has no draft screen**: choice slots resolve randomly from the seed and the per-player config isn't synced, so co-op uses `DefaultSlots`. That's acceptable for a first release.
-- **No license file** in the repo. Depending on it at runtime, as a Workshop or `mods/` dependency, is fine. Copying or vendoring its code isn't until the author adds a license. Ask the author, mojimoon, to add one before deciding how to depend on it.
-- **Doesn't use BaseLib.** We still want BaseLib for card modifiers, scry, orbs, saved fields and so on. The two should coexist, since both are Harmony-only, but that needs a quick compatibility test.
-- **Pre-1.0 and maintained by one person.** Pin the version, and be ready to fork if it goes stale (which again needs a license).
-
-**Recommendation:** build our Packmaster as a character mod that depends on **PackmasterLib + BaseLib**. Each Java `AbstractCardPack` becomes a `PackDefinition` (a near-mechanical translation, so the pack registry can be generated by `gen_cards.py` too). Phase 2 shrinks to integration plus the pack-mutation gap. Their VanillaPacks demo is the reference for wiring.
+We'll confirm each of these against `sts2.dll` ourselves in Phase 2.
 
 ---
 
@@ -178,7 +162,10 @@ sts2/
 
 ### 3.2 The pack system (the core of the character)
 
-> **Superseded by PackmasterLib (see section 1).** Most of what follows is already implemented there. Use it as a checklist of the behavior we need: the registry becomes `PackDefinition` registrations, per-player state becomes `PackState`, pool filtering and the draft screen are provided. What we still build ourselves is the pack-mutation API (Banishing Decree), pack-exclusive potion gating, and the pack-aware relics and rewards in section 6.
+> **Implementation notes (all our own code, on BaseLib):**
+> - **Selection storage:** either a BaseLib `SavedSpireField` on the player or a hidden run `ModifierModel` with `[SavedProperty]` fields. Prefer the modifier if it gives us multiplayer sync for free; decide in the Phase 2 spike.
+> - **Mutation:** include add/remove/ban pack operations from day one, for Banishing Decree, Booster Box and similar.
+> - **Filter point:** `CardCreationOptions.GetPossibleCards` (to confirm), falling back to `CardPoolModel.GetUnlockedCards`.
 
 - **`PackmasterPack` base class** (replaces `AbstractCardPack`): `Id`, localized name, description, author and credits. It also holds `IReadOnlyList<Type> Cards`, a `PackSummary` (offense/defense/support/frontload/scaling ratings plus tags) and optional `PackPotions`. The hat fields are dropped.
 - **`PackRegistry`**: discovers all `PackmasterPack` subclasses by reflection at init, including ones from other assemblies so a future expansion mod works. It builds `card type -> pack` and `pack -> cards` maps, replacing `cardParentMap` and `cardClassParentMap`, and exposes a public `Register(pack)` API.
@@ -282,7 +269,7 @@ Each pack follows this checklist:
 |---|---|---|
 | **0. Setup** | `sts2/` project from Alchyr's character template, BaseLib dependency, build and copy to `mods/`, `.pck` export | Empty character shows on character select |
 | **1. Character skeleton** | Packmaster model with placeholder visuals, the 4 starter cards, Handy Haversack, card/relic/potion pools, loc for the character | Can start and finish a run with the starter deck |
-| **2. Pack framework** | Add PackmasterLib as a dependency and register the character. Translate packs to `PackDefinition`s. Check BaseLib + PackmasterLib together. Add a pack add/remove API, upstream or patched. Port Core Set | Rewards, shops and random-card effects only offer cards from drafted packs. Survives save/quit/resume. Works with 2 Packmasters in co-op |
+| **2. Pack framework** | Our own `PackmasterPack` base class and `PackRegistry` with a public registration API. Per-player saved selection with add/remove/ban. Pool filter patch, after confirming the hook in `sts2.dll`. Run-start draft screen with multiplayer-synced picks. Config: custom draft slots, all packs, allow multiple None, pack filter. Top-bar packs button. Port Core Set | Rewards, shops and random-card effects only offer cards from drafted packs. Survives save/quit/resume. Works with 2 Packmasters in co-op |
 | **3. Shared infrastructure** | `Wiz.cs`, `gen_cards.py`, `convert_loc.py`, system cards (Pack Rip, Conjure Pack, ...), stance system, temp HP, common modifiers | Generator and converter output compiles. System cards work |
 | **4. Animation and character art** | Spine 4.2 conversion (or Godot-native fallback), energy counter, rest/merchant/char-select scenes, icons | No placeholder base-game art remains on the character |
 | **5. Tier 1 packs** | ~33 packs | Each passes the per-pack checklist |
@@ -298,7 +285,7 @@ Phases 4 and 5 can run in parallel once Phase 3 lands.
 
 1. **Build environment**: compiling needs `sts2.dll` from a local StS2 install, and in-game testing needs the game. I can write and refactor code in a cloud session, but builds and playtests have to run on a machine with the game installed, or in CI with the DLL supplied privately. It can't be committed.
 2. **Early Access churn**: StS2 and BaseLib are still changing; example mods target game 0.107-0.111 and BaseLib 3.3-3.4.7. Pin versions in the manifest and expect API breaks between game patches.
-3. **Card-pool filtering hook**: mostly resolved. PackmasterLib filters at `CardCreationOptions.GetPossibleCards`, which rewards, shops, events and transforms all go through. The new risk is depending on PackmasterLib: it has no license yet, is pre-1.0, and can't change a run's packs mid-run.
+3. **Card-pool filtering hook**: the single most important technical spike, done at the start of Phase 2. Prior art suggests `CardCreationOptions.GetPossibleCards`; confirm it covers rewards, shops, events and transforms.
 4. **Multiplayer**: StS1 Packmaster is single-player and leans on global statics. Decide whether the first release supports co-op fully, or only single-player with co-op later. Recommendation: build per-player state from day one, because retrofitting is much harder, and treat co-op testing as release-blocking only from Phase 7.
 5. **Spine license and source files**: converting the animation cleanly needs the Spine editor, or the original DragonBones project.
 6. **Base-game-card packs (Tier 3)**: the design choice (StS2 equivalents, reimplemented StS1 cards, or replacement packs) is yours to make, and it affects how "Packmaster" those packs feel.
@@ -309,7 +296,7 @@ Phases 4 and 5 can run in parallel once Phase 3 lands.
 
 ## Sources
 
-- PackmasterLib for StS2 (mojimoon): https://github.com/mojimoon/Sts2Packmaster (Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=3815696341)
+- Prior art, unlicensed, reference only (no code used): https://github.com/mojimoon/Sts2Packmaster
 - Alchyr ModTemplate-StS2: https://github.com/Alchyr/ModTemplate-StS2
 - BaseLib-StS2: https://github.com/Alchyr/BaseLib-StS2 (wiki: https://alchyr.github.io/BaseLib-Wiki/)
 - STS2-Buu (stances, large card pool): https://github.com/harsh2204/STS2-Buu
