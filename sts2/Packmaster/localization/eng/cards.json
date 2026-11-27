@@ -38,12 +38,12 @@
   "PACKMASTER-QUINCUNX.title": "Quincunx",
   "PACKMASTER-QUINCUNX.description": "When this card is drawn, ALL enemies lose {Magic:diff()} [gold]Strength[/gold] this turn.",
   "PACKMASTER-NOVILE.title": "Novile",
-  "PACKMASTER-NOVILE.description": "When this card is drawn, gain {energyPrefix:energyIcons(1)}.",
+  "PACKMASTER-NOVILE.description": "When this card is drawn, gain {Magic:energyIcons()}.",
   "PACKMASTER-NOVILE.extended0": "[gold]Ethereal[/gold].\nWhen this card is drawn, gain",
   "PACKMASTER-NOVILE.extended1": "{energyPrefix:energyIcons(1)}",
   "PACKMASTER-NOVILE.extended2": ".",
   "PACKMASTER-SQUARE.title": "Square",
-  "PACKMASTER-SQUARE.description": "[gold]Ethereal[/gold].\nWhen this card is drawn, draw {Magic:diff()} card{Magic:cond:=1?|s}.",
+  "PACKMASTER-SQUARE.description": "When this card is drawn, draw {Magic:diff()} card{Magic:cond:=1?|s}.",
   "PACKMASTER-TRINE.title": "Trine",
   "PACKMASTER-TRINE.description": "When this card is drawn, the next card you play this turn is played twice.",
   "PACKMASTER-DIVINATION.title": "Divination",
@@ -1458,5 +1458,6 @@
   "PACKMASTER-WOMAN_IN_BLUE_PACK_PREVIEW.title": "Blue's Brews",
   "PACKMASTER-WOMAN_IN_BLUE_PACK_PREVIEW.description": "A collection of useful Exhaust cards themed around Potions. Contains several multi-choice cards.\n[gray]MichaelMayhem[/gray]",
   "PACKMASTER-FLICK.selectionScreenPrompt": "Choose a card to discard",
-  "PACKMASTER-SIDEBOARD.selectionScreenPrompt": "Choose a card to put on top of your draw pile"
+  "PACKMASTER-SIDEBOARD.selectionScreenPrompt": "Choose a card to put on top of your draw pile",
+  "PACKMASTER-DIVINATION.selectionScreenPrompt": "Choose cards to put on the bottom of your draw pile"
 }

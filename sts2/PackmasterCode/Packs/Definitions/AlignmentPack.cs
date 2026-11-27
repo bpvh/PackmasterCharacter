@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class AlignmentPack : PackmasterPack
 {
     public override string PackId => "AlignmentPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(AlignmentPackPreview);
     public override PackSummary Summary => new(2, 3, 5, 2, 2, PackTag.Exhaust, PackTag.Discard);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): Conjunction, Opposition, Divination, Quincunx, Square, Novile, Glimpse, Remember, Trine, Alignment
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Alignmentpack.Conjunction),
+        typeof(global::Packmaster.PackmasterCode.Cards.Alignmentpack.Opposition),
+        typeof(global::Packmaster.PackmasterCode.Cards.Alignmentpack.Divination),
+        typeof(global::Packmaster.PackmasterCode.Cards.Alignmentpack.Quincunx),
+        typeof(global::Packmaster.PackmasterCode.Cards.Alignmentpack.Square),
+        typeof(global::Packmaster.PackmasterCode.Cards.Alignmentpack.Novile),
+        typeof(global::Packmaster.PackmasterCode.Cards.Alignmentpack.Glimpse),
+        typeof(global::Packmaster.PackmasterCode.Cards.Alignmentpack.Remember),
+        typeof(global::Packmaster.PackmasterCode.Cards.Alignmentpack.Trine),
+        typeof(global::Packmaster.PackmasterCode.Cards.Alignmentpack.Alignment),
+    ];
 }
 
 public sealed class AlignmentPackPreview : PackPreviewCard

@@ -36,15 +36,15 @@
   "PACKMASTER-GLIMPSE_POWER.fragment0": "Whenever you draw an [gold]Ethereal[/gold] card, gain",
   "PACKMASTER-GLIMPSE_POWER.fragment1": "[gold]Block[/gold].",
   "PACKMASTER-REMEMBER_POWER.title": "Remember",
-  "PACKMASTER-REMEMBER_POWER.description": "At the end of your turn, you may shuffle [blue]{Amount}[/blue] card into your draw pile. cards into your draw pile. shuffle into your draw pile",
-  "PACKMASTER-REMEMBER_POWER.smartDescription": "At the end of your turn, you may shuffle [blue]{Amount}[/blue] card into your draw pile. cards into your draw pile. shuffle into your draw pile",
+  "PACKMASTER-REMEMBER_POWER.description": "At the end of your turn, you may shuffle cards from your hand into your draw pile.",
+  "PACKMASTER-REMEMBER_POWER.smartDescription": "At the end of your turn, you may shuffle up to [blue]{Amount}[/blue] {Amount:plural:card|cards} from your hand into your draw pile.",
   "PACKMASTER-REMEMBER_POWER.fragment0": "At the end of your turn, you may shuffle",
   "PACKMASTER-REMEMBER_POWER.fragment1": "card into your draw pile.",
   "PACKMASTER-REMEMBER_POWER.fragment2": "cards into your draw pile.",
   "PACKMASTER-REMEMBER_POWER.fragment3": "shuffle into your draw pile",
   "PACKMASTER-TRINE_POWER.title": "Trine",
-  "PACKMASTER-TRINE_POWER.description": "The next card you play this turn will be played twice. {Amount} The next cards you play this turn will be played twice.",
-  "PACKMASTER-TRINE_POWER.smartDescription": "The next card you play this turn will be played twice. {Amount} The next cards you play this turn will be played twice.",
+  "PACKMASTER-TRINE_POWER.description": "The next card you play this turn is played twice.",
+  "PACKMASTER-TRINE_POWER.smartDescription": "The next {Amount:plural:card|[blue]{Amount}[/blue] cards} you play this turn {Amount:plural:is|are} played twice.",
   "PACKMASTER-TRINE_POWER.fragment0": "The next card you play this turn will be played twice.",
   "PACKMASTER-TRINE_POWER.fragment1": "The next",
   "PACKMASTER-TRINE_POWER.fragment2": "cards you play this turn will be played twice.",
@@ -809,5 +809,6 @@
   "PACKMASTER-REAPERS_MARK_POWER.smartDescription": "Whenever [blue]3[/blue] stacks are applied, they are removed and the creature loses HP equal to [blue]40%[/blue] of its missing HP.",
   "PACKMASTER-AGGRESSION.title": "Aggression",
   "PACKMASTER-AGGRESSION.description": "Your Attacks deal [blue]{Amount}%[/blue] more damage. Upon exiting this [gold]Stance[/gold], gain [blue]2[/blue] [gold]Strength[/gold].",
-  "PACKMASTER-AGGRESSION.smartDescription": "Your Attacks deal [blue]{Amount}%[/blue] more damage. Upon exiting this [gold]Stance[/gold], gain [blue]2[/blue] [gold]Strength[/gold]."
+  "PACKMASTER-AGGRESSION.smartDescription": "Your Attacks deal [blue]{Amount}%[/blue] more damage. Upon exiting this [gold]Stance[/gold], gain [blue]2[/blue] [gold]Strength[/gold].",
+  "PACKMASTER-REMEMBER_POWER.selectionScreenPrompt": "Choose cards to shuffle into your draw pile"
 }
