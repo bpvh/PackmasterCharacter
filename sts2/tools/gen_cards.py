@@ -121,18 +121,25 @@ def cs_path(namespace: str, cls: str) -> Path:
     return CODE.joinpath(*rel, f"{cls}.cs")
 
 
+def show(path: Path) -> str:
+    try:
+        return str(path.relative_to(STS2))
+    except ValueError:
+        return str(path)
+
+
 def write(path: Path, text: str, force: bool, dry: bool):
     if path.exists() and not force:
         return "kept"
     if dry:
-        print(f"--- {path.relative_to(STS2)}\n{text}")
+        print(f"--- {show(path)}\n{text}")
         return "dry"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding="utf-8")
     return "written"
 
 
-def pack_defs(packs, dry):
+def pack_defs(packs, dry, write_loc=True):
     classes = existing_classes()
     defs_dir = CODE / "Packs" / "Definitions"
     written = []
@@ -151,21 +158,20 @@ def pack_defs(packs, dry):
             else:
                 missing.append(cls)
         target = defs_dir / f"{ids.class_name(pk.pack_id)}.cs"
-        enabled = bool(types) and not missing
-        if target.exists():
-            m = re.search(r"Enabled\s*=>\s*(true|false)", target.read_text())
-            if m and m.group(1) == "false" and enabled:
-                pass  # becomes enabled once every card exists
-            elif m:
-                enabled = enabled and m.group(1) == "true" or (m.group(1) == "true" and not missing)
-        src = emit.pack_class(pk, types, enabled, missing)
+        # Enabled only when every card exists and none is still an unported skeleton. A hand edit to
+        # "Enabled => false" in an existing definition is kept.
+        unfinished = [c for c in types if "Status: skeleton" in classes[c.split(".")[-1]][1].read_text(errors="ignore")]
+        enabled = bool(types) and not missing and not unfinished
+        if target.exists() and re.search(r"Enabled\s*=>\s*false;\s*// keep", target.read_text()):
+            enabled = False
+        src = emit.pack_class(pk, types, enabled, missing + [f"{c.split('.')[-1]} (skeleton)" for c in unfinished])
         if dry:
-            print(f"--- {target.relative_to(STS2)}\n{src}")
+            print(f"--- {show(target)}\n{src}")
         else:
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(src, encoding="utf-8")
         written.append(target)
-    if not dry:
+    if not dry and write_loc:
         preview_loc(packs)
     return written
 
@@ -219,7 +225,13 @@ def main(argv=None):
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--force", action="store_true", help="overwrite existing card files")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--all-packs", action="store_true", help="generate cards for every pack (use with --code-root)")
+    ap.add_argument("--code-root", help="write C# under this folder instead of PackmasterCode/ (for compile tests)")
     args = ap.parse_args(argv)
+
+    global CODE
+    if args.code_root:
+        CODE = Path(args.code_root).resolve()
 
     packs = load_packs()
     idx = java.index_classes()
@@ -245,7 +257,8 @@ def main(argv=None):
             REPORT.write_text(json.dumps({"totals": totals, "packs": report}, indent=1) + "\n")
             print("totals:", totals)
 
-    for name in args.pack or []:
+    names = [pk.pack_id for pk in packs] if args.all_packs else (args.pack or [])
+    for name in names:
         pk = find_pack(packs, name)
         if not pk:
             print(f"unknown pack {name}", file=sys.stderr)
@@ -255,10 +268,11 @@ def main(argv=None):
                 print(f"  {kind:8} {card}")
                 continue
             res = write(path, src, args.force, args.dry_run)
-            print(f"  {status:8} {res:8} {path.relative_to(STS2)}")
+            print(f"  {status:8} {res:8} {show(path)}")
 
-    if args.pack_defs or args.pack:
-        pack_defs(packs if args.pack_defs else [find_pack(packs, n) for n in args.pack], args.dry_run)
+    if args.pack_defs or names:
+        pack_defs(packs if (args.pack_defs or args.all_packs) else [find_pack(packs, n) for n in names],
+                  args.dry_run, write_loc=not args.code_root)
         print("pack definitions updated")
     return 0
 

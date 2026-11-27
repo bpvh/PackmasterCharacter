@@ -38,3 +38,7 @@ Packmaster/images/charui/energy/
 
 # Python
 __pycache__/
+
+# compile check build output
+tools/compile_check/bin/
+tools/compile_check/obj/

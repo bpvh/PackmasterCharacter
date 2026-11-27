@@ -71,7 +71,7 @@ class Emit(unittest.TestCase):
             "WithCostUpgradeBy(-1);",
             "WithTags(CardTag.Strike);",
             'await CommonActions.CardAttack(this, play, vfx: "vfx/vfx_attack_slash").Execute(ctx);',
-            'await PowerCmd.Apply<VulnerablePower>(ctx, play.Target!, DynamicVars["Magic"].BaseValue, Owner.Creature, this);',
+            'await CommonActions.Apply<VulnerablePower>(ctx, play.Target!, this, DynamicVars["Magic"].BaseValue);',
             "await CardPileCmd.Draw(ctx, 1m, Owner);",
             "using MegaCrit.Sts2.Core.Models.Powers;",
         ]:

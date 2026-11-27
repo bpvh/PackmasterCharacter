@@ -1,0 +1,31 @@
+<!--
+  Type-checks PackmasterCode/ without the Godot SDK or a game install, e.g. in a cloud session or CI.
+  It only compiles; it doesn't produce a loadable mod (use ../../Packmaster.csproj for that).
+
+    dotnet build tools/compile_check -p:Sts2Dll=/path/to/sts2.dll -p:GodotSharpDll=/path/to/GodotSharp.dll \
+        -p:HarmonyDll=/path/to/0Harmony.dll -p:BaseLibDll=/path/to/BaseLib.dll [-p:SmartFormatDll=...]
+
+  sts2.dll / SmartFormat.dll / 0Harmony.dll come from <game>/data_sts2_*; GodotSharp.dll from the GodotSharp
+  4.5.1 NuGet package (or the game folder); BaseLib.dll from the Alchyr.Sts2.BaseLib NuGet package.
+  Never commit game DLLs.
+-->
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>true</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>Packmaster</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <NoWarn>$(NoWarn);MSB3270;CS1591</NoWarn>
+    <CodeRoot Condition="'$(CodeRoot)' == ''">$(MSBuildThisFileDirectory)../../PackmasterCode</CodeRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(CodeRoot)/**/*.cs" />
+    <Reference Include="sts2"><HintPath>$(Sts2Dll)</HintPath></Reference>
+    <Reference Include="0Harmony"><HintPath>$(HarmonyDll)</HintPath></Reference>
+    <Reference Include="GodotSharp"><HintPath>$(GodotSharpDll)</HintPath></Reference>
+    <Reference Include="BaseLib"><HintPath>$(BaseLibDll)</HintPath></Reference>
+    <Reference Include="SmartFormat" Condition="'$(SmartFormatDll)' != ''"><HintPath>$(SmartFormatDll)</HintPath></Reference>
+  </ItemGroup>
+</Project>

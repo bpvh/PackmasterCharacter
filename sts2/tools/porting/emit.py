@@ -138,7 +138,11 @@ def _apply(java_power: str, amt_expr: str, target: str, need):
     if not power or not amt:
         return None
     need.add("vanilla_powers")
-    return [f"await PowerCmd.Apply<{power}>(ctx, {target}, {amt}, Owner.Creature, this);"]
+    # BaseLib's CommonActions wraps PowerCmd.Apply, whose signature changed between game versions.
+    if target.endswith("HittableEnemies"):
+        return [f"foreach (var enemy in {target}.ToList())",
+                f"    await CommonActions.Apply<{power}>(ctx, enemy, this, {amt});"]
+    return [f"await CommonActions.Apply<{power}>(ctx, {target}, this, {amt});"]
 
 
 def translate_use(card: JavaCard):

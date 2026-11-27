@@ -1,3 +1,5 @@
+using Packmaster.PackmasterCode.Extensions;
+
 namespace Packmaster.PackmasterCode.Powers;
 
 /// <summary>
