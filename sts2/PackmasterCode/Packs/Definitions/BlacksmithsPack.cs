@@ -5,11 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class BlacksmithsPack : PackmasterPack
 {
     public override string PackId => "BlacksmithsPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(BlacksmithsPackPreview);
     public override PackSummary Summary => new(3, 3, 4, 4, 4);
-    public override IReadOnlyList<Type> CardTypes => [];
-    // Not ported yet (10): RedHotHammer, QuickFix, CarelessSwing, HeartOfTheForge, SharpeningSheath, SetUpShop, BlacksmithsShield, MastersStrike, ScrapMetal, Masterwork
+    public override IReadOnlyList<Type> CardTypes =>
+    [
+        typeof(global::Packmaster.PackmasterCode.Cards.Upgradespack.RedHotHammer),
+        typeof(global::Packmaster.PackmasterCode.Cards.Upgradespack.QuickFix),
+        typeof(global::Packmaster.PackmasterCode.Cards.Upgradespack.CarelessSwing),
+        typeof(global::Packmaster.PackmasterCode.Cards.Upgradespack.HeartOfTheForge),
+        typeof(global::Packmaster.PackmasterCode.Cards.Upgradespack.SharpeningSheath),
+        typeof(global::Packmaster.PackmasterCode.Cards.Upgradespack.SetUpShop),
+        typeof(global::Packmaster.PackmasterCode.Cards.Upgradespack.BlacksmithsShield),
+        typeof(global::Packmaster.PackmasterCode.Cards.Upgradespack.MastersStrike),
+        typeof(global::Packmaster.PackmasterCode.Cards.Upgradespack.ScrapMetal),
+        typeof(global::Packmaster.PackmasterCode.Cards.Upgradespack.Masterwork),
+    ];
 }
 
 public sealed class BlacksmithsPackPreview : PackPreviewCard

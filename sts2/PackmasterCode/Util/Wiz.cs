@@ -141,6 +141,41 @@ public static class Wiz
         return result;
     }
 
+    // ---- upgrades ------------------------------------------------------------------------------------
+
+    /// <summary>Total upgrade levels of all cards in hand, draw and discard pile (StS1 timesUpgraded sum).</summary>
+    public static int UpgradesInPiles(Player p) =>
+        Hand(p).Concat(DrawPile(p)).Concat(DiscardPile(p)).Sum(c => Math.Max(0, c.CurrentUpgradeLevel));
+
+    /// <summary>StS1 RandomUpgradeWithVfxAction: upgrade a random upgradable card from the list, `times` times.</summary>
+    public static void UpgradeRandom(Player p, IEnumerable<CardModel> cards, int times)
+    {
+        var rng = CardRng(p);
+        var pool = cards.ToList();
+        for (int i = 0; i < times; i++)
+        {
+            var upgradable = pool.Where(c => c.IsUpgradable).ToList();
+            if (upgradable.Count == 0) return;
+            CardCmd.Upgrade(rng.NextItem(upgradable)!);
+        }
+    }
+
+    /// <summary>
+    /// StS1 SuperUpgradeAction.forceUpgrade: upgrade normally if possible, otherwise apply the upgrade again
+    /// past the card's max level (its upgrade bonuses stack). VERIFY: UpgradeInternal + FinalizeUpgradeInternal on a
+    /// fully upgraded card re-applies OnUpgrade and the declared var upgrades.
+    /// </summary>
+    public static void ForceUpgrade(CardModel card)
+    {
+        if (card.IsUpgradable)
+        {
+            CardCmd.Upgrade(card);
+            return;
+        }
+        card.UpgradeInternal();
+        card.FinalizeUpgradeInternal();
+    }
+
     // ---- powers --------------------------------------------------------------------------------------
 
     /// <summary>

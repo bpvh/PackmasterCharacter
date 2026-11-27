@@ -217,7 +217,7 @@
   "PACKMASTER-RED_HOT_HAMMER.title": "Red-Hot Hammer",
   "PACKMASTER-RED_HOT_HAMMER.description": "Deal {Damage:diff()} damage.\nCan be [gold]Upgraded[/gold] any number of times.",
   "PACKMASTER-HEART_OF_THE_FORGE.title": "Heart of the Forge",
-  "PACKMASTER-HEART_OF_THE_FORGE.description": "[gold]Retain[/gold].\nGain{Magic:cond:>1? {Magic:diff()}|} {energyPrefix:energyIcons(1)}. When [gold]Retained[/gold], [gold]Upgrade[/gold] this.\nCan be [gold]Upgraded[/gold] any number of times.",
+  "PACKMASTER-HEART_OF_THE_FORGE.description": "Gain {Magic:energyIcons()}. When [gold]Retained[/gold], [gold]Upgrade[/gold] this.\nCan be [gold]Upgraded[/gold] any number of times.",
   "PACKMASTER-SHARPENING_SHEATH.title": "Sharpening Sheath",
   "PACKMASTER-SHARPENING_SHEATH.description": "Draw {Magic:diff()} cards and [gold]Upgrade[/gold] them.",
   "PACKMASTER-CARELESS_SWING.title": "Careless Swing",
@@ -225,7 +225,7 @@
   "PACKMASTER-SET_UP_SHOP.title": "Set Up Shop",
   "PACKMASTER-SET_UP_SHOP.description": "[gold]Upgrade[/gold] {Magic:diff()} cards from your draw or discard pile and put them on top of your draw pile.",
   "PACKMASTER-MASTERS_STRIKE.title": "Master's Strike",
-  "PACKMASTER-MASTERS_STRIKE.description": "Deal {Damage:diff()} damage.\nDeals {Magic:diff()} additional damage for each [gold]Upgrade[/gold] on ALL your cards.",
+  "PACKMASTER-MASTERS_STRIKE.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for each [gold]Upgrade[/gold] on cards in your hand, draw and discard piles.",
   "PACKMASTER-SCRAP_METAL.title": "Scrap Metal",
   "PACKMASTER-SCRAP_METAL.description": "[gold]Upgrade[/gold] a random card from any pile for every {Magic:diff()} [gold]Block[/gold] you have.",
   "PACKMASTER-BLACKSMITHS_SHIELD.title": "Blacksmith's Shield",
@@ -1461,5 +1461,6 @@
   "PACKMASTER-SIDEBOARD.selectionScreenPrompt": "Choose a card to put on top of your draw pile",
   "PACKMASTER-DIVINATION.selectionScreenPrompt": "Choose cards to put on the bottom of your draw pile",
   "PACKMASTER-HOLLOWER.selectionScreenPrompt": "Choose a card to put into your hand",
-  "PACKMASTER-VISION.selectionScreenPrompt": "Choose cards to put into your hand"
+  "PACKMASTER-VISION.selectionScreenPrompt": "Choose cards to put into your hand",
+  "PACKMASTER-SET_UP_SHOP.selectionScreenPrompt": "Choose cards to Upgrade and put on top of your draw pile"
 }
