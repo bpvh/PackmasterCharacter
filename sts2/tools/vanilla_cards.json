@@ -2,7 +2,10 @@
  "_doc": "StS1 base-game cards used by vanilla packs -> StS2 card class (MegaCrit.Sts2.Core.Models.Cards). A string maps to the StS2 card of the same role (usually the same card, sometimes renamed); an object is a substitute for a card StS2 doesn't have, with the reason. gen_cards.py --pack-defs reads this; cards not listed keep their pack disabled. Checked against the card pools of the reference sts2.dll.",
  "Barricade": "Barricade",
  "BattleTrance": "BattleTrance",
- "DoubleTap": {"sts2": "OneTwoPunch", "note": "StS2 has no Double Tap; One-Two Punch (rare skill) plays your next Attack an extra time"},
+ "DoubleTap": {
+  "sts2": "OneTwoPunch",
+  "note": "StS2 has no Double Tap; One-Two Punch (rare skill) plays your next Attack an extra time"
+ },
  "Headbutt": "Headbutt",
  "Inflame": "Inflame",
  "Rampage": "Rampage",
@@ -17,12 +20,18 @@
  "BladeDance": "BladeDance",
  "BulletTime": "BulletTime",
  "CalculatedGamble": "CalculatedGamble",
- "Choke": {"sts2": "Strangle", "note": "StS2's version of Choke (uncommon attack; the enemy loses HP whenever you play a card this turn)"},
+ "Choke": {
+  "sts2": "Strangle",
+  "note": "StS2's version of Choke (uncommon attack; the enemy loses HP whenever you play a card this turn)"
+ },
  "CloakAndDagger": "CloakAndDagger",
  "Footwork": "Footwork",
  "LegSweep": "LegSweep",
  "Prepared": "Prepared",
- "SneakyStrike": {"sts2": "FlickFlack", "note": "StS2 has no Sneaky Strike; Flick-Flack is the common discard-synergy (Sly) attack"},
+ "SneakyStrike": {
+  "sts2": "FlickFlack",
+  "note": "StS2 has no Sneaky Strike; Flick-Flack is the common discard-synergy (Sly) attack"
+ },
  "StormOfSteel": "StormOfSteel",
  "AfterImage": "Afterimage",
  "Backflip": "Backflip",
@@ -40,11 +49,17 @@
  "Capacitor": "Capacitor",
  "Coolheaded": "Coolheaded",
  "Defragment": "Defragment",
- "DoomAndGloom": {"sts2": "Null", "note": "StS2 has no Doom and Gloom; Null (uncommon attack) also deals damage and channels Dark"},
+ "DoomAndGloom": {
+  "sts2": "Null",
+  "note": "StS2 has no Doom and Gloom; Null (uncommon attack) also deals damage and channels Dark"
+ },
  "Glacier": "Glacier",
  "Hologram": "Hologram",
  "MultiCast": "MultiCast",
- "Recursion": {"sts2": "Darkness", "note": "StS2 has no Recursion; Darkness (uncommon skill) is the closest orb-manipulation skill: channel Dark and trigger Dark passives"},
+ "Recursion": {
+  "sts2": "Darkness",
+  "note": "StS2 has no Recursion; Darkness (uncommon skill) is the closest orb-manipulation skill: channel Dark and trigger Dark passives"
+ },
  "AllForOne": "AllForOne",
  "BeamCell": "BeamCell",
  "FTL": "Ftl",
@@ -52,5 +67,17 @@
  "Scrape": "Scrape",
  "Overclock": "Overclock",
  "Turbo": "Turbo",
- "Equilibrium": "Equilibrium"
+ "Equilibrium": "Equilibrium",
+ "Catalyst": {
+  "sts2": "BubbleBubble",
+  "note": "StS2 has no Catalyst; Bubble Bubble (uncommon skill) is the poison payoff on an already-poisoned enemy"
+ },
+ "CripplingPoison": {
+  "sts2": "Haze",
+  "note": "StS2 has no Crippling Cloud; Haze (uncommon skill) also poisons all enemies"
+ },
+ "CorpseExplosion": {
+  "sts2": "CorrosiveWave",
+  "note": "StS2 has no Corpse Explosion; Corrosive Wave is the rare poison skill"
+ }
 }

@@ -5,19 +5,22 @@ namespace Packmaster.PackmasterCode.Packs.Definitions;
 public sealed class PoisonPack : PackmasterPack
 {
     public override string PackId => "PoisonPack";
-    public override bool Enabled => false;
+    public override bool Enabled => true;
     public override Type PreviewCardType => typeof(PoisonPackPreview);
     public override PackSummary Summary => new(5, 1, 2, 2, 5, PackTag.Debuffs);
     public override IReadOnlyList<Type> CardTypes =>
     [
         typeof(global::MegaCrit.Sts2.Core.Models.Cards.PoisonedStab),
         typeof(global::MegaCrit.Sts2.Core.Models.Cards.DeadlyPoison),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.BubbleBubble),
+        typeof(global::Packmaster.PackmasterCode.Cards.Poisonpack.VenomDip),
         typeof(global::MegaCrit.Sts2.Core.Models.Cards.NoxiousFumes),
         typeof(global::MegaCrit.Sts2.Core.Models.Cards.BouncingFlask),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.Haze),
         typeof(global::MegaCrit.Sts2.Core.Models.Cards.Malaise),
         typeof(global::MegaCrit.Sts2.Core.Models.Cards.Burst),
+        typeof(global::MegaCrit.Sts2.Core.Models.Cards.CorrosiveWave),
     ];
-    // Not ported yet (4): Catalyst, VenomDip, CripplingPoison, CorpseExplosion
 }
 
 public sealed class PoisonPackPreview : PackPreviewCard
